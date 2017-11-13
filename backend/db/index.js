@@ -48,6 +48,7 @@ function setupDB () {
 }
 
 function generateModels (callback) {
+  // TODO add directory option
   var auto = new SequelizeAuto(config.get('db.name'), config.get('db.username'), config.get('db.password'), {
     host: config.get('db.host'),
     dialect: 'mssql',
