@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
-
-const Questions = require('./../db/').questions
+const db = require('./../db/')
 
 router.get('/', (req, res, next) => {
-  Questions.findAll()
+  db.questions
+    .findAll()
     .then(qs => {
       res.send(qs)
     })

@@ -8,16 +8,14 @@ const sequelize = new Sequelize(config.get('db.name'), config.get('db.username')
   host: config.get('db.host'),
   dialect: 'mssql',
   freezeTableName: true,
-  operatorsAliases: false,
-  timestamps: false,
-  underscored: true
+  operatorsAliases: false
 })
 
 const dir = path.join(__dirname, 'models/')
-var files = fs.readdirSync(dir)
+const files = fs.readdirSync(dir)
 files.forEach(file => {
   var model = getModelName(file)
-  models[model] = sequelize.import(model, require(dir + file))
+  models[model] = sequelize.import(dir + file)
 })
 
 sequelize
