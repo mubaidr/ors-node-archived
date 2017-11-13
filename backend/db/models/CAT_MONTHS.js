@@ -1,0 +1,22 @@
+/* jshint indent: 2 */
+
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('CAT_MONTHS', {
+    ID: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    DESCRIPTION: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    ABBRIV: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
+  }, {
+    tableName: 'CAT_MONTHS'
+  });
+};
