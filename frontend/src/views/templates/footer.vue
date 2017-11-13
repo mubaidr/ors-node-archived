@@ -1,6 +1,6 @@
 <template lang="pug">
-  div
-    p footer
+  div.container
+    p Footer content
 </template>
 
 <script>
@@ -9,7 +9,6 @@
   }
 </script>
 
-<style lang="styl">
-
+<style lang="stylus">
 </style>
 
