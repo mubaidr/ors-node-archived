@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const db = require('./../db/')
 
 router.get('/', (req, res, next) => {
+  const db = req.app.get('db')
+
   db.Gender
     .findAll()
     .then(qs => {
@@ -12,6 +13,8 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
+  const db = req.app.get('db')
+
   db.Gender
     .create({
       DESCRIPTION: ''

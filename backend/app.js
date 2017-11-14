@@ -4,7 +4,12 @@ const bodyParser = require('body-parser')
 
 const routes = require('./routes/index')
 const app = express()
+const models = require('./db/index')
 
+// Setup DB and store models in app
+app.set('db', models)
+
+// some middlewares
 if (app.get('env') === 'development') {
   app.use(logger('dev'))
 }
