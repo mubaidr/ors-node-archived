@@ -41,5 +41,3 @@ yarn-error.log
 *.njsproj
 *.sln
 
-# DB config data
-/backend/config/db.js

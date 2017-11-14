@@ -11,19 +11,24 @@ const directory = path.join(__dirname, 'models')
 // enable support for timestamps
 const enableTimestamps = true
 
-const auto = new SequelizeAuto(config.get('db.name'), config.get('db.username'), config.get('db.password'), {
-  host: config.get('db.host'),
-  dialect: 'mssql',
-  directory: directory,
-  additional: {
-    timestamps: enableTimestamps,
-    underscored: true,
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
-    deletedAt: false
-  },
-  logging: false
-})
+const auto = new SequelizeAuto(
+  config.get('options.db.name'),
+  config.get('options.db.username'),
+  config.get('options.db.password'),
+  {
+    host: config.get('options.db.host'),
+    dialect: 'mssql',
+    directory: directory,
+    additional: {
+      timestamps: enableTimestamps,
+      underscored: true,
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
+      deletedAt: false
+    },
+    logging: false
+  }
+)
 
 console.log('\nGenerating models in: ' + directory)
 auto.run(err => {
@@ -55,15 +60,20 @@ auto.run(err => {
 
 function setupTimestamps (callback) {
   // Setup sequelize
-  const sequelize = new Sequelize(config.get('db.name'), config.get('db.username'), config.get('db.password'), {
-    host: config.get('db.host'),
-    dialect: 'mssql',
-    freezeTableName: true,
-    operatorsAliases: false,
-    timestamps: true,
-    underscored: true,
-    logging: false
-  })
+  const sequelize = new Sequelize(
+    config.get('options.db.name'),
+    config.get('options.db.username'),
+    config.get('options.db.password'),
+    {
+      host: config.get('options.db.host'),
+      dialect: 'mssql',
+      freezeTableName: true,
+      operatorsAliases: false,
+      timestamps: true,
+      underscored: true,
+      logging: false
+    }
+  )
 
   // Add timestamps comlumns to all tables
   sequelize

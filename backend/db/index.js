@@ -7,19 +7,24 @@ const directory = path.join(__dirname, '/models/')
 var models = {}
 
 // Setup sequelize
-const sequelize = new Sequelize(config.get('db.name'), config.get('db.username'), config.get('db.password'), {
-  host: config.get('db.host'),
-  dialect: 'mssql',
-  freezeTableName: true,
-  operatorsAliases: false,
-  timestamps: true,
-  underscored: true,
-  define: {
+const sequelize = new Sequelize(
+  config.get('options.db.name'),
+  config.get('options.db.username'),
+  config.get('options.db.password'),
+  {
+    host: config.get('options.db.host'),
+    dialect: 'mssql',
+    freezeTableName: true,
+    operatorsAliases: false,
     timestamps: true,
     underscored: true,
-    freezeTableName: true
+    define: {
+      timestamps: true,
+      underscored: true,
+      freezeTableName: true
+    }
   }
-})
+)
 
 // Import models
 fs.readdirSync(directory).forEach(file => {
