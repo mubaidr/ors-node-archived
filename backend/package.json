@@ -7,7 +7,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www --config nodemon.json"
+    "dev": "nodemon ./bin/www --config nodemon.json",
+    "generate-models": "node ./db/generate-models"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
