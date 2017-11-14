@@ -5,7 +5,7 @@ const router = express.Router()
 const test = require('./test')
 const auth = require('./auth')
 
-//register routes
+// register routes
 router.use('/test', test)
 router.use('/', auth)
 

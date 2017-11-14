@@ -5,7 +5,7 @@ const path = require('path')
 
 const directory = path.join(__dirname, '/models/')
 var models = {}
-//TODO /FIX update datetime format
+// TODO /FIX update datetime format
 // Setup sequelize
 const sequelize = new Sequelize(
   config.get('options.db.name'),
@@ -46,7 +46,10 @@ sequelize.sync({
   logging: false
 })
 
-module.exports = models
+module.exports = {
+  models: models,
+  sequelize: sequelize
+}
 
 /**
  * Utilities
