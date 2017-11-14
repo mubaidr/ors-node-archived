@@ -59,8 +59,8 @@ function getModelName (name) {
     .replace('.js', '')
     .split('_')
 
-  let model = words[1]
-  for (let i = 2; i < words.length; i++) {
+  let model = ''
+  for (let i = 1; i < words.length; i++) {
     model += words[i][0].toUpperCase() + words[i].substring(1)
   }
 

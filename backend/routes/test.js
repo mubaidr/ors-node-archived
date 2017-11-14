@@ -3,7 +3,7 @@ const router = express.Router()
 const db = require('./../db/')
 
 router.get('/', (req, res, next) => {
-  db.questions
+  db.Gender
     .findAll()
     .then(qs => {
       res.send(qs)
@@ -12,6 +12,9 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
+  db.Gender.create({
+
+  })
   res.send('Good boy: ' + req.body)
 })
 
