@@ -37,7 +37,9 @@ sequelize
   })
 
 // Sync DB schema
-sequelize.sync()
+sequelize.sync({
+  logging: false
+})
 
 module.exports = models
 

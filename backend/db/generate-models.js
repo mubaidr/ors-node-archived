@@ -90,7 +90,7 @@ function setupTimestamps (callback) {
     `
     )
     .catch(err => {
-      console.log(err)
+      console.error(err)
     })
     .then(() => {
       sequelize.close()
