@@ -1,11 +1,11 @@
-var express = require('express')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
 
 // route segments
-// var auth = require('./auth')
-var test = require('./test')
+const test = require('./test')
+const auth = require('./auth')
 
-// router.use('/', auth)
 router.use('/test', test)
+router.use('/', auth)
 
 module.exports = router
