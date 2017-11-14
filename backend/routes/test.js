@@ -12,10 +12,16 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  db.Gender.create({
-
-  })
-  res.send('Good boy: ' + req.body)
+  db.Gender
+    .create({
+      DESCRIPTION: ''
+    })
+    .then(g => {
+      res.send(g)
+    })
+    .catch(err => {
+      res.status(500).send(err)
+    })
 })
 
 module.exports = router

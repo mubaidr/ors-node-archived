@@ -27,7 +27,7 @@ router.use('/api/*', (req, res, next) => {
       next()
     })
   } else {
-    next()
+    res.status(403).send('Unauthorized!')
   }
 })
 
