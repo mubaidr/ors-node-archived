@@ -25,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false
 		},
 		SUBMIT_DATE: {
-			type: "SMALLDATETIME",
+			type: DataTypes.DATE,
 			allowNull: false
 		},
 	}, {
