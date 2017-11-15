@@ -11,6 +11,16 @@ module.exports = function(sequelize, DataTypes) {
 		DESCRIPTION: {
 			type: DataTypes.STRING,
 			allowNull: false
+		},
+		CREATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
+		},
+		UPDATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
 		}
 	}, {
 		tableName: 'CAT_CRITERIA_ACADEMICS',

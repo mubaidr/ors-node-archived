@@ -73,6 +73,16 @@ module.exports = function(sequelize, DataTypes) {
 		hasWorkedInSPD: {
 			type: DataTypes.BOOLEAN,
 			allowNull: true
+		},
+		CREATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
+		},
+		UPDATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
 		}
 	}, {
 		tableName: 'TBL_APPLICATIONS',

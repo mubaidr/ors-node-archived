@@ -11,6 +11,16 @@ module.exports = function(sequelize, DataTypes) {
 		TITLE: {
 			type: DataTypes.STRING,
 			allowNull: false
+		},
+		CREATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
+		},
+		UPDATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
 		}
 	}, {
 		tableName: 'CAT_ACTIVITIES_ADMIN',

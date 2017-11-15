@@ -60,6 +60,16 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
 			defaultValue: '1'
+		},
+		CREATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
+		},
+		UPDATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
 		}
 	}, {
 		tableName: 'TBL_MESSAGES_THREADS',

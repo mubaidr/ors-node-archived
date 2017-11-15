@@ -34,7 +34,9 @@ console.log('\nGenerating models in: ' + directory)
 auto.run(err => {
   if (err) throw err
 
-  console.log('\nRemoving redundant models (views, sysdiagrams, aspnet, __MigrationHistory)')
+  console.log(
+    '\nRemoving redundant models (views, sysdiagrams, aspnet, __MigrationHistory)'
+  )
   fs.readdirSync(directory).forEach(file => {
     const t_file = file.toLowerCase()
     if (

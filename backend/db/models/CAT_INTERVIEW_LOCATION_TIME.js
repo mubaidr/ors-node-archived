@@ -32,6 +32,16 @@ module.exports = function(sequelize, DataTypes) {
 		PANEL: {
 			type: DataTypes.STRING,
 			allowNull: true
+		},
+		CREATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
+		},
+		UPDATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
 		}
 	}, {
 		tableName: 'CAT_INTERVIEW_LOCATION_TIME',

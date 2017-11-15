@@ -40,6 +40,16 @@ module.exports = function(sequelize, DataTypes) {
 		TITLE_P_3: {
 			type: DataTypes.STRING,
 			allowNull: true
+		},
+		CREATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
+		},
+		UPDATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
 		}
 	}, {
 		tableName: 'TBL_BOOKS',

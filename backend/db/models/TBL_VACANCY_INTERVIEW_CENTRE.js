@@ -23,6 +23,16 @@ module.exports = function(sequelize, DataTypes) {
 				model: 'CAT_INTERVIEW_CENTRES',
 				key: 'ID'
 			}
+		},
+		CREATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
+		},
+		UPDATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
 		}
 	}, {
 		tableName: 'TBL_VACANCY_INTERVIEW_CENTRE',

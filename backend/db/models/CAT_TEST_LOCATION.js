@@ -27,6 +27,16 @@ module.exports = function(sequelize, DataTypes) {
 		CAPACITY: {
 			type: DataTypes.INTEGER,
 			allowNull: false
+		},
+		CREATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
+		},
+		UPDATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
 		}
 	}, {
 		tableName: 'CAT_TEST_LOCATION',

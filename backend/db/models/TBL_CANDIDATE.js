@@ -133,6 +133,16 @@ module.exports = function(sequelize, DataTypes) {
 		LICENSE_EXPIRY_DATE: {
 			type: DataTypes.DATE,
 			allowNull: true
+		},
+		CREATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
+		},
+		UPDATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
 		}
 	}, {
 		tableName: 'TBL_CANDIDATE',

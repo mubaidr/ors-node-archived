@@ -4,8 +4,7 @@ const router = express.Router()
 router.get('/', (req, res, next) => {
   const db = req.app.get('db')
 
-  db.Gender
-    .findAll()
+  db.Gender.findAll()
     .then(g => {
       res.send(g)
     })
@@ -15,10 +14,9 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const db = req.app.get('db')
 
-  db.Gender
-    .create({
-      DESCRIPTION: ''
-    })
+  db.Gender.create({
+    DESCRIPTION: ''
+  })
     .then(g => {
       res.send(g)
     })

@@ -74,6 +74,16 @@ module.exports = function(sequelize, DataTypes) {
 		MAJOR_ASSIGNMENTS: {
 			type: DataTypes.TEXT,
 			allowNull: true
+		},
+		CREATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
+		},
+		UPDATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
 		}
 	}, {
 		tableName: 'TBL_EXPERIENCE',

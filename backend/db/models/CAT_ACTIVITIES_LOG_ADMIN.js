@@ -28,6 +28,16 @@ module.exports = function(sequelize, DataTypes) {
 		ACTIVITY_DETAILS: {
 			type: DataTypes.STRING,
 			allowNull: true
+		},
+		CREATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
+		},
+		UPDATED_AT: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())'
 		}
 	}, {
 		tableName: 'CAT_ACTIVITIES_LOG_ADMIN',
