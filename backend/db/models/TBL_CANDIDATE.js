@@ -133,7 +133,7 @@ module.exports = function(sequelize, DataTypes) {
 		LICENSE_EXPIRY_DATE: {
 			type: DataTypes.DATE,
 			allowNull: true
-		},
+		}
 	}, {
 		tableName: 'TBL_CANDIDATE',
 		timestamps: true,

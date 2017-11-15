@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
 				model: 'CAT_SPECIALIZATION',
 				key: 'ID'
 			}
-		},
+		}
 	}, {
 		tableName: 'CAT_SPEC_FIELDS',
 		timestamps: true,

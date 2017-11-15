@@ -45,7 +45,7 @@ module.exports = function(sequelize, DataTypes) {
 				model: 'CAT_APP_STATUS',
 				key: 'ID'
 			}
-		},
+		}
 	}, {
 		tableName: 'TBL_VACANCIES',
 		timestamps: true,

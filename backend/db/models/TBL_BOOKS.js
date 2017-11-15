@@ -40,7 +40,7 @@ module.exports = function(sequelize, DataTypes) {
 		TITLE_P_3: {
 			type: DataTypes.STRING,
 			allowNull: true
-		},
+		}
 	}, {
 		tableName: 'TBL_BOOKS',
 		timestamps: true,

@@ -60,7 +60,7 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
 			defaultValue: '1'
-		},
+		}
 	}, {
 		tableName: 'TBL_MESSAGES_THREADS',
 		timestamps: true,

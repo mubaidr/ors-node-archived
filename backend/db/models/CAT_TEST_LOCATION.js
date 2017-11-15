@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
 		CAPACITY: {
 			type: DataTypes.INTEGER,
 			allowNull: false
-		},
+		}
 	}, {
 		tableName: 'CAT_TEST_LOCATION',
 		timestamps: true,

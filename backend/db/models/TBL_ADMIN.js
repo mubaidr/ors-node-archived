@@ -31,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
 		STATUS: {
 			type: DataTypes.INTEGER,
 			allowNull: false
-		},
+		}
 	}, {
 		tableName: 'TBL_ADMIN',
 		timestamps: true,

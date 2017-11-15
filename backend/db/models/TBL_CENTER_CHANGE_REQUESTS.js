@@ -37,7 +37,7 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
 			defaultValue: '0'
-		},
+		}
 	}, {
 		tableName: 'TBL_CENTER_CHANGE_REQUESTS',
 		timestamps: true,

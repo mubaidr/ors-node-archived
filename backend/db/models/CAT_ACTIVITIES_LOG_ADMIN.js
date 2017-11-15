@@ -28,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
 		ACTIVITY_DETAILS: {
 			type: DataTypes.STRING,
 			allowNull: true
-		},
+		}
 	}, {
 		tableName: 'CAT_ACTIVITIES_LOG_ADMIN',
 		timestamps: true,

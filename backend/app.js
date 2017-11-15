@@ -51,7 +51,7 @@ app.use((req, res, next) => {
 // eslint-disable-next-line
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
-  console.log(err.stack.error)
+  console.log('\n' + err.message.error + '\n' + err.stack.warn + '\n')
   if (req.app.get('env') === 'development') {
     res.status(err.status || 500).send(err.stack)
   } else {

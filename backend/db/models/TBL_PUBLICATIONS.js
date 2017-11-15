@@ -35,7 +35,7 @@ module.exports = function(sequelize, DataTypes) {
 		PageNumber: {
 			type: DataTypes.STRING,
 			allowNull: false
-		},
+		}
 	}, {
 		tableName: 'TBL_PUBLICATIONS',
 		timestamps: true,

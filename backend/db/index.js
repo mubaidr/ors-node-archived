@@ -22,7 +22,9 @@ const sequelize = new Sequelize(
       timestamps: true,
       underscored: true,
       freezeTableName: true
-    }
+    },
+    typeValidation: true,
+    benchmark: true
   }
 )
 

@@ -69,9 +69,10 @@ function setupTimestamps (callback) {
       dialect: 'mssql',
       freezeTableName: true,
       operatorsAliases: false,
-      timestamps: true,
+      timestamps: enableTimestamps,
       underscored: true,
-      logging: false
+      logging: false,
+      typeValidation: true
     }
   )
 
@@ -82,17 +83,16 @@ function setupTimestamps (callback) {
     SET QUOTED_IDENTIFIER OFF;
 
     exec sp_msforeachtable
-
     "
     IF NOT EXISTS(
         SELECT *
         FROM   sys.columns
-        WHERE  object_id = OBJECT_ID(N'?') AND ( name = 'created_at' OR name = 'updated_at' )
+        WHERE  object_id = OBJECT_ID(N'?') AND ( name = 'CREATED_AT' OR name = 'UPDATED_AT' )
     )
     BEGIN
       alter table ? add
-      CREATED_AT datetime not null default getdate(),
-      UPDATED_AT datetime not null default getdate();
+      CREATED_AT datetime2 not null default getdate(),
+      UPDATED_AT datetime2 not null default getdate();
     END
     "
 

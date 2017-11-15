@@ -32,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
 		PANEL: {
 			type: DataTypes.STRING,
 			allowNull: true
-		},
+		}
 	}, {
 		tableName: 'CAT_INTERVIEW_LOCATION_TIME',
 		timestamps: true,

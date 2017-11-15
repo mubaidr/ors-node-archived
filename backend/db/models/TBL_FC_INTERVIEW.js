@@ -36,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
 		REMARKS: {
 			type: DataTypes.STRING,
 			allowNull: true
-		},
+		}
 	}, {
 		tableName: 'TBL_FC_INTERVIEW',
 		timestamps: true,

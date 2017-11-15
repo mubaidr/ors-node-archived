@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
 		SUBMIT_DATE: {
 			type: "SMALLDATETIME",
 			allowNull: false
-		},
+		}
 	}, {
 		tableName: 'TBL_FEEDBACK_THREADS',
 		timestamps: true,

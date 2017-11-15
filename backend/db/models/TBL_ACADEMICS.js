@@ -92,7 +92,7 @@ module.exports = function(sequelize, DataTypes) {
 		DocumentName: {
 			type: DataTypes.STRING,
 			allowNull: true
-		},
+		}
 	}, {
 		tableName: 'TBL_ACADEMICS',
 		timestamps: true,

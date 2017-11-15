@@ -31,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
 		REMARKS: {
 			type: DataTypes.STRING,
 			allowNull: true
-		},
+		}
 	}, {
 		tableName: 'CAT_ACTIVITIES_LOG',
 		timestamps: true,

@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
 		ABBRIV: {
 			type: DataTypes.STRING,
 			allowNull: false
-		},
+		}
 	}, {
 		tableName: 'CAT_MONTHS',
 		timestamps: true,

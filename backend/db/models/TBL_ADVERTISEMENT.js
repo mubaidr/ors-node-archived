@@ -39,7 +39,7 @@ module.exports = function(sequelize, DataTypes) {
 		ADV_CODE: {
 			type: "NCHAR",
 			allowNull: true
-		},
+		}
 	}, {
 		tableName: 'TBL_ADVERTISEMENT',
 		timestamps: true,

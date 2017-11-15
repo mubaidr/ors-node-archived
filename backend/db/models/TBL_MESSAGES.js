@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
 		MESSAGE: {
 			type: DataTypes.STRING,
 			allowNull: false
-		},
+		}
 	}, {
 		tableName: 'TBL_MESSAGES',
 		timestamps: true,

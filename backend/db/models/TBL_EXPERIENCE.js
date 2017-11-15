@@ -74,7 +74,7 @@ module.exports = function(sequelize, DataTypes) {
 		MAJOR_ASSIGNMENTS: {
 			type: DataTypes.TEXT,
 			allowNull: true
-		},
+		}
 	}, {
 		tableName: 'TBL_EXPERIENCE',
 		timestamps: true,

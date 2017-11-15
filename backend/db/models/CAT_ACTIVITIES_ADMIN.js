@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
 		TITLE: {
 			type: DataTypes.STRING,
 			allowNull: false
-		},
+		}
 	}, {
 		tableName: 'CAT_ACTIVITIES_ADMIN',
 		timestamps: true,

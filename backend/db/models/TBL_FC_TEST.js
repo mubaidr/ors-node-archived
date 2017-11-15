@@ -28,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
 				model: 'CAT_TEST_LOCATION_TIME',
 				key: 'ID'
 			}
-		},
+		}
 	}, {
 		tableName: 'TBL_FC_TEST',
 		timestamps: true,

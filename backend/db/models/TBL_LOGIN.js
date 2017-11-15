@@ -53,7 +53,7 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.DATEONLY,
 			allowNull: false,
 			defaultValue: '(getdate())'
-		},
+		}
 	}, {
 		tableName: 'TBL_LOGIN',
 		timestamps: true,

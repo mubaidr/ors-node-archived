@@ -35,7 +35,7 @@ module.exports = function(sequelize, DataTypes) {
 		FEEDBACK_NAME: {
 			type: DataTypes.STRING,
 			allowNull: true
-		},
+		}
 	}, {
 		tableName: 'TBL_FEEDBACK',
 		timestamps: true,

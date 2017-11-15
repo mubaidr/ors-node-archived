@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
 				model: 'CAT_INTERVIEW_CENTRES',
 				key: 'ID'
 			}
-		},
+		}
 	}, {
 		tableName: 'TBL_VACANCY_INTERVIEW_CENTRE',
 		timestamps: true,

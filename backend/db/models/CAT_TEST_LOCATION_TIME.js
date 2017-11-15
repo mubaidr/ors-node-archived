@@ -28,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
 		AVAILABLE: {
 			type: DataTypes.INTEGER,
 			allowNull: false
-		},
+		}
 	}, {
 		tableName: 'CAT_TEST_LOCATION_TIME',
 		timestamps: true,

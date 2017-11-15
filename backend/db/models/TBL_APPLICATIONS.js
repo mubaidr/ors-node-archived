@@ -73,7 +73,7 @@ module.exports = function(sequelize, DataTypes) {
 		hasWorkedInSPD: {
 			type: DataTypes.BOOLEAN,
 			allowNull: true
-		},
+		}
 	}, {
 		tableName: 'TBL_APPLICATIONS',
 		timestamps: true,

@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
 		ABBRIV: {
 			type: DataTypes.STRING,
 			allowNull: true
-		},
+		}
 	}, {
 		tableName: 'CAT_DESIG_GROUP',
 		timestamps: true,

@@ -31,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
 				model: 'CAT_EDU_FIN_DEG_SUBJECTS',
 				key: 'ID'
 			}
-		},
+		}
 	}, {
 		tableName: 'TBL_VACANCY_CERTIFICATE',
 		timestamps: true,

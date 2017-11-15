@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
 				model: 'TBL_VACANCIES',
 				key: 'ID'
 			}
-		},
+		}
 	}, {
 		tableName: 'TBL_VACANCY_SPECIALIZATION',
 		timestamps: true,

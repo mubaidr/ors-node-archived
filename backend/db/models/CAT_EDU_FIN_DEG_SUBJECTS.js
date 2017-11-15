@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
 				model: 'CAT_EDU_FIN_DEG',
 				key: 'ID'
 			}
-		},
+		}
 	}, {
 		tableName: 'CAT_EDU_FIN_DEG_SUBJECTS',
 		timestamps: true,

@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
 		RECORD_ENTERED_BY: {
 			type: DataTypes.STRING,
 			allowNull: false
-		},
+		}
 	}, {
 		tableName: 'TBL_FC_HRD',
 		timestamps: true,
