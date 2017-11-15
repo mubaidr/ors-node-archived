@@ -37,19 +37,24 @@ fs.readdirSync(directory).forEach(file => {
 sequelize
   .authenticate()
   .then(() => {
-    console.log('Connection has been established successfully.'.info)
+    // Sync DB schema
+    sequelize
+      .sync({
+        logging: false
+      })
+      .then(() => {
+        console.log('Connection has been established successfully.'.info)
+      })
+      .catch(err => {
+        //TODO test this code
+        throw err
+        //console.log('\n' + err.message.error + '\n' + err.stack.warn + '\n')
+      })
   })
   .catch(err => {
-    console.error(`Unable to connect to the database:${err}`.error)
+    console.log('\n' + err.message.error + '\n' + err.stack.warn + '\n')
   })
 
-// Sync DB schema
-// No need: DB first approach
-/*
-sequelize.sync({
-  logging: false
-})
-*/
 module.exports = {
   models: models,
   sequelize: sequelize
