@@ -29,22 +29,12 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.INTEGER,
 			allowNull: false
 		},
-		CREATED_AT: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())'
-		},
-		UPDATED_AT: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())'
-		}
 	}, {
 		tableName: 'CAT_TEST_LOCATION_TIME',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'created_at',
-		updatedAt: 'updated_at',
+		createdAt: 'CREATED_AT',
+		updatedAt: 'UPDATED_AT',
 		deletedAt: false
 	});
 };

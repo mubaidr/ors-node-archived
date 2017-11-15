@@ -75,22 +75,12 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.TEXT,
 			allowNull: true
 		},
-		CREATED_AT: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())'
-		},
-		UPDATED_AT: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())'
-		}
 	}, {
 		tableName: 'TBL_EXPERIENCE',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'created_at',
-		updatedAt: 'updated_at',
+		createdAt: 'CREATED_AT',
+		updatedAt: 'UPDATED_AT',
 		deletedAt: false
 	});
 };

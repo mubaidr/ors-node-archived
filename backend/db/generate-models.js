@@ -22,8 +22,8 @@ const auto = new SequelizeAuto(
     additional: {
       timestamps: enableTimestamps,
       underscored: true,
-      createdAt: 'created_at',
-      updatedAt: 'updated_at',
+      createdAt: 'CREATED_AT',
+      updatedAt: 'UPDATED_AT',
       deletedAt: false
     },
     logging: false

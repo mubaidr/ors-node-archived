@@ -32,22 +32,12 @@ module.exports = function(sequelize, DataTypes) {
 				key: 'ID'
 			}
 		},
-		CREATED_AT: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())'
-		},
-		UPDATED_AT: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())'
-		}
 	}, {
 		tableName: 'TBL_VACANCY_CERTIFICATE',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'created_at',
-		updatedAt: 'updated_at',
+		createdAt: 'CREATED_AT',
+		updatedAt: 'UPDATED_AT',
 		deletedAt: false
 	});
 };
