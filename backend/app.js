@@ -7,6 +7,16 @@ const routes = require('./routes/index')
 const app = express()
 const { models, sequelize } = require('./db/index')
 
+// Console colors
+const colors = require('colors')
+colors.setTheme({
+  success: 'green',
+  debug: 'blue',
+  info: 'cyan',
+  warn: 'yellow',
+  error: 'red'
+})
+
 // Setup DB and store models in app
 app.set('db', models)
 
@@ -38,13 +48,15 @@ app.use((req, res, next) => {
   next(err)
 })
 
-// error handler
 // eslint-disable-next-line
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
-  res.locals.message = err.message
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
-  res.send(err.status || 500)
+  console.log(err.stack.error)
+  if (req.app.get('env') === 'development') {
+    res.status(err.status || 500).send(err.stack)
+  } else {
+    res.sendStatus(err.status || 500)
+  }
 })
 
 module.exports = app

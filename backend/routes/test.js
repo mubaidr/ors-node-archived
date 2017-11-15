@@ -6,8 +6,8 @@ router.get('/', (req, res, next) => {
 
   db.Gender
     .findAll()
-    .then(qs => {
-      res.send(qs)
+    .then(g => {
+      res.send(g)
     })
     .catch(next)
 })
@@ -22,9 +22,7 @@ router.post('/', (req, res, next) => {
     .then(g => {
       res.send(g)
     })
-    .catch(err => {
-      res.status(500).send(err)
-    })
+    .catch(next)
 })
 
 module.exports = router
