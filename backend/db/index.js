@@ -46,9 +46,7 @@ sequelize
         console.log('Connection has been established successfully.'.info)
       })
       .catch(err => {
-        //TODO test this code
-        throw err
-        //console.log('\n' + err.message.error + '\n' + err.stack.warn + '\n')
+        console.log('\n' + err.message.error + '\n' + err.stack.warn + '\n')
       })
   })
   .catch(err => {

@@ -19,6 +19,7 @@ colors.setTheme({
 
 // Setup DB and store models in app
 app.set('db', models)
+app.set('sequelize', sequelize)
 
 // some middlewares
 if (app.get('env') === 'development') {
