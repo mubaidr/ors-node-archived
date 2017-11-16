@@ -65,11 +65,12 @@ module.exports = {
 function getModelName (name) {
   const words = name
     .toLowerCase()
-    .replace(/TBL|CAT/, '')
-    .replace('.js', '')
-    .split('_')
+    //.replace(/tbl/, '')
+    //.replace(/cat/, '')
+    .replace(/.js/, '')
+    .split(/_/)
 
-  let model = ''
+  let model = words[0]
   for (let i = 1; i < words.length; i++) {
     model += words[i][0].toUpperCase() + words[i].substring(1)
   }

@@ -36,11 +36,21 @@ finale.initialize({
 })
 
 Object.keys(models).forEach(model => {
-  finale.resource({
-    model: models[model],
-    endpoints: [`/api/${model}`, `/api/${model}/:id`]
-  })
+  //TODO validations for request authorization
+  if (model.startsWith('cat')) {
+    finale.resource({
+      model: models[model],
+      endpoints: [`/api/admin/${model}`, `/api/admin/${model}/:id`]
+    })
+  } else {
+    finale.resource({
+      model: models[model],
+      endpoints: [`/api/user/${model}`, `/api/user/${model}/:id`]
+    })
+  }
 })
+
+//console.log(finale)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -51,7 +61,6 @@ app.use((req, res, next) => {
 
 // eslint-disable-next-line
 app.use((err, req, res, next) => {
-  // set locals, only providing error in development
   console.log('\n' + err.message.error + '\n' + err.stack.warn + '\n')
   if (req.app.get('env') === 'development') {
     res.status(err.status || 500).send(err.stack)
