@@ -13,15 +13,20 @@ router.post('/auth/register/', (req, res, next) => {
     where: {
       username: user.username
     }
-  }).then(user => {
-    if (user) res.send(409)
-
-    Login.create(user)
-      .then(() => {
-        res.send(200)
-      })
-      .catch(next)
   })
+    .then(user => {
+      if (user) {
+        res.send(409)
+        next()
+      }
+
+      Login.create(user)
+        .then(() => {
+          res.send(200)
+        })
+        .catch(next)
+    })
+    .catch(next)
 })
 
 router.post('/auth/login/', (req, res, next) => {
@@ -35,11 +40,17 @@ router.post('/auth/login/', (req, res, next) => {
     }
   })
     .then(user => {
-      if (!user) res.send(403)
+      if (!user) {
+        res.send(403)
+        next()
+      }
 
       bcrypt.compare(password, user.password, (err, isMatched) => {
         if (err) next(err)
-        if (!isMatched) res.send(403)
+        if (!isMatched) {
+          res.send(403)
+          next()
+        }
 
         delete user.password
 
@@ -77,6 +88,7 @@ router.use('/api/*', (req, res, next) => {
     })
   } else {
     res.send(403)
+    next()
   }
 })
 
