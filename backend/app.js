@@ -27,6 +27,7 @@ if (app.get('env') === 'development') {
 }
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+
 app.use('/', routes)
 
 // Setup rest api
@@ -36,21 +37,12 @@ finale.initialize({
 })
 
 Object.keys(models).forEach(model => {
-  //TODO validations for request authorization
-  if (model.startsWith('cat')) {
-    finale.resource({
-      model: models[model],
-      endpoints: [`/api/admin/${model}`, `/api/admin/${model}/:id`]
-    })
-  } else {
-    finale.resource({
-      model: models[model],
-      endpoints: [`/api/user/${model}`, `/api/user/${model}/:id`]
-    })
-  }
+  let ml = model.toLowerCase()
+  finale.resource({
+    model: models[model],
+    endpoints: [`/api/${ml}`, `/api/${ml}/:id`]
+  })
 })
-
-//console.log(finale)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

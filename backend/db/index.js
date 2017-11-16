@@ -65,8 +65,8 @@ module.exports = {
 function getModelName (name) {
   const words = name
     .toLowerCase()
-    //.replace(/tbl/, '')
-    //.replace(/cat/, '')
+    .replace(/tbl/, '')
+    .replace(/cat/, '')
     .replace(/.js/, '')
     .split(/_/)
 

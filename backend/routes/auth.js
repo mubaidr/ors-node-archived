@@ -30,4 +30,11 @@ router.use('/api/*', (req, res, next) => {
   }
 })
 
+router.use('/api/:model', (req, res, next) => {
+  let method = req.method
+  console.log(req.param)
+  //TODO validate if user is OWNER or ADMIN of this model else 403
+  next(new Error('DEBUGGING'))
+})
+
 module.exports = router
