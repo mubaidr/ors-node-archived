@@ -1,27 +1,42 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('CAT_MONTHS', {
-		ID: {
+	return sequelize.define('catMonths', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'ID'
 		},
-		DESCRIPTION: {
+		description: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'DESCRIPTION'
 		},
-		ABBRIV: {
+		abbriv: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'ABBRIV'
 		},
+		createdAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'CREATED_AT'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'UPDATED_AT'
+		}
 	}, {
 		tableName: 'CAT_MONTHS',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'CREATED_AT',
-		updatedAt: 'UPDATED_AT',
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt',
 		deletedAt: false
 	});
 };

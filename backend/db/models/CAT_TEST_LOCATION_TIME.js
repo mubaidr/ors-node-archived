@@ -1,40 +1,57 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('CAT_TEST_LOCATION_TIME', {
-		ID: {
+	return sequelize.define('catTestLocationTime', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'ID'
 		},
-		LOCATION_ID: {
+		locationId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_TEST_LOCATION',
 				key: 'ID'
-			}
+			},
+			field: 'LOCATION_ID'
 		},
-		TEST_DATE: {
+		testDate: {
 			type: DataTypes.DATE,
-			allowNull: false
+			allowNull: false,
+			field: 'TEST_DATE'
 		},
-		TEST_TIME: {
+		testTime: {
 			type: "NCHAR",
 			allowNull: false,
-			defaultValue: '(Ncast(Test_DATE as time)'
+			defaultValue: '(Ncast(Test_DATE as time)',
+			field: 'TEST_TIME'
 		},
-		AVAILABLE: {
+		available: {
 			type: DataTypes.INTEGER,
-			allowNull: false
+			allowNull: false,
+			field: 'AVAILABLE'
 		},
+		createdAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'CREATED_AT'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'UPDATED_AT'
+		}
 	}, {
 		tableName: 'CAT_TEST_LOCATION_TIME',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'CREATED_AT',
-		updatedAt: 'UPDATED_AT',
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt',
 		deletedAt: false
 	});
 };

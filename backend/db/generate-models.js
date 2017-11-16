@@ -22,11 +22,12 @@ const auto = new SequelizeAuto(
     additional: {
       timestamps: enableTimestamps,
       underscored: true,
-      createdAt: 'CREATED_AT',
-      updatedAt: 'UPDATED_AT',
+      createdAt: 'createdAt',
+      updatedAt: 'updatedAt',
       deletedAt: false
     },
-    logging: false
+    logging: false,
+    camelCase: true
   }
 )
 
@@ -86,15 +87,15 @@ function setupTimestamps (callback) {
 
     exec sp_msforeachtable
     "
-    IF NOT EXISTS(
+    IF NOT EXISTS (
         SELECT *
         FROM   sys.columns
-        WHERE  object_id = OBJECT_ID(N'?') AND ( name = 'CREATED_AT' OR name = 'UPDATED_AT' )
+        WHERE  object_id = OBJECT_ID(N'?') AND ( name = 'createdAt' OR name = 'updatedAt' )
     )
     BEGIN
       alter table ? add
-      CREATED_AT datetime2 not null default getdate(),
-      UPDATED_AT datetime2 not null default getdate();
+      createdAt datetime2 not null default getdate(),
+      updatedAt datetime2 not null default getdate();
     END
     "
 

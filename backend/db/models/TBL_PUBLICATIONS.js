@@ -1,47 +1,66 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('TBL_PUBLICATIONS', {
-		ID: {
+	return sequelize.define('tblPublications', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'ID'
 		},
-		CANDIDATE_ID: {
+		candidateId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'TBL_CANDIDATE',
 				key: 'ID'
-			}
+			},
+			field: 'CANDIDATE_ID'
 		},
-		Title: {
+		title: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'Title'
 		},
-		Journal: {
+		journal: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'Journal'
 		},
-		Authors: {
+		authors: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'Authors'
 		},
-		VolumeNumber: {
+		volumeNumber: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'VolumeNumber'
 		},
-		PageNumber: {
+		pageNumber: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'PageNumber'
 		},
+		createdAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'CREATED_AT'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'UPDATED_AT'
+		}
 	}, {
 		tableName: 'TBL_PUBLICATIONS',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'CREATED_AT',
-		updatedAt: 'UPDATED_AT',
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt',
 		deletedAt: false
 	});
 };

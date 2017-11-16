@@ -1,86 +1,112 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('TBL_EXPERIENCE', {
-		ID: {
+	return sequelize.define('tblExperience', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'ID'
 		},
-		CANDIDATE_ID: {
+		candidateId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'TBL_CANDIDATE',
 				key: 'ID'
-			}
+			},
+			field: 'CANDIDATE_ID'
 		},
-		ORGANIZATION: {
+		organization: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'ORGANIZATION'
 		},
-		DESIGNATION: {
+		designation: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'DESIGNATION'
 		},
-		SALARY: {
+		salary: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			defaultValue: '((0))'
+			defaultValue: '((0))',
+			field: 'SALARY'
 		},
-		START_DATE: {
+		startDate: {
 			type: DataTypes.DATEONLY,
-			allowNull: false
+			allowNull: false,
+			field: 'START_DATE'
 		},
-		END_DATE: {
+		endDate: {
 			type: DataTypes.DATEONLY,
-			allowNull: true
+			allowNull: true,
+			field: 'END_DATE'
 		},
-		REASON_OF_LEAVE: {
+		reasonOfLeave: {
 			type: DataTypes.STRING,
-			allowNull: true
+			allowNull: true,
+			field: 'REASON_OF_LEAVE'
 		},
-		STATUS: {
+		status: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			defaultValue: '((0))'
+			defaultValue: '((0))',
+			field: 'STATUS'
 		},
-		MAJOR_ID: {
+		majorId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_SPECIALIZATION',
 				key: 'ID'
-			}
+			},
+			field: 'MAJOR_ID'
 		},
-		FIELD_ID: {
+		fieldId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_SPEC_FIELDS',
 				key: 'ID'
-			}
+			},
+			field: 'FIELD_ID'
 		},
-		DURATION: {
+		duration: {
 			type: DataTypes.INTEGER,
-			allowNull: true
+			allowNull: true,
+			field: 'DURATION'
 		},
-		IS_VALID: {
+		isValid: {
 			type: DataTypes.BOOLEAN,
 			allowNull: true,
-			defaultValue: '0'
+			defaultValue: '0',
+			field: 'IS_VALID'
 		},
-		MAJOR_ASSIGNMENTS: {
+		majorAssignments: {
 			type: DataTypes.TEXT,
-			allowNull: true
+			allowNull: true,
+			field: 'MAJOR_ASSIGNMENTS'
 		},
+		createdAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'CREATED_AT'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'UPDATED_AT'
+		}
 	}, {
 		tableName: 'TBL_EXPERIENCE',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'CREATED_AT',
-		updatedAt: 'UPDATED_AT',
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt',
 		deletedAt: false
 	});
 };

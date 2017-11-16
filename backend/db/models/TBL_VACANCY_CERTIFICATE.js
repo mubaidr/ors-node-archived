@@ -1,43 +1,59 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('TBL_VACANCY_CERTIFICATE', {
-		ID: {
+	return sequelize.define('tblVacancyCertificate', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'ID'
 		},
-		CERT_ID: {
+		certId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_EDU_CERT_GRP',
 				key: 'ID'
-			}
+			},
+			field: 'CERT_ID'
 		},
-		VAC_ID: {
+		vacId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'TBL_VACANCIES',
 				key: 'ID'
-			}
+			},
+			field: 'VAC_ID'
 		},
-		DEGREE_SUBJECT_ID: {
+		degreeSubjectId: {
 			type: DataTypes.INTEGER,
 			allowNull: true,
 			references: {
 				model: 'CAT_EDU_FIN_DEG_SUBJECTS',
 				key: 'ID'
-			}
+			},
+			field: 'DEGREE_SUBJECT_ID'
 		},
+		createdAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'CREATED_AT'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'UPDATED_AT'
+		}
 	}, {
 		tableName: 'TBL_VACANCY_CERTIFICATE',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'CREATED_AT',
-		updatedAt: 'UPDATED_AT',
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt',
 		deletedAt: false
 	});
 };

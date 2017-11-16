@@ -1,49 +1,68 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('TBL_CENTER_CHANGE_REQUESTS', {
-		ID: {
+	return sequelize.define('tblCenterChangeRequests', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'ID'
 		},
-		CANDIDATE_ID: {
+		candidateId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'TBL_CANDIDATE',
 				key: 'ID'
-			}
+			},
+			field: 'CANDIDATE_ID'
 		},
-		DATETIME: {
+		datetime: {
 			type: DataTypes.DATE,
 			allowNull: false,
-			defaultValue: '(getdate())'
+			defaultValue: '(getdate())',
+			field: 'DATETIME'
 		},
-		CURRENT_CENTER: {
+		currentCenter: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'CURRENT_CENTER'
 		},
-		REQUESTED_CENTER: {
+		requestedCenter: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'REQUESTED_CENTER'
 		},
-		APPLICATION_NO: {
+		applicationNo: {
 			type: DataTypes.STRING,
-			allowNull: true
+			allowNull: true,
+			field: 'APPLICATION_NO'
 		},
-		ENTERTAINED: {
+		entertained: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
-			defaultValue: '0'
+			defaultValue: '0',
+			field: 'ENTERTAINED'
 		},
+		createdAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'CREATED_AT'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'UPDATED_AT'
+		}
 	}, {
 		tableName: 'TBL_CENTER_CHANGE_REQUESTS',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'CREATED_AT',
-		updatedAt: 'UPDATED_AT',
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt',
 		deletedAt: false
 	});
 };

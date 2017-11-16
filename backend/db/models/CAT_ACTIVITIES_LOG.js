@@ -1,43 +1,60 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('CAT_ACTIVITIES_LOG', {
-		ID: {
+	return sequelize.define('catActivitiesLog', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'ID'
 		},
-		ACTIVITY_ID: {
+		activityId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_ACTIVITIES',
 				key: 'ID'
-			}
+			},
+			field: 'ACTIVITY_ID'
 		},
-		LOGIN_ID: {
+		loginId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'TBL_LOGIN',
 				key: 'ID'
-			}
+			},
+			field: 'LOGIN_ID'
 		},
-		ACTIVITY_TIME: {
+		activityTime: {
 			type: DataTypes.DATE,
-			allowNull: true
+			allowNull: true,
+			field: 'ACTIVITY_TIME'
 		},
-		REMARKS: {
+		remarks: {
 			type: DataTypes.STRING,
-			allowNull: true
+			allowNull: true,
+			field: 'REMARKS'
 		},
+		createdAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'CREATED_AT'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'UPDATED_AT'
+		}
 	}, {
 		tableName: 'CAT_ACTIVITIES_LOG',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'CREATED_AT',
-		updatedAt: 'UPDATED_AT',
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt',
 		deletedAt: false
 	});
 };

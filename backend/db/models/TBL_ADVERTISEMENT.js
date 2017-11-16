@@ -1,51 +1,72 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('TBL_ADVERTISEMENT', {
-		ID: {
+	return sequelize.define('tblAdvertisement', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'ID'
 		},
-		ADV_NUMBER: {
+		advNumber: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'ADV_NUMBER'
 		},
-		DESCRIPTION: {
+		description: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'DESCRIPTION'
 		},
-		ADV_DATE: {
+		advDate: {
 			type: DataTypes.DATE,
-			allowNull: false
+			allowNull: false,
+			field: 'ADV_DATE'
 		},
-		ADV_DOCUMENT: {
+		advDocument: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'ADV_DOCUMENT'
 		},
-		CLOSING_DATE: {
+		closingDate: {
 			type: DataTypes.DATE,
-			allowNull: false
+			allowNull: false,
+			field: 'CLOSING_DATE'
 		},
-		LAST_UPDATE: {
+		lastUpdate: {
 			type: DataTypes.DATE,
-			allowNull: true
+			allowNull: true,
+			field: 'LAST_UPDATE'
 		},
-		ACTIVE: {
+		active: {
 			type: DataTypes.BOOLEAN,
-			allowNull: true
+			allowNull: true,
+			field: 'ACTIVE'
 		},
-		ADV_CODE: {
+		advCode: {
 			type: "NCHAR",
-			allowNull: true
+			allowNull: true,
+			field: 'ADV_CODE'
 		},
+		createdAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'CREATED_AT'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'UPDATED_AT'
+		}
 	}, {
 		tableName: 'TBL_ADVERTISEMENT',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'CREATED_AT',
-		updatedAt: 'UPDATED_AT',
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt',
 		deletedAt: false
 	});
 };

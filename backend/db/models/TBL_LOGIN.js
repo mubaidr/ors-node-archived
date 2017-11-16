@@ -1,65 +1,88 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('TBL_LOGIN', {
-		ID: {
+	return sequelize.define('tblLogin', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'ID'
 		},
-		USERNAME: {
+		username: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'USERNAME'
 		},
-		NAME: {
+		name: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'NAME'
 		},
-		PASSWORD: {
+		password: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'PASSWORD'
 		},
-		EMAIL: {
+		email: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'EMAIL'
 		},
-		QUESTION_ID: {
+		questionId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_QUESTIONS',
 				key: 'ID'
-			}
+			},
+			field: 'QUESTION_ID'
 		},
-		ANSWER: {
+		answer: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'ANSWER'
 		},
-		Profile: {
+		profile: {
 			type: DataTypes.FLOAT,
 			allowNull: false,
-			defaultValue: '((0.00))'
+			defaultValue: '((0.00))',
+			field: 'Profile'
 		},
-		PICTURE_PATH: {
+		picturePath: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'PICTURE_PATH'
 		},
-		RECORD_ENTERED_BY: {
+		recordEnteredBy: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'RECORD_ENTERED_BY'
 		},
-		RECORD_ENTRY_DATE: {
+		recordEntryDate: {
 			type: DataTypes.DATEONLY,
 			allowNull: false,
-			defaultValue: '(getdate())'
+			defaultValue: '(getdate())',
+			field: 'RECORD_ENTRY_DATE'
 		},
+		createdAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'CREATED_AT'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'UPDATED_AT'
+		}
 	}, {
 		tableName: 'TBL_LOGIN',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'CREATED_AT',
-		updatedAt: 'UPDATED_AT',
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt',
 		deletedAt: false
 	});
 };

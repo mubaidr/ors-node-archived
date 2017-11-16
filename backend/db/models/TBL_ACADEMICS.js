@@ -1,104 +1,132 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('TBL_ACADEMICS', {
-		ID: {
+	return sequelize.define('tblAcademics', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'ID'
 		},
-		CANDIDATE_ID: {
+		candidateId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'TBL_CANDIDATE',
 				key: 'ID'
-			}
+			},
+			field: 'CANDIDATE_ID'
 		},
-		DEGREE_ID: {
+		degreeId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_EDU_FIN_DEG',
 				key: 'ID'
-			}
+			},
+			field: 'DEGREE_ID'
 		},
-		MAJOR_SUBJECTS: {
+		majorSubjects: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'MAJOR_SUBJECTS'
 		},
-		BOARD_UNIV: {
+		boardUniv: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'BOARD_UNIV'
 		},
-		PASSING_DATE: {
+		passingDate: {
 			type: DataTypes.DATE,
-			allowNull: false
+			allowNull: false,
+			field: 'PASSING_DATE'
 		},
-		TOTAL_MARKS: {
+		totalMarks: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			defaultValue: '((0))'
+			defaultValue: '((0))',
+			field: 'TOTAL_MARKS'
 		},
-		OBTAINED_MARKS: {
+		obtainedMarks: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			defaultValue: '((0))'
+			defaultValue: '((0))',
+			field: 'OBTAINED_MARKS'
 		},
-		TOTAL_GPA: {
+		totalGpa: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			defaultValue: '((0))'
+			defaultValue: '((0))',
+			field: 'TOTAL_GPA'
 		},
-		OBTAINED_GPA: {
+		obtainedGpa: {
 			type: DataTypes.DECIMAL,
 			allowNull: false,
-			defaultValue: '((0))'
+			defaultValue: '((0))',
+			field: 'OBTAINED_GPA'
 		},
-		CRITERIA_ID: {
+		criteriaId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_CRITERIA_ACADEMICS',
 				key: 'ID'
-			}
+			},
+			field: 'CRITERIA_ID'
 		},
-		PERCENTAGE: {
+		percentage: {
 			type: DataTypes.DECIMAL,
 			allowNull: false,
-			defaultValue: '((0))'
+			defaultValue: '((0))',
+			field: 'PERCENTAGE'
 		},
-		DIVISION_ID: {
+		divisionId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_DIVISION',
 				key: 'ID'
-			}
+			},
+			field: 'DIVISION_ID'
 		},
-		DURATION: {
+		duration: {
 			type: DataTypes.INTEGER,
-			allowNull: true
+			allowNull: true,
+			field: 'DURATION'
 		},
-		DEGREE_SUBJECT_ID: {
+		degreeSubjectId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_EDU_FIN_DEG_SUBJECTS',
 				key: 'ID'
-			}
+			},
+			field: 'DEGREE_SUBJECT_ID'
 		},
-		DocumentName: {
+		documentName: {
 			type: DataTypes.STRING,
-			allowNull: true
+			allowNull: true,
+			field: 'DocumentName'
 		},
+		createdAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'CREATED_AT'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'UPDATED_AT'
+		}
 	}, {
 		tableName: 'TBL_ACADEMICS',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'CREATED_AT',
-		updatedAt: 'UPDATED_AT',
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt',
 		deletedAt: false
 	});
 };

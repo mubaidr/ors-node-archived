@@ -1,57 +1,76 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('TBL_VACANCIES', {
-		ID: {
+	return sequelize.define('tblVacancies', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'ID'
 		},
-		DESIG_ID: {
+		desigId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_DESIG',
 				key: 'ID'
-			}
+			},
+			field: 'DESIG_ID'
 		},
-		ADV_ID: {
+		advId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'TBL_ADVERTISEMENT',
 				key: 'ID'
-			}
+			},
+			field: 'ADV_ID'
 		},
-		DESCRIPTION: {
+		description: {
 			type: DataTypes.STRING,
-			allowNull: true
+			allowNull: true,
+			field: 'DESCRIPTION'
 		},
-		QUESTION: {
+		question: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'QUESTION'
 		},
-		CHECK_ACADEMIC_DETAILS: {
+		checkAcademicDetails: {
 			type: DataTypes.BOOLEAN,
 			allowNull: true,
-			defaultValue: '0'
+			defaultValue: '0',
+			field: 'CHECK_ACADEMIC_DETAILS'
 		},
-		STATUS_ID: {
+		statusId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			defaultValue: '((2))',
 			references: {
 				model: 'CAT_APP_STATUS',
 				key: 'ID'
-			}
+			},
+			field: 'STATUS_ID'
 		},
+		createdAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'CREATED_AT'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'UPDATED_AT'
+		}
 	}, {
 		tableName: 'TBL_VACANCIES',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'CREATED_AT',
-		updatedAt: 'UPDATED_AT',
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt',
 		deletedAt: false
 	});
 };

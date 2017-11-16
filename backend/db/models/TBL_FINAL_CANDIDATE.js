@@ -1,41 +1,58 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('TBL_FINAL_CANDIDATE', {
-		ID: {
+	return sequelize.define('tblFinalCandidate', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'ID'
 		},
-		APP_ID: {
+		appId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'TBL_APPLICATIONS',
 				key: 'ID'
-			}
+			},
+			field: 'APP_ID'
 		},
-		ROLL_NO: {
+		rollNo: {
 			type: DataTypes.STRING,
 			allowNull: true,
-			defaultValue: '(N00/0000-000000'
+			defaultValue: '(N00/0000-000000',
+			field: 'ROLL_NO'
 		},
-		RECORD_ENTRY_DATE: {
+		recordEntryDate: {
 			type: DataTypes.DATEONLY,
-			allowNull: false
+			allowNull: false,
+			field: 'RECORD_ENTRY_DATE'
 		},
-		MARKS: {
+		marks: {
 			type: DataTypes.INTEGER,
 			allowNull: true,
-			defaultValue: '((0))'
+			defaultValue: '((0))',
+			field: 'MARKS'
 		},
+		createdAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'CREATED_AT'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'UPDATED_AT'
+		}
 	}, {
 		tableName: 'TBL_FINAL_CANDIDATE',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'CREATED_AT',
-		updatedAt: 'UPDATED_AT',
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt',
 		deletedAt: false
 	});
 };

@@ -1,27 +1,42 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('TBL_MESSAGES', {
-		ID: {
+	return sequelize.define('tblMessages', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'ID'
 		},
-		SUBJECT: {
+		subject: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'SUBJECT'
 		},
-		MESSAGE: {
+		message: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'MESSAGE'
 		},
+		createdAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'CREATED_AT'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'UPDATED_AT'
+		}
 	}, {
 		tableName: 'TBL_MESSAGES',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'CREATED_AT',
-		updatedAt: 'UPDATED_AT',
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt',
 		deletedAt: false
 	});
 };

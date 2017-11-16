@@ -1,48 +1,66 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('TBL_FC_INTERVIEW', {
-		ID: {
+	return sequelize.define('tblFcInterview', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'ID'
 		},
-		FC_ID: {
+		fcId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'TBL_FINAL_CANDIDATE',
 				key: 'ID'
-			}
+			},
+			field: 'FC_ID'
 		},
-		MARKS: {
+		marks: {
 			type: DataTypes.INTEGER,
-			allowNull: true
+			allowNull: true,
+			field: 'MARKS'
 		},
-		INTERVIEW_LOCATION_TIME: {
+		interviewLocationTime: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_INTERVIEW_LOCATION_TIME',
 				key: 'ID'
-			}
+			},
+			field: 'INTERVIEW_LOCATION_TIME'
 		},
-		ABSENT: {
+		absent: {
 			type: DataTypes.BOOLEAN,
 			allowNull: true,
-			defaultValue: '0'
+			defaultValue: '0',
+			field: 'ABSENT'
 		},
-		REMARKS: {
+		remarks: {
 			type: DataTypes.STRING,
-			allowNull: true
+			allowNull: true,
+			field: 'REMARKS'
 		},
+		createdAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'CREATED_AT'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'UPDATED_AT'
+		}
 	}, {
 		tableName: 'TBL_FC_INTERVIEW',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'CREATED_AT',
-		updatedAt: 'UPDATED_AT',
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt',
 		deletedAt: false
 	});
 };

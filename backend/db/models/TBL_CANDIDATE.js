@@ -1,145 +1,184 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('TBL_CANDIDATE', {
-		ID: {
+	return sequelize.define('tblCandidate', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'ID'
 		},
-		FATHER_NAME: {
+		fatherName: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'FATHER_NAME'
 		},
-		DOB: {
+		dob: {
 			type: DataTypes.DATEONLY,
-			allowNull: false
+			allowNull: false,
+			field: 'DOB'
 		},
-		MARITAL_STATUS: {
+		maritalStatus: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_MARITAL_STATUS',
 				key: 'ID'
-			}
+			},
+			field: 'MARITAL_STATUS'
 		},
-		RELIGION: {
+		religion: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_RELIGION',
 				key: 'ID'
-			}
+			},
+			field: 'RELIGION'
 		},
-		BIRTH_PLACE: {
+		birthPlace: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'BIRTH_PLACE'
 		},
-		POSTAL_CITY: {
+		postalCity: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'POSTAL_CITY'
 		},
-		POSTAL_TEHSIL: {
+		postalTehsil: {
 			type: DataTypes.STRING,
-			allowNull: true
+			allowNull: true,
+			field: 'POSTAL_TEHSIL'
 		},
-		POSTAL_DISTRICT: {
+		postalDistrict: {
 			type: DataTypes.STRING,
-			allowNull: true
+			allowNull: true,
+			field: 'POSTAL_DISTRICT'
 		},
-		POSTAL_ADDRESS: {
+		postalAddress: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'POSTAL_ADDRESS'
 		},
-		MOBILE_NO: {
+		mobileNo: {
 			type: DataTypes.STRING,
-			allowNull: true
+			allowNull: true,
+			field: 'MOBILE_NO'
 		},
-		PHONE_NO: {
+		phoneNo: {
 			type: DataTypes.STRING,
-			allowNull: true
+			allowNull: true,
+			field: 'PHONE_NO'
 		},
-		HIGHEST_QUALIFICATION: {
+		highestQualification: {
 			type: DataTypes.INTEGER,
 			allowNull: true,
 			references: {
 				model: 'CAT_EDU_FIN_DEG',
 				key: 'ID'
-			}
+			},
+			field: 'HIGHEST_QUALIFICATION'
 		},
-		SUBJECT: {
+		subject: {
 			type: DataTypes.STRING,
-			allowNull: true
+			allowNull: true,
+			field: 'SUBJECT'
 		},
-		ACHIEVEMENTS: {
+		achievements: {
 			type: DataTypes.STRING,
-			allowNull: true
+			allowNull: true,
+			field: 'ACHIEVEMENTS'
 		},
-		PRIME_INTEREST_FIELD: {
+		primeInterestField: {
 			type: DataTypes.STRING,
-			allowNull: true
+			allowNull: true,
+			field: 'PRIME_INTEREST_FIELD'
 		},
-		NATIONALITY: {
+		nationality: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'NATIONALITY'
 		},
-		GENDER: {
+		gender: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_GENDER',
 				key: 'ID'
-			}
+			},
+			field: 'GENDER'
 		},
-		DOMICILE_DISTRICT: {
+		domicileDistrict: {
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: false,
+			field: 'DOMICILE_DISTRICT'
 		},
-		UNDERTAKING: {
+		undertaking: {
 			type: DataTypes.INTEGER,
 			allowNull: true,
-			defaultValue: '((0))'
+			defaultValue: '((0))',
+			field: 'UNDERTAKING'
 		},
-		UNDERTAKING_DATE: {
+		undertakingDate: {
 			type: DataTypes.DATEONLY,
-			allowNull: true
+			allowNull: true,
+			field: 'UNDERTAKING_DATE'
 		},
-		LOGIN_ID: {
+		loginId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'TBL_LOGIN',
 				key: 'ID'
-			}
+			},
+			field: 'LOGIN_ID'
 		},
-		FAX: {
+		fax: {
 			type: DataTypes.STRING,
-			allowNull: true
+			allowNull: true,
+			field: 'FAX'
 		},
-		CNIC: {
+		cnic: {
 			type: DataTypes.STRING,
-			allowNull: true
+			allowNull: true,
+			field: 'CNIC'
 		},
-		DRIVING_LICENSE_ID: {
+		drivingLicenseId: {
 			type: DataTypes.INTEGER,
 			allowNull: true,
-			defaultValue: '((1))'
+			defaultValue: '((1))',
+			field: 'DRIVING_LICENSE_ID'
 		},
-		LICENSE_ISSUE_DATE: {
+		licenseIssueDate: {
 			type: DataTypes.DATE,
-			allowNull: true
+			allowNull: true,
+			field: 'LICENSE_ISSUE_DATE'
 		},
-		LICENSE_EXPIRY_DATE: {
+		licenseExpiryDate: {
 			type: DataTypes.DATE,
-			allowNull: true
+			allowNull: true,
+			field: 'LICENSE_EXPIRY_DATE'
 		},
+		createdAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'CREATED_AT'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'UPDATED_AT'
+		}
 	}, {
 		tableName: 'TBL_CANDIDATE',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'CREATED_AT',
-		updatedAt: 'UPDATED_AT',
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt',
 		deletedAt: false
 	});
 };

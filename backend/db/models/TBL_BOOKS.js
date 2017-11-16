@@ -1,52 +1,72 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('TBL_BOOKS', {
-		ID: {
+	return sequelize.define('tblBooks', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'ID'
 		},
-		CANDIDATE_ID: {
+		candidateId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'TBL_CANDIDATE',
 				key: 'ID'
-			}
+			},
+			field: 'CANDIDATE_ID'
 		},
-		TITLE_1: {
-			type: DataTypes.STRING,
-			allowNull: true
-		},
-		TITLE_2: {
-			type: DataTypes.STRING,
-			allowNull: true
-		},
-		TITLE_3: {
-			type: DataTypes.STRING,
-			allowNull: true
-		},
-		TITLE_P_1: {
+		title1: {
 			type: DataTypes.STRING,
 			allowNull: true,
-			defaultValue: 'N'
+			field: 'TITLE_1'
 		},
-		TITLE_P_2: {
+		title2: {
 			type: DataTypes.STRING,
-			allowNull: true
+			allowNull: true,
+			field: 'TITLE_2'
 		},
-		TITLE_P_3: {
+		title3: {
 			type: DataTypes.STRING,
-			allowNull: true
+			allowNull: true,
+			field: 'TITLE_3'
 		},
+		titleP1: {
+			type: DataTypes.STRING,
+			allowNull: true,
+			defaultValue: 'N',
+			field: 'TITLE_P_1'
+		},
+		titleP2: {
+			type: DataTypes.STRING,
+			allowNull: true,
+			field: 'TITLE_P_2'
+		},
+		titleP3: {
+			type: DataTypes.STRING,
+			allowNull: true,
+			field: 'TITLE_P_3'
+		},
+		createdAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'CREATED_AT'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'UPDATED_AT'
+		}
 	}, {
 		tableName: 'TBL_BOOKS',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'CREATED_AT',
-		updatedAt: 'UPDATED_AT',
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt',
 		deletedAt: false
 	});
 };

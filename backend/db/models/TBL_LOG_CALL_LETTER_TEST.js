@@ -1,28 +1,43 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('TBL_LOG_CALL_LETTER_TEST', {
-		ID: {
+	return sequelize.define('tblLogCallLetterTest', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'ID'
 		},
-		CNIC: {
+		cnic: {
 			type: "NCHAR",
-			allowNull: false
+			allowNull: false,
+			field: 'CNIC'
 		},
-		PrintTime: {
+		printTime: {
 			type: DataTypes.DATE,
 			allowNull: false,
-			defaultValue: '(getdate())'
+			defaultValue: '(getdate())',
+			field: 'PrintTime'
 		},
+		createdAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'CREATED_AT'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'UPDATED_AT'
+		}
 	}, {
 		tableName: 'TBL_LOG_CALL_LETTER_TEST',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'CREATED_AT',
-		updatedAt: 'UPDATED_AT',
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt',
 		deletedAt: false
 	});
 };

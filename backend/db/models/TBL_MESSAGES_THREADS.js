@@ -1,72 +1,94 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('TBL_MESSAGES_THREADS', {
-		ID: {
+	return sequelize.define('tblMessagesThreads', {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true,
+			field: 'ID'
 		},
-		MESSAGE_ID: {
+		messageId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'TBL_MESSAGES',
 				key: 'ID'
-			}
+			},
+			field: 'MESSAGE_ID'
 		},
-		LOGIN_ID: {
+		loginId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'TBL_LOGIN',
 				key: 'ID'
-			}
+			},
+			field: 'LOGIN_ID'
 		},
-		ADMIN_NAME: {
+		adminName: {
 			type: DataTypes.STRING,
-			allowNull: true
+			allowNull: true,
+			field: 'ADMIN_NAME'
 		},
-		FEEDBACK_NOTIFICATION_ID: {
+		feedbackNotificationId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			defaultValue: '((1))',
 			references: {
 				model: 'CAT_FEEDBACK_NOTIFICATION',
 				key: 'ID'
-			}
+			},
+			field: 'FEEDBACK_NOTIFICATION_ID'
 		},
-		IS_READ: {
+		isRead: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
-			defaultValue: '0'
+			defaultValue: '0',
+			field: 'IS_READ'
 		},
-		IS_SENT: {
+		isSent: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
-			defaultValue: '0'
+			defaultValue: '0',
+			field: 'IS_SENT'
 		},
-		DATE_SENT: {
+		dateSent: {
 			type: DataTypes.DATE,
-			allowNull: false
+			allowNull: false,
+			field: 'DATE_SENT'
 		},
-		DATE_READ: {
+		dateRead: {
 			type: DataTypes.DATE,
 			allowNull: false,
-			defaultValue: '(getdate())'
+			defaultValue: '(getdate())',
+			field: 'DATE_READ'
 		},
-		NOTIFY: {
+		notify: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
-			defaultValue: '1'
+			defaultValue: '1',
+			field: 'NOTIFY'
 		},
+		createdAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'CREATED_AT'
+		},
+		updatedAt: {
+			type: DataTypes.DATE,
+			allowNull: false,
+			defaultValue: '(getdate())',
+			field: 'UPDATED_AT'
+		}
 	}, {
 		tableName: 'TBL_MESSAGES_THREADS',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'CREATED_AT',
-		updatedAt: 'UPDATED_AT',
+		createdAt: 'createdAt',
+		updatedAt: 'updatedAt',
 		deletedAt: false
 	});
 };
