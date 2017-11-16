@@ -5,9 +5,14 @@ const jwt = require('jsonwebtoken')
 const config = require('config')
 
 router.post('/auth/register/', (req, res, next) => {
-  let user = req.body
   const Login = req.app.get('db').Login
+  let user = req.body
   user.password = bcrypt.hashSync(user.password, 8)
+
+  if (!user.username) {
+    res.sendStatus(400)
+    return
+  }
 
   Login.findOne({
     where: {
@@ -24,15 +29,22 @@ router.post('/auth/register/', (req, res, next) => {
         .then(() => {
           res.sendStatus(200)
         })
-        .catch(next)
+        .catch(err => {
+          res.status(400).send(err)
+        })
     })
     .catch(next)
 })
 
 router.post('/auth/login/', (req, res, next) => {
+  const Login = req.app.get('db').Login
   let username = req.body.username
   let password = req.body.password
-  const Login = req.app.get('db').Login
+
+  if (!username || !password) {
+    res.sendStatus(400)
+    return
+  }
 
   Login.findOne({
     where: {
@@ -52,7 +64,8 @@ router.post('/auth/login/', (req, res, next) => {
           return
         }
 
-        delete user.password
+        // Password should be sent to client
+        delete user.dataValues.password
 
         jwt.sign(
           {
@@ -80,7 +93,7 @@ router.use('/api/*', (req, res, next) => {
   let token = req.body.token || req.query.token || req.headers['x-access-token']
 
   if (token) {
-    jwt.verify(token, config.secret, (err, account) => {
+    jwt.verify(token, config.get('options.secret'), (err, account) => {
       if (err) next(err)
 
       req.account = account
@@ -98,9 +111,9 @@ router.use('/api/:model/:id?', (req, res, next) => {
   let id = req.params.id
 
   //TODO validate if user is OWNER or ADMIN of this model else 403
-  res.send('DEBUG')
+
   //TODO uncomment
-  //next()
+  next()
 })
 
 module.exports = router

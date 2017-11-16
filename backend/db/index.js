@@ -24,7 +24,8 @@ const sequelize = new Sequelize(
       freezeTableName: true
     },
     typeValidation: true,
-    benchmark: true
+    benchmark: false,
+    logging: false
   }
 )
 
@@ -43,7 +44,9 @@ sequelize
         logging: false
       })
       .then(() => {
-        console.log('Connection has been established successfully.'.info)
+        console.log(
+          'Connection to the Database has been established successfully.'.info
+        )
       })
       .catch(err => {
         console.log('\n' + err.message.error + '\n' + err.stack.warn + '\n')

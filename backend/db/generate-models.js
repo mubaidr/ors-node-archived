@@ -74,6 +74,7 @@ function setupTimestamps (callback) {
       operatorsAliases: false,
       timestamps: enableTimestamps,
       underscored: true,
+      benchmark: false,
       logging: false,
       typeValidation: true
     }
