@@ -16,13 +16,13 @@ router.post('/auth/register/', (req, res, next) => {
   })
     .then(user => {
       if (user) {
-        res.send(409)
-        next()
+        res.sendStatus(409)
+        return
       }
 
       Login.create(user)
         .then(() => {
-          res.send(200)
+          res.sendStatus(200)
         })
         .catch(next)
     })
@@ -41,15 +41,15 @@ router.post('/auth/login/', (req, res, next) => {
   })
     .then(user => {
       if (!user) {
-        res.send(403)
-        next()
+        res.sendStatus(403)
+        return
       }
 
       bcrypt.compare(password, user.password, (err, isMatched) => {
         if (err) next(err)
         if (!isMatched) {
-          res.send(403)
-          next()
+          res.sendStatus(403)
+          return
         }
 
         delete user.password
@@ -87,8 +87,7 @@ router.use('/api/*', (req, res, next) => {
       next()
     })
   } else {
-    res.send(403)
-    next()
+    res.sendStatus(403)
   }
 })
 
