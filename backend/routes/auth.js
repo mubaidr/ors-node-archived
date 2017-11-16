@@ -38,6 +38,7 @@ router.post('/auth/register/', (req, res, next) => {
 
 router.post('/auth/login/', (req, res, next) => {
   const Login = req.app.get('db').Login
+  const Candidate = req.app.get('db').Candidate
   let username = req.body.username
   let password = req.body.password
 
@@ -65,25 +66,41 @@ router.post('/auth/login/', (req, res, next) => {
         }
 
         // Password should be sent to client
-        delete user.dataValues.password
+        delete user.password
 
-        jwt.sign(
-          {
-            data: user
-          },
-          config.get('options.secret'),
-          {
-            expiresIn: 60 * 60 * 24
-          },
-          function (err, token) {
-            if (err) next(err)
+        // Append candidateId to user for model checking
+        Candidate.findOne({
+          loginId: user.id
+        })
+          .then(candidate => {
+            if (!candidate) {
+              res.sendStatus(400)
+              return
+            }
 
-            res.json({
-              token: token,
-              user: user
-            })
-          }
-        )
+            //apend Candiature info
+            user.candidateId = candidate.id
+
+            //signin
+            jwt.sign(
+              {
+                data: user
+              },
+              config.get('options.secret'),
+              {
+                expiresIn: 60 * 60 * 24
+              },
+              function (err, token) {
+                if (err) next(err)
+
+                res.json({
+                  token,
+                  user
+                })
+              }
+            )
+          })
+          .catch(next)
       })
     })
     .catch(next)
@@ -96,7 +113,7 @@ router.use('/api/*', (req, res, next) => {
     jwt.verify(token, config.get('options.secret'), (err, account) => {
       if (err) next(err)
 
-      req.account = account
+      req.account = account.data
       next()
     })
   } else {
@@ -109,6 +126,8 @@ router.use('/api/:model/:id?', (req, res, next) => {
   let method = req.method
   let model = req.params.model
   let id = req.params.id
+
+  console.log('\n----\n'.info, account, method, model, id)
 
   //TODO validate if user is OWNER or ADMIN of this model else 403
 

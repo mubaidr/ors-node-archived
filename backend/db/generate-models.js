@@ -76,7 +76,8 @@ function setupTimestamps (callback) {
       underscored: true,
       benchmark: false,
       logging: false,
-      typeValidation: true
+      typeValidation: true,
+      query: { raw: true }
     }
   )
 

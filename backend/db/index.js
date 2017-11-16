@@ -25,7 +25,8 @@ const sequelize = new Sequelize(
     },
     typeValidation: true,
     benchmark: false,
-    logging: false
+    logging: false,
+    query: { raw: true }
   }
 )
 
