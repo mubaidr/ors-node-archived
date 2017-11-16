@@ -5,14 +5,64 @@ const jwt = require('jsonwebtoken')
 const config = require('config')
 
 router.post('/auth/register/', (req, res, next) => {
-  let username = req.body.username.toLowerCase()
-  let password = req.body.password
-  let passwordHash = bcrypt.hashSync(password, 8)
+  let user = req.body
+  const Login = req.app.get('db').Login
+  user.password = bcrypt.hashSync(user.password, 8)
+
+  Login.findOne({
+    where: {
+      username: user.username
+    }
+  }).then(user => {
+    if (user) res.send(409)
+
+    Login.create(user)
+      .then(() => {
+        res.send(200)
+      })
+      .catch(next)
+  })
 })
 
 router.post('/auth/login/', (req, res, next) => {
-  let username = req.body.username.toLowerCase()
+  let username = req.body.username
   let password = req.body.password
+  const Login = req.app.get('db').Login
+
+  Login.findOne({
+    where: {
+      username: username
+    }
+  })
+    .then(user => {
+      if (!user) res.send(403)
+
+      bcrypt.compare(password, user.password, (err, isMatched) => {
+        if (err) next(err)
+        if (!isMatched) res.send(403)
+
+        delete user.password
+
+        jwt.sign(
+          {
+            data: user
+          },
+          config.get('options.secret'),
+          {
+            expiresIn: 60 * 60 * 24
+          },
+          function (err, token) {
+            if (err) next(err)
+
+            res.json({
+              token: token,
+              user: user
+            })
+          }
+        )
+      })
+    })
+    .catch(next)
 })
 
 router.use('/api/*', (req, res, next) => {
@@ -26,15 +76,20 @@ router.use('/api/*', (req, res, next) => {
       next()
     })
   } else {
-    res.status(403).send('Unauthorized!')
+    res.send(403)
   }
 })
 
-router.use('/api/:model', (req, res, next) => {
+router.use('/api/:model/:id?', (req, res, next) => {
+  let account = req.account
   let method = req.method
-  console.log(req.param)
+  let model = req.params.model
+  let id = req.params.id
+
   //TODO validate if user is OWNER or ADMIN of this model else 403
-  next(new Error('DEBUGGING'))
+  res.send('DEBUG')
+  //TODO uncomment
+  //next()
 })
 
 module.exports = router

@@ -2,9 +2,9 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', (req, res, next) => {
-  const db = req.app.get('db')
+  const Gender = req.app.get('db').Gender
 
-  db.Gender.findAll()
+  Gender.findAll()
     .then(g => {
       res.send(g)
     })
@@ -12,9 +12,9 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  const db = req.app.get('db')
+  const Gender = req.app.get('db').Gender
 
-  db.Gender.create({
+  Gender.create({
     DESCRIPTION: ''
   })
     .then(g => {
