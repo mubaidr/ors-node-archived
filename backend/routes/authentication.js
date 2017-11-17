@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const config = require('config')
 
 router.post('/auth/register/', (req, res, next) => {
-  const Login = req.app.get('db').Login
+  const Login = req.app.get('db').login
   let user = req.body
   user.password = bcrypt.hashSync(user.password, 8)
 
@@ -37,8 +37,8 @@ router.post('/auth/register/', (req, res, next) => {
 })
 
 router.post('/auth/login/', (req, res, next) => {
-  const Login = req.app.get('db').Login
-  const Candidate = req.app.get('db').Candidate
+  const Login = req.app.get('db').login
+  const Candidate = req.app.get('db').candidate
   let username = req.body.username
   let password = req.body.password
 
@@ -67,6 +67,7 @@ router.post('/auth/login/', (req, res, next) => {
 
         // Password should be sent to client
         delete user.password
+        delete user.answer
 
         // Append candidateId to user for model checking
         Candidate.findOne({
@@ -119,20 +120,6 @@ router.use('/api/*', (req, res, next) => {
   } else {
     res.sendStatus(403)
   }
-})
-
-router.use('/api/:model/:id?', (req, res, next) => {
-  let account = req.account
-  let method = req.method
-  let model = req.params.model
-  let id = req.params.id
-
-  console.log('\n----\n'.info, account, method, model, id)
-
-  //TODO validate if user is OWNER or ADMIN of this model else 403
-
-  //TODO uncomment
-  next()
 })
 
 module.exports = router

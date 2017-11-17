@@ -44,11 +44,6 @@ sequelize
       .sync({
         logging: false
       })
-      .then(() => {
-        console.log(
-          'Connection to the Database has been established successfully.'.info
-        )
-      })
       .catch(err => {
         console.log('\n' + err.message.error + '\n' + err.stack.warn + '\n')
       })
@@ -69,14 +64,13 @@ module.exports = {
 function getModelName (name) {
   const words = name
     .toLowerCase()
-    .replace(/tbl/, '')
-    .replace(/cat/, '')
     .replace(/.js/, '')
     .split(/_/)
 
-  let model = words[0]
-  for (let i = 1; i < words.length; i++) {
-    model += words[i][0].toUpperCase() + words[i].substring(1)
+  let model = words[1]
+  for (let i = 2; i < words.length; i++) {
+    let word = words[i]
+    model += word[0].toUpperCase() + word.substring(1)
   }
 
   return model

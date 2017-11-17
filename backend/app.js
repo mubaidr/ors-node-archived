@@ -36,12 +36,15 @@ finale.initialize({
   sequelize: sequelize
 })
 
+let skipListModelAPI = ['admin', 'adminRole', 'login']
 Object.keys(models).forEach(model => {
   let ml = model.toLowerCase()
-  finale.resource({
-    model: models[model],
-    endpoints: [`/api/${ml}`, `/api/${ml}/:id`]
-  })
+  if (skipListModelAPI.indexOf(model) === -1) {
+    finale.resource({
+      model: models[model],
+      endpoints: [`/api/${ml}`, `/api/${ml}/:id`]
+    })
+  }
 })
 
 // catch 404 and forward to error handler
