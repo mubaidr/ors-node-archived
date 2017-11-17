@@ -47,7 +47,7 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.FLOAT,
 			allowNull: false,
 			defaultValue: '((0.00))',
-			field: 'Profile'
+			field: 'PROFILE'
 		},
 		picturePath: {
 			type: DataTypes.STRING,
@@ -76,6 +76,15 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false,
 			defaultValue: '(getdate())',
 			field: 'UPDATED_AT'
+		},
+		accountType: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			references: {
+				model: 'CAT_ACCOUNT_TYPE',
+				key: 'ID'
+			},
+			field: 'ACCOUNT_TYPE'
 		}
 	}, {
 		tableName: 'TBL_LOGIN',

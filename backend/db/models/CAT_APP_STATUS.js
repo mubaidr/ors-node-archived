@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false,
 			defaultValue: '(getdate())',
 			field: 'UPDATED_AT'
-		}
+		},
 	}, {
 		tableName: 'CAT_APP_STATUS',
 		timestamps: true,

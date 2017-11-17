@@ -120,7 +120,7 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false,
 			defaultValue: '(getdate())',
 			field: 'UPDATED_AT'
-		}
+		},
 	}, {
 		tableName: 'TBL_ACADEMICS',
 		timestamps: true,

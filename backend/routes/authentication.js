@@ -5,40 +5,39 @@ const jwt = require('jsonwebtoken')
 const config = require('config')
 
 router.post('/auth/register/', (req, res, next) => {
-  const Login = req.app.get('db').login
-  let user = req.body
-  user.password = bcrypt.hashSync(user.password, 8)
+  const db = req.app.get('db')
+  let newUser = new db.login({ ...req.body })
+  newUser.password = bcrypt.hashSync(newUser.password, 8)
 
-  if (!user.username) {
+  if (!newUser.username) {
     res.sendStatus(400)
     return
   }
 
-  Login.findOne({
-    where: {
-      username: user.username
-    }
-  })
+  db.login
+    .findOne({
+      where: {
+        username: newUser.username
+      }
+    })
     .then(user => {
       if (user) {
         res.sendStatus(409)
         return
       }
 
-      Login.create(user)
+      newUser
+        .save()
         .then(() => {
           res.sendStatus(200)
         })
-        .catch(err => {
-          res.status(400).send(err)
-        })
+        .catch(next)
     })
-    .catch(next)
 })
 
 router.post('/auth/login/', (req, res, next) => {
-  const Login = req.app.get('db').login
-  const Candidate = req.app.get('db').candidate
+  const db = req.app.get('db')
+
   let username = req.body.username
   let password = req.body.password
 
@@ -47,11 +46,12 @@ router.post('/auth/login/', (req, res, next) => {
     return
   }
 
-  Login.findOne({
-    where: {
-      username: username
-    }
-  })
+  db.login
+    .findOne({
+      where: {
+        username: username
+      }
+    })
     .then(user => {
       if (!user) {
         res.sendStatus(403)
@@ -70,9 +70,10 @@ router.post('/auth/login/', (req, res, next) => {
         delete user.answer
 
         // Append candidateId to user for model checking
-        Candidate.findOne({
-          loginId: user.id
-        })
+        db.candidate
+          .findOne({
+            loginId: user.id
+          })
           .then(candidate => {
             if (!candidate) {
               res.sendStatus(400)
@@ -91,7 +92,7 @@ router.post('/auth/login/', (req, res, next) => {
               {
                 expiresIn: 60 * 60 * 24
               },
-              function (err, token) {
+              function(err, token) {
                 if (err) next(err)
 
                 res.json({

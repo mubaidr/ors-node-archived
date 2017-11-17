@@ -38,7 +38,7 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false,
 			defaultValue: '(getdate())',
 			field: 'UPDATED_AT'
-		}
+		},
 	}, {
 		tableName: 'TBL_VACANCY_INTERVIEW_CENTRE',
 		timestamps: true,

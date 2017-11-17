@@ -1,7 +1,7 @@
 /* jshint indent: 1 */
 
 module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('catDivision', {
+	return sequelize.define('catAccountType', {
 		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
@@ -12,22 +12,10 @@ module.exports = function(sequelize, DataTypes) {
 		description: {
 			type: DataTypes.STRING,
 			allowNull: false,
-			field: 'DESCRIPTION'
-		},
-		createdAt: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())',
-			field: 'CREATED_AT'
-		},
-		updatedAt: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())',
-			field: 'UPDATED_AT'
+			field: 'Description'
 		},
 	}, {
-		tableName: 'CAT_DIVISION',
+		tableName: 'CAT_ACCOUNT_TYPE',
 		timestamps: true,
 		underscored: true,
 		createdAt: 'createdAt',

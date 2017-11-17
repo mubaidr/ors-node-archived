@@ -34,7 +34,7 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false,
 			defaultValue: '(getdate())',
 			field: 'UPDATED_AT'
-		}
+		},
 	}, {
 		tableName: 'CAT_EDU_FIN_DEG_SUBJECTS',
 		timestamps: true,

@@ -18,6 +18,7 @@ const sequelize = new Sequelize(
     operatorsAliases: false,
     timestamps: true,
     underscored: true,
+    pool: { maxConnections: 5, maxIdleTime: 30 },
     define: {
       timestamps: true,
       underscored: true,

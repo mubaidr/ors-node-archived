@@ -56,7 +56,7 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false,
 			defaultValue: '(getdate())',
 			field: 'UPDATED_AT'
-		}
+		},
 	}, {
 		tableName: 'TBL_CENTER_CHANGE_REQUESTS',
 		timestamps: true,
