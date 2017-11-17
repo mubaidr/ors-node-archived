@@ -3,7 +3,9 @@ const config = require('config')
 const fs = require('fs')
 const path = require('path')
 
+const associations = require('./associations')
 const directory = path.join(__dirname, '/models/')
+
 var models = {}
 
 // Setup sequelize
@@ -35,6 +37,9 @@ const sequelize = new Sequelize(
 fs.readdirSync(directory).forEach(file => {
   models[getModelName(file)] = sequelize.import(directory + file)
 })
+
+// Setup model associations
+associations.associate(models, getModelName)
 
 // Test connection
 sequelize
