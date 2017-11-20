@@ -23,6 +23,8 @@ const sequelize = new Sequelize(
     pool: { maxConnections: 5, maxIdleTime: 30 },
     define: {
       timestamps: true,
+      createdAt: 'CREATED_AT',
+      updatedAt: 'UPDATED_AT',
       underscored: true,
       freezeTableName: true
     },

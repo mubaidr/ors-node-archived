@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.STRING,
 			allowNull: false,
 			field: 'Description'
-		},
+		}
 	}, {
 		tableName: 'CAT_ACCOUNT_TYPE',
 		timestamps: true,

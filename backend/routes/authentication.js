@@ -19,7 +19,8 @@ router.post('/auth/register/', (req, res, next) => {
       where: {
         username: newUser.username
       },
-      raw: true
+      include: [db.accountType]
+      //TODO: fix raw : true option
     })
     .then(user => {
       if (user) {
@@ -52,7 +53,7 @@ router.post('/auth/login/', (req, res, next) => {
       where: {
         username: username
       },
-      raw: true
+      include: [{ model: db.accountType }]
     })
     .then(user => {
       if (!user) {
@@ -76,8 +77,7 @@ router.post('/auth/login/', (req, res, next) => {
           .findOne({
             where: {
               loginId: user.id
-            },
-            raw: true
+            }
           })
           .then(candidate => {
             if (!candidate) {
