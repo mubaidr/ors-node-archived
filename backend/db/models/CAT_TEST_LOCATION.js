@@ -33,24 +33,12 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false,
 			field: 'CAPACITY'
 		},
-		createdAt: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())',
-			field: 'CREATED_AT'
-		},
-		updatedAt: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())',
-			field: 'UPDATED_AT'
-		},
 	}, {
 		tableName: 'CAT_TEST_LOCATION',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'createdAt',
-		updatedAt: 'updatedAt',
+		createdAt: 'CREATED_AT',
+		updatedAt: 'UPDATED_AT',
 		deletedAt: false
 	});
 };

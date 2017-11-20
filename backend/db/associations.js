@@ -177,19 +177,12 @@ module.exports = {
     models.candidate.belongsTo(models.religion, {
       foreignKey: 'religion'
     })
-    // eduFinDeg -> candidate : highestQualification
-    models.eduFinDeg.hasMany(models.candidate, {
-      foreignKey: 'highestQualification'
-    })
-    models.candidate.belongsTo(models.eduFinDeg, {
-      foreignKey: 'highestQualification'
-    })
-    // gender -> candidate : gender
+    // gender -> candidate : genderId
     models.gender.hasMany(models.candidate, {
-      foreignKey: 'gender'
+      foreignKey: 'genderId'
     })
     models.candidate.belongsTo(models.gender, {
-      foreignKey: 'gender'
+      foreignKey: 'genderId'
     })
     // login -> candidate : loginId
     models.login.hasMany(models.candidate, {
@@ -205,12 +198,12 @@ module.exports = {
     models.centerChangeRequests.belongsTo(models.candidate, {
       foreignKey: 'candidateId'
     })
-    // courseType -> courses : type
+    // courseType -> courses : courseTypeId
     models.courseType.hasMany(models.courses, {
-      foreignKey: 'type'
+      foreignKey: 'courseTypeId'
     })
     models.courses.belongsTo(models.courseType, {
-      foreignKey: 'type'
+      foreignKey: 'courseTypeId'
     })
     // candidate -> courses : candidateId
     models.candidate.hasMany(models.courses, {
@@ -261,12 +254,12 @@ module.exports = {
     models.fcInterview.belongsTo(models.finalCandidate, {
       foreignKey: 'fcId'
     })
-    // interviewLocationTime -> fcInterview : interviewLocationTime
+    // interviewLocationTime -> fcInterview : interviewLocationTimeId
     models.interviewLocationTime.hasMany(models.fcInterview, {
-      foreignKey: 'interviewLocationTime'
+      foreignKey: 'interviewLocationTimeId'
     })
     models.fcInterview.belongsTo(models.interviewLocationTime, {
-      foreignKey: 'interviewLocationTime'
+      foreignKey: 'interviewLocationTimeId'
     })
     // finalCandidate -> fcTest : fcId
     models.finalCandidate.hasMany(models.fcTest, {
@@ -275,12 +268,12 @@ module.exports = {
     models.fcTest.belongsTo(models.finalCandidate, {
       foreignKey: 'fcId'
     })
-    // testLocationTime -> fcTest : testLocationTime
+    // testLocationTime -> fcTest : testLocationTimeId
     models.testLocationTime.hasMany(models.fcTest, {
-      foreignKey: 'testLocationTime'
+      foreignKey: 'testLocationTimeId'
     })
     models.fcTest.belongsTo(models.testLocationTime, {
-      foreignKey: 'testLocationTime'
+      foreignKey: 'testLocationTimeId'
     })
     // feedbackTypes -> feedback : fbTypeId
     models.feedbackTypes.hasMany(models.feedback, {

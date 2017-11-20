@@ -24,33 +24,21 @@ module.exports = function(sequelize, DataTypes) {
 			defaultValue: '((0))',
 			field: 'MARKS'
 		},
-		testLocationTime: {
+		testLocationTimeId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_TEST_LOCATION_TIME',
 				key: 'ID'
 			},
-			field: 'TEST_LOCATION_TIME'
-		},
-		createdAt: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())',
-			field: 'CREATED_AT'
-		},
-		updatedAt: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())',
-			field: 'UPDATED_AT'
+			field: 'TEST_LOCATION_TIME_ID'
 		},
 	}, {
 		tableName: 'TBL_FC_TEST',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'createdAt',
-		updatedAt: 'updatedAt',
+		createdAt: 'CREATED_AT',
+		updatedAt: 'UPDATED_AT',
 		deletedAt: false
 	});
 };

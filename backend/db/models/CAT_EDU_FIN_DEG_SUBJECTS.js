@@ -23,24 +23,12 @@ module.exports = function(sequelize, DataTypes) {
 			},
 			field: 'DEGREE_ID'
 		},
-		createdAt: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())',
-			field: 'CREATED_AT'
-		},
-		updatedAt: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())',
-			field: 'UPDATED_AT'
-		},
 	}, {
 		tableName: 'CAT_EDU_FIN_DEG_SUBJECTS',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'createdAt',
-		updatedAt: 'updatedAt',
+		createdAt: 'CREATED_AT',
+		updatedAt: 'UPDATED_AT',
 		deletedAt: false
 	});
 };

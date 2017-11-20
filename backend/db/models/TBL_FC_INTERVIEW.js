@@ -23,14 +23,14 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true,
 			field: 'MARKS'
 		},
-		interviewLocationTime: {
+		interviewLocationTimeId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_INTERVIEW_LOCATION_TIME',
 				key: 'ID'
 			},
-			field: 'INTERVIEW_LOCATION_TIME'
+			field: 'INTERVIEW_LOCATION_TIME_ID'
 		},
 		absent: {
 			type: DataTypes.BOOLEAN,
@@ -43,24 +43,12 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true,
 			field: 'REMARKS'
 		},
-		createdAt: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())',
-			field: 'CREATED_AT'
-		},
-		updatedAt: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())',
-			field: 'UPDATED_AT'
-		},
 	}, {
 		tableName: 'TBL_FC_INTERVIEW',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'createdAt',
-		updatedAt: 'updatedAt',
+		createdAt: 'CREATED_AT',
+		updatedAt: 'UPDATED_AT',
 		deletedAt: false
 	});
 };

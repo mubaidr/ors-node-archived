@@ -24,24 +24,12 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: false,
 			field: 'RECORD_ENTERED_BY'
 		},
-		createdAt: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())',
-			field: 'CREATED_AT'
-		},
-		updatedAt: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())',
-			field: 'UPDATED_AT'
-		},
 	}, {
 		tableName: 'TBL_FC_HRD',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'createdAt',
-		updatedAt: 'updatedAt',
+		createdAt: 'CREATED_AT',
+		updatedAt: 'UPDATED_AT',
 		deletedAt: false
 	});
 };

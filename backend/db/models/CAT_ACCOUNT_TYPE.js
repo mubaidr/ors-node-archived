@@ -18,8 +18,8 @@ module.exports = function(sequelize, DataTypes) {
 		tableName: 'CAT_ACCOUNT_TYPE',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'createdAt',
-		updatedAt: 'updatedAt',
+		createdAt: 'CREATED_AT',
+		updatedAt: 'UPDATED_AT',
 		deletedAt: false
 	});
 };

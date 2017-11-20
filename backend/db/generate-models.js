@@ -22,8 +22,8 @@ const auto = new SequelizeAuto(
     additional: {
       timestamps: enableTimestamps,
       underscored: true,
-      createdAt: 'createdAt',
-      updatedAt: 'updatedAt',
+      createdAt: 'CREATED_AT',
+      updatedAt: 'UPDATED_AT',
       deletedAt: false
     },
     logging: false,
@@ -92,12 +92,12 @@ function setupTimestamps (callback) {
     IF NOT EXISTS (
         SELECT *
         FROM   sys.columns
-        WHERE  object_id = OBJECT_ID(N'?') AND ( name = 'createdAt' OR name = 'updatedAt' )
+        WHERE  object_id = OBJECT_ID(N'?') AND ( name = 'CREATED_AT' OR name = 'UPDATED_AT' )
     )
     BEGIN
       alter table ? add
-      createdAt datetime2 not null default getdate(),
-      updatedAt datetime2 not null default getdate();
+      CREATED_AT datetime2 not null default getdate(),
+      UPDATED_AT datetime2 not null default getdate();
     END
     "
 

@@ -9,14 +9,14 @@ module.exports = function(sequelize, DataTypes) {
 			autoIncrement: true,
 			field: 'ID'
 		},
-		type: {
+		courseTypeId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_COURSE_TYPE',
 				key: 'ID'
 			},
-			field: 'TYPE'
+			field: 'COURSE_TYPE_ID'
 		},
 		startDate: {
 			type: DataTypes.DATEONLY,
@@ -76,24 +76,12 @@ module.exports = function(sequelize, DataTypes) {
 			defaultValue: '0',
 			field: 'IS_VALID'
 		},
-		createdAt: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())',
-			field: 'CREATED_AT'
-		},
-		updatedAt: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: '(getdate())',
-			field: 'UPDATED_AT'
-		},
 	}, {
 		tableName: 'TBL_COURSES',
 		timestamps: true,
 		underscored: true,
-		createdAt: 'createdAt',
-		updatedAt: 'updatedAt',
+		createdAt: 'CREATED_AT',
+		updatedAt: 'UPDATED_AT',
 		deletedAt: false
 	});
 };
