@@ -77,14 +77,14 @@ module.exports = function(sequelize, DataTypes) {
 			defaultValue: '(getdate())',
 			field: 'UPDATED_AT'
 		},
-		accountType: {
+		accountTypeId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
 				model: 'CAT_ACCOUNT_TYPE',
 				key: 'ID'
 			},
-			field: 'ACCOUNT_TYPE'
+			field: 'ACCOUNT_TYPE_ID'
 		}
 	}, {
 		tableName: 'TBL_LOGIN',

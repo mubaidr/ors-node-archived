@@ -48,7 +48,7 @@ router.use('/api/:model/:id?', (req, res, next) => {
           next()
           return
         }
-
+        //TODO: Add 'include' list from model attributes
         object
           .findAll({
             where: {

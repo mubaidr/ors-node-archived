@@ -18,7 +18,8 @@ router.post('/auth/register/', (req, res, next) => {
     .findOne({
       where: {
         username: newUser.username
-      }
+      },
+      raw: true
     })
     .then(user => {
       if (user) {
@@ -50,7 +51,8 @@ router.post('/auth/login/', (req, res, next) => {
     .findOne({
       where: {
         username: username
-      }
+      },
+      raw: true
     })
     .then(user => {
       if (!user) {
@@ -72,7 +74,10 @@ router.post('/auth/login/', (req, res, next) => {
         // Append candidateId to user for model checking
         db.candidate
           .findOne({
-            loginId: user.id
+            where: {
+              loginId: user.id
+            },
+            raw: true
           })
           .then(candidate => {
             if (!candidate) {
