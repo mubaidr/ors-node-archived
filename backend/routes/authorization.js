@@ -2,42 +2,49 @@ const express = require('express')
 const router = express.Router()
 
 router.use('/api/:model/:id?', (req, res, next) => {
+  let db = req.app.get('db')
   let account = req.account
   let method = req.method
   let id = req.params.id
-  let model = req.params.model.toLowerCase()
-  let object = req.app.get('db')[model]
+  let model = req.params.model
+  let object = db[model]
   let isCatalog = object.options.tableName.toLowerCase().indexOf('cat') === 0
 
-  if (account.accountType.description === 'admin') {
+  if (account.catAccountType.description === 'admin121') {
     next()
     return
   }
 
   if (id) {
-    if (isCatalog && method !== 'GET') {
-      res.sendStatus(403)
-      return
+    if (isCatalog) {
+      if (method === 'GET') {
+        next()
+        return
+      } else {
+        res.sendStatus(403)
+        return
+      }
     }
 
     object
       .findById(id)
       .then(obj => {
-        if (obj.candidateId && obj.candidateId === account.candidateId) {
-          switch (method) {
-            case 'GET':
-              res.json(obj)
-              return
-              break
-            case 'POST':
-            case 'PUT':
-            case 'DELETE':
+        switch (method) {
+          case 'POST':
+            next()
+          case 'GET':
+          case 'PUT':
+          case 'DELETE':
+            if (
+              (obj.candidateId && obj.candidateId === account.candidateId) ||
+              (obj.logId && obj.logId === account.user.id)
+            ) {
               next()
-              break
-          }
-        } else {
-          res.sendStatus(403)
-          return
+            } else {
+              res.sendStatus(403)
+              return
+            }
+            break
         }
       })
       .catch(next)
@@ -49,6 +56,9 @@ router.use('/api/:model/:id?', (req, res, next) => {
           return
         }
         //TODO: Add 'include' list from model attributes
+
+        console.log(object.attributes)
+
         object
           .findAll({
             where: {

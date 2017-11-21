@@ -18,9 +18,7 @@ router.post('/auth/register/', (req, res, next) => {
     .findOne({
       where: {
         username: newUser.username
-      },
-      include: [db.accountType]
-      //TODO: fix raw : true option
+      }
     })
     .then(user => {
       if (user) {
@@ -53,7 +51,7 @@ router.post('/auth/login/', (req, res, next) => {
       where: {
         username: username
       },
-      include: [{ model: db.accountType }]
+      include: [db.accountType, db.questions]
     })
     .then(user => {
       if (!user) {
@@ -68,7 +66,8 @@ router.post('/auth/login/', (req, res, next) => {
           return
         }
 
-        // Password should be sent to client
+        // confidential data should not be sent to client
+        user = user.get({ plain: true })
         delete user.password
         delete user.answer
 
