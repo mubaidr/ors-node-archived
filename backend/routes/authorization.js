@@ -9,6 +9,12 @@ router.use('/api/:model/:id?', (req, res, next) => {
   let id = req.params.id
   let model = req.params.model
   let object = db[model]
+
+  if (!object) {
+    next()
+    return
+  }
+
   let isCatalog = object.options.tableName.toLowerCase().indexOf('cat') === 0
 
   if (account.catAccountType.description === 'admin') {
@@ -83,6 +89,7 @@ router.use('/api/:model/:id?', (req, res, next) => {
     }
   }
 })
+
 /**
  *
  *
@@ -104,6 +111,7 @@ function prepareWhereObject (object, account) {
   }
   return where
 }
+
 /**
  *
  *
