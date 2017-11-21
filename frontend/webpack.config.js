@@ -1,13 +1,18 @@
 var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var resolve = function (dir) {
+  return path.join(__dirname, dir)
+}
 
 module.exports = {
-  entry: './src/main.js',
+  entry: {
+    app: './src/main.js'
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'app.bundle.js'
+    filename: '[name].bundle.js'
   },
   module: {
     rules: [
@@ -54,9 +59,13 @@ module.exports = {
   },
   resolve: {
     alias: {
-      vue$: 'vue/dist/vue.esm.js'
+      vue$: 'vue/dist/vue.esm.js',
+      src: resolve('src'),
+      assets: resolve('src/assets'),
+      views: resolve('src/views'),
+      services: resolve('src/services')
     },
-    extensions: ['*', '.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.json'],
     modules: [path.resolve('./src'), path.resolve('./node_modules')]
   },
   devServer: {
@@ -68,7 +77,7 @@ module.exports = {
     hints: false
   },
   devtool: '#eval-source-map',
-  plugins: [new ExtractTextPlugin('app.bundle.css')]
+  plugins: [new ExtractTextPlugin('[name].bundle.css')]
 }
 
 if (process.env.NODE_ENV === 'production') {
