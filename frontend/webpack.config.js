@@ -18,11 +18,19 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        //use: ['style-loader', 'css-loader']
+        use: ExtractTextPlugin.extract({
+          use: 'css-loader',
+          fallback: 'style-loader'
+        })
       },
       {
         test: /\.styl$/,
-        use: ['style-loader', 'css-loader', 'stylus-loader']
+        //use: ['style-loader', 'css-loader', 'stylus-loader']
+        use: ExtractTextPlugin.extract({
+          use: ['css-loader', 'stylus-loader'],
+          fallback: 'style-loader'
+        })
       },
       {
         test: /\.vue$/,
