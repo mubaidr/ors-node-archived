@@ -43,10 +43,7 @@ router.use('/api/:model/:id?', (req, res, next) => {
           case 'GET':
           case 'PUT':
           case 'DELETE':
-            if (
-              (obj.candidateId && obj.candidateId === account.candidateId) ||
-              (obj.loginId && obj.loginId === account.id)
-            ) {
+            if (obj.candidateId && obj.candidateId === account.candidateId) {
               next()
             } else {
               res.sendStatus(403)
