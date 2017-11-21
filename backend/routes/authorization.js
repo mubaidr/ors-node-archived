@@ -1,5 +1,5 @@
 const express = require('express')
-const router = express.Router()
+const router = express.Router({ caseSensitive: true })
 const util = require('./../db/util')
 
 router.use('/api/:model/:id?', (req, res, next) => {

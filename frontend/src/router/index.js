@@ -13,6 +13,14 @@ var router = new vueRouter({
     {
       path: '/',
       component: index
+    },
+    {
+      path: '/auth/register',
+      component: index
+    },
+    {
+      path: '/auth/login',
+      component: index
     }
   ]
 })

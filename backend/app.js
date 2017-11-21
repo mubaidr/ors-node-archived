@@ -20,6 +20,7 @@ colors.setTheme({
 // Setup DB and store models in app
 app.set('db', models)
 app.set('sequelize', sequelize)
+app.set('case sensitive routing', true)
 
 // some middlewares
 if (app.get('env') === 'development') {
@@ -38,11 +39,10 @@ finale.initialize({
 
 let skipListModelAPI = ['admin', 'adminRole', 'login']
 Object.keys(models).forEach(model => {
-  let ml = model.toLowerCase()
   if (skipListModelAPI.indexOf(model) === -1) {
     finale.resource({
       model: models[model],
-      endpoints: [`/api/${ml}`, `/api/${ml}/:id`]
+      endpoints: [`/api/${model}`, `/api/${model}/:id`]
     })
   }
 })
