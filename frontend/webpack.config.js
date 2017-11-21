@@ -1,19 +1,18 @@
 var path = require('path')
 var webpack = require('webpack')
-var extractTextPlugin = require('extract-text-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js'
+    filename: 'app.bundle.js'
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        include: /node_modules/,
         use: ['style-loader', 'css-loader']
       },
       {
@@ -24,8 +23,9 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
+          extractCSS: true,
           loaders: {
-            styl: ['vue-style-loader', 'style-loader', 'css-loader', 'stylus-loader']
+            styl: ['vue-style-loader']
           }
         }
       },
@@ -35,14 +35,19 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        loader: 'url-loader'
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        query: {
+          limit: 10000,
+          name: 'fonts/[name].[hash].[ext]'
+        }
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]?[hash]'
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader',
+        query: {
+          limit: 10000,
+          name: '[name].[hash].[ext]'
         }
       }
     ]
@@ -63,7 +68,7 @@ module.exports = {
     hints: false
   },
   devtool: '#eval-source-map',
-  plugins: [new extractTextPlugin('styles.css')]
+  plugins: [new ExtractTextPlugin('app.bundle.css')]
 }
 
 if (process.env.NODE_ENV === 'production') {
