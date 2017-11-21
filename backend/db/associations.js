@@ -1,6 +1,8 @@
+const util = require('./util')
+
 module.exports = {
-  associate: (models, getModelName) => {
-    //getRelations(models, getModelName)
+  associate: models => {
+    //getRelations(models)
 
     // activities -> activitiesLog : activityId
     models.activities.hasMany(models.activitiesLog, {
@@ -432,16 +434,16 @@ module.exports = {
   }
 }
 
-function getRelations (models, getModelName) {
+function getRelations (models) {
   Object.keys(models).forEach(modelName => {
     let model = models[modelName]
 
     Object.getOwnPropertyNames(model.attributes).forEach(attribute => {
       let references = model.attributes[attribute].references
       if (references) {
-        let refModel = models[getModelName(references.model)]
-        let refName = getModelName(refModel.tableName)
-        let name = getModelName(model.tableName)
+        let refModel = models[util.getModelName(references.model)]
+        let refName = util.getModelName(refModel.tableName)
+        let name = util.getModelName(model.tableName)
         let prop = toCamelCase(model.attributes[attribute].field)
         console.log(`\n// ${refName} -> ${name} : ${prop}`)
       }

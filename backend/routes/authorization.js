@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const util = require('./../db/util')
 
 router.use('/api/:model/:id?', (req, res, next) => {
   let db = req.app.get('db')
@@ -10,7 +11,7 @@ router.use('/api/:model/:id?', (req, res, next) => {
   let object = db[model]
   let isCatalog = object.options.tableName.toLowerCase().indexOf('cat') === 0
 
-  if (account.catAccountType.description === 'admin121') {
+  if (account.catAccountType.description === 'admin') {
     next()
     return
   }
@@ -31,13 +32,14 @@ router.use('/api/:model/:id?', (req, res, next) => {
       .then(obj => {
         switch (method) {
           case 'POST':
-            next()
+            res.sendStatus(404)
+            return
           case 'GET':
           case 'PUT':
           case 'DELETE':
             if (
               (obj.candidateId && obj.candidateId === account.candidateId) ||
-              (obj.logId && obj.logId === account.user.id)
+              (obj.loginId && obj.loginId === account.id)
             ) {
               next()
             } else {
@@ -51,19 +53,20 @@ router.use('/api/:model/:id?', (req, res, next) => {
   } else {
     switch (method) {
       case 'GET':
-        if (isCatalog) {
-          next()
-          return
+        // Returned filtered data to user
+        let where
+        if (!isCatalog) {
+          where = prepareWhereObject(object, account)
+          if (!where) {
+            res.sendStatus(403)
+            return
+          }
         }
-        //TODO: Add 'include' list from model attributes
-
-        console.log(object.attributes)
 
         object
           .findAll({
-            where: {
-              candidateId: account.candidateId
-            }
+            where: where,
+            include: prepareIncludeObject(object, db)
           })
           .then(list => {
             res.json(list)
@@ -80,5 +83,47 @@ router.use('/api/:model/:id?', (req, res, next) => {
     }
   }
 })
+/**
+ *
+ *
+ * @param {SequelizeModel} object
+ * @param {login} account
+ * @returns Where query if candidateId or logIn id exists otherwise false
+ */
+function prepareWhereObject (object, account) {
+  let where = false
+  let attrs = Object.keys(object.attributes)
+  if (attrs.indexOf('candidateId') > -1) {
+    where = {
+      candidateId: account.candidateId
+    }
+  } else if (attrs.indexOf('loginId') > -1) {
+    where = {
+      loginId: account.id
+    }
+  }
+  return where
+}
+/**
+ *
+ *
+ * @param {SequelizeModel} model
+ * @param {Sequelize} db
+ * @returns Include array for all references in specified model
+ */
+function prepareIncludeObject (model, db) {
+  let include = []
+  let attrs = Object.keys(model.attributes)
+
+  attrs.forEach(attr => {
+    let ref = model.attributes[attr].references
+    if (ref) {
+      let model = ref.model
+      include.push(db[util.getModelName(model)])
+    }
+  })
+
+  return include
+}
 
 module.exports = router

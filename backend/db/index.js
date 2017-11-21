@@ -2,6 +2,7 @@ const Sequelize = require('sequelize')
 const config = require('config')
 const fs = require('fs')
 const path = require('path')
+const util = require('./util')
 
 const associations = require('./associations')
 const directory = path.join(__dirname, '/models/')
@@ -37,11 +38,12 @@ const sequelize = new Sequelize(
 
 // Import models
 fs.readdirSync(directory).forEach(file => {
-  models[getModelName(file)] = sequelize.import(directory + file)
+  let name = util.getModelName(file)
+  models[name] = sequelize.import(directory + file)
 })
 
 // Setup model associations
-associations.associate(models, getModelName)
+associations.associate(models)
 
 // Test connection
 sequelize
@@ -63,23 +65,4 @@ sequelize
 module.exports = {
   models: models,
   sequelize: sequelize
-}
-
-/**
- * Utilities
- */
-
-function getModelName (name) {
-  const words = name
-    .toLowerCase()
-    .replace(/.js/, '')
-    .split(/_/)
-
-  let model = words[1]
-  for (let i = 2; i < words.length; i++) {
-    let word = words[i]
-    model += word[0].toUpperCase() + word.substring(1)
-  }
-
-  return model
 }

@@ -101,7 +101,7 @@ router.post('/auth/login/', (req, res, next) => {
 
                 res.json({
                   token,
-                  user
+                  login: user
                 })
               }
             )
