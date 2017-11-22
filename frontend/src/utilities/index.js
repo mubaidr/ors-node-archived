@@ -1,9 +1,6 @@
 import './pollyfills'
 import './axios.js'
+import './vue-form-generator'
 import './vee-validate'
 
-import store from '../store'
-import router from '../router'
-import { sync } from 'vuex-router-sync'
-
-sync(store, router)
+import 'sweetalert'

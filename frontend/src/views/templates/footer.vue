@@ -1,6 +1,15 @@
 <template lang="pug">
-  div.container
-    p Footer content
+  div
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      router-link.navbar-brand(to='/home') ORS
+      ul.navbar-nav
+        li.nav-item
+          router-link.nav-link(to='/home') Home
+        li.nav-item
+          router-link.nav-link(to='/auth/login') Login
+        li.nav-item
+          router-link.nav-link(to='/auth/register') Register
+
 </template>
 
 <script>
