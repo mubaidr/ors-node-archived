@@ -2,6 +2,7 @@ const express = require('express')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
 const finale = require('finale-rest')
+const cors = require('cors')
 
 const routes = require('./routes/index')
 const app = express()
@@ -28,7 +29,7 @@ if (app.get('env') === 'development') {
 }
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-
+app.use(cors())
 app.use('/', routes)
 
 // Setup rest api

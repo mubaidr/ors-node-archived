@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const config = require('config')
 
-router.post('/auth/register/', (req, res, next) => {
+router.post('/auth/register', (req, res, next) => {
   const db = req.app.get('db')
   let newUser = new db.login({ ...req.body })
   newUser.password = bcrypt.hashSync(newUser.password, 8)
@@ -35,7 +35,7 @@ router.post('/auth/register/', (req, res, next) => {
     })
 })
 
-router.post('/auth/login/', (req, res, next) => {
+router.post('/auth/login', (req, res, next) => {
   const db = req.app.get('db')
 
   let username = req.body.username
@@ -55,14 +55,14 @@ router.post('/auth/login/', (req, res, next) => {
     })
     .then(user => {
       if (!user) {
-        res.sendStatus(403)
+        res.sendStatus(401)
         return
       }
 
       bcrypt.compare(password, user.password, (err, isMatched) => {
         if (err) next(err)
         if (!isMatched) {
-          res.sendStatus(403)
+          res.sendStatus(401)
           return
         }
 
@@ -123,7 +123,7 @@ router.use('/api/*', (req, res, next) => {
       next()
     })
   } else {
-    res.sendStatus(403)
+    res.sendStatus(401)
   }
 })
 

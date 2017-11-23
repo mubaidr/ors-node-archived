@@ -1,14 +1,13 @@
 <template lang="pug">
   .row
     .col-md-6.offset-md-3
-      .card.border-light
+      .card.bg-light
         .card-header
           h2 Login
           p Please provide username and password to continue
         .card-body
           vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
           br
-        .card-footer
           router-link.btn-link(to='/auth/recover') Forgot password?
 </template>
 
@@ -18,8 +17,8 @@
       return {
         form: {
           model: {
-            username: '',
-            password: ''
+            username: '1111111111111',
+            password: 'minion1234'
           },
           schema: {
             fields: [
@@ -35,9 +34,7 @@
                 },
                 placeholder: '11111-1111111-1',
                 min: 15,
-                required: true,
-                validator: 'regexp',
-                pattern: '^[1-9][0-9]{4}-[0-9]{7}-[0-9]{1}$'
+                required: true
               },
               {
                 type: 'input',
@@ -64,8 +61,21 @@
             validateAfterChanged: true
           }
         },
-        loading: true,
         isValid: true
+      }
+    },
+    methods: {
+      onSubmit() {
+        this.axios
+          .post(this.endpoint, this.form.model)
+          .then(res => {
+            this.$store.commit('setAuthentication', res.data.token)
+            this.$store.commit('setUserInfo', res.data.login)
+            swal('ok', 'lol', 'success')
+          })
+          .catch(err => {
+            swal('lol', 'sdsd', 'error')
+          })
       }
     }
   }

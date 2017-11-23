@@ -1,6 +1,8 @@
 import 'bootswatch/dist/litera/bootstrap.min.css'
 import 'assets/css/animations.css'
+import 'assets/css/pace.css'
 import 'assets/css/index.styl'
+import 'assets/js/pace.min'
 
 import Vue from 'vue'
 import App from 'src/App.vue'

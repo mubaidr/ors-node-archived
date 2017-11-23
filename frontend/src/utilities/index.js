@@ -1,8 +1,7 @@
 import './pollyfills'
-import './axios.js'
+import './axios'
 import './vue-form-generator'
 import './vee-validate'
-
 import './vue-mixins'
 
 import 'sweetalert'

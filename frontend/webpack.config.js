@@ -1,7 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var resolve = function (dir) {
+var resolve = function(dir) {
   return path.join(__dirname, dir)
 }
 
@@ -71,7 +71,8 @@ module.exports = {
       src: resolve('src'),
       assets: resolve('src/assets'),
       views: resolve('src/views'),
-      services: resolve('src/services')
+      services: resolve('src/services'),
+      utilities: resolve('src/utilities')
     },
     extensions: ['.js', '.vue', '.json'],
     modules: [path.resolve('./src'), path.resolve('./node_modules')]
