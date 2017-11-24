@@ -7,6 +7,7 @@ import notFound from 'views/notFound'
 import register from 'views/account/register'
 import login from 'views/account/login'
 import candidate from 'views/candidate'
+import profile from 'views/profile'
 
 vue.use(vueRouter)
 
@@ -20,20 +21,25 @@ var router = new vueRouter({
     },
     {
       path: '/home',
-      component: index
+      component: index,
+      meta: {
+        isOpen: true
+      }
     },
     {
       path: '/auth/register',
       component: register,
       meta: {
-        skipIfAuthorized: true
+        skipIfAuthorized: true,
+        isOpen: true
       }
     },
     {
       path: '/auth/login',
       component: login,
       meta: {
-        skipIfAuthorized: true
+        skipIfAuthorized: true,
+        isOpen: true
       }
     },
     {
@@ -42,14 +48,18 @@ var router = new vueRouter({
     },
     {
       path: '/candidate',
-      component: candidate,
-      meta: {
-        requiresAuth: true
-      }
+      component: candidate
+    },
+    {
+      path: '/profile',
+      component: profile
     },
     {
       path: '*',
-      component: notFound
+      component: notFound,
+      meta: {
+        isOpen: true
+      }
     }
   ]
 })
@@ -67,15 +77,15 @@ router.beforeEach((to, from, next) => {
       next()
     }
   } else {
-    if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (to.matched.some(record => record.meta.isOpen)) {
+      next()
+    } else {
       next({
         path: '/auth/login',
         query: {
           redirect: to.fullPath
         }
       })
-    } else {
-      next()
     }
   }
 })

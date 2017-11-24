@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import axios from 'axios'
-import vueAxios from 'vue-axios'
 import store from 'src/store'
 import router from 'src/router'
 
@@ -57,4 +56,4 @@ function checkPace (enable) {
   }
 }
 
-Vue.use(vueAxios, axios)
+export default axios

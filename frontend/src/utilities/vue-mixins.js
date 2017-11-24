@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import axios from './axios'
 import config from './../config'
 
 var mixin = {
@@ -32,7 +33,6 @@ var mixin = {
     }
   },
   created () {
-    let axios = this.$http
     let url = this.endpoint
     let model = this.form ? this.form.model || {} : {}
 

@@ -4,7 +4,7 @@
       .card.bg-light
         .card-header
           h2 Login
-          p Please provide username and password to continue
+          p Please provide username and password to continue.
         .card-body
           vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
           br
