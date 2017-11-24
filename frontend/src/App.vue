@@ -23,6 +23,13 @@
       'footer-template': footer
     },
     watch: {
+      auth(val) {
+        if (val !== undefined || val !== null) {
+          this.$router.push('/profile')
+        } else {
+          this.$router.push('/home')
+        }
+      },
       $route(to, from) {
         const toDepth = to.path.split('/').length
         const fromDepth = from.path.split('/').length
@@ -31,6 +38,11 @@
         } else {
           this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
         }
+      }
+    },
+    computed: {
+      auth() {
+        return this.$store.getters.auth
       }
     }
   }

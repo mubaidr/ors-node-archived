@@ -12,9 +12,9 @@ export default {
       session.setAuthentication(obj)
     },
     removeAuthentication (state) {
+      session.clear()
       state.auth = null
       state.user = null
-      session.clear()
     }
   },
   getters: {

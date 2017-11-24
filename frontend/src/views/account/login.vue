@@ -72,7 +72,7 @@
             swal('Successfuly logged in!', '', 'success')
           })
           .catch(err => {
-            swal('Invalid credentials, please try again!', '', 'error')
+            swal('Invalid credentials!', 'Please try again!', 'error')
           })
       }
     }
