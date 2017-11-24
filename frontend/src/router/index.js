@@ -43,10 +43,6 @@ var router = new vueRouter({
       }
     },
     {
-      path: '/auth/logout',
-      redirect: '/home'
-    },
-    {
       path: '/candidate',
       component: candidate
     },
@@ -68,7 +64,9 @@ router.beforeEach((to, from, next) => {
   if (store.getters.isAuthenticated) {
     if (to.path === '/auth/logout') {
       store.commit('removeAuthentication')
-      next()
+      next({
+        path: '/home'
+      })
     } else if (to.matched.some(record => record.meta.skipIfAuthorized)) {
       next({
         path: '/home'

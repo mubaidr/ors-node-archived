@@ -8,7 +8,7 @@ var numberOfAjaxCAllPending = 0
 // Add a request interceptor
 axios.interceptors.request.use(
   cfg => {
-    checkPace(true)
+    //checkPace(true)
 
     if (store.getters.isAuthenticated) {
       cfg.headers['x-access-token'] = store.getters.auth
@@ -23,11 +23,11 @@ axios.interceptors.request.use(
 // Add a response interceptor
 axios.interceptors.response.use(
   res => {
-    checkPace(false)
+    //checkPace(false)
     return res
   },
   err => {
-    checkPace(false)
+    //checkPace(false)
     switch (err.response.status) {
       case 403:
         store.commit('removeAuthentication')
@@ -46,7 +46,7 @@ axios.interceptors.response.use(
 function checkPace (enable) {
   if (enable) {
     numberOfAjaxCAllPending++
-    Pace.start()
+    Pace.restart()
     store.commit('isLoading')
   } else {
     if (--numberOfAjaxCAllPending === 0) {

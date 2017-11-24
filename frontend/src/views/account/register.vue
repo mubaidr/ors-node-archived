@@ -2,12 +2,11 @@
   .row
     .col-md-6.offset-md-3
       .card.bg-light
-        .card-header
+        .card-header.custom
           h2 Register
           p Please provide required information to create an account.
         .card-body
           vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
-          br
           router-link.btn-link(to='/auth/login') Already have an account?
 </template>
 
