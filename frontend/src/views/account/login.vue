@@ -8,6 +8,8 @@
         .card-body
           vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
           router-link.btn-link(to='/auth/recover') Forgot password?
+          | &nbsp;
+          router-link.btn-link(to='/auth/register') Don't have an account?
 </template>
 
 <script>
