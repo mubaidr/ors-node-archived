@@ -1,4 +1,4 @@
-<template lang="pug">
+<template lang='pug'>
   div
     nav.navbar.navbar-expand-lg.navbar-light.bg-light
       router-link.navbar-brand(to='/home') ORS
@@ -18,6 +18,6 @@
   }
 </script>
 
-<style lang="stylus">
+<style lang='stylus'>
 </style>
 

@@ -30,10 +30,10 @@ axios.interceptors.response.use(
   err => {
     checkPace(false)
     switch (err.response.status) {
-      case 401:
+      case 403:
         store.commit('removeAuthentication')
         router.push({
-          path: '/auth/signin',
+          path: '/auth/login',
           query: {
             redirect: router.app._route.fullPath
           }
@@ -50,7 +50,7 @@ function checkPace (enable) {
     Pace.start()
     store.commit('isLoading')
   } else {
-    if (numberOfAjaxCAllPending == 0) {
+    if (--numberOfAjaxCAllPending === 0) {
       Pace.stop()
       store.commit('isNotLoading')
     }

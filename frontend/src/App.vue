@@ -1,4 +1,4 @@
-<template lang="pug">
+<template lang='pug'>
   div
     header-template
     .container.body
@@ -36,5 +36,5 @@
   }
 </script>
 
-<style lang="stylus">
+<style lang='stylus'>
 </style>

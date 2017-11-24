@@ -3,32 +3,29 @@ import session from 'utilities/session'
 export default {
   state: {
     auth: session.getAuth(),
-    userInfo: session.getUserInfo()
+    user: session.getUser()
   },
   mutations: {
-    setAuthentication (state, auth) {
-      state.auth = auth
-      session.setAuth(auth)
-    },
-    setUserInfo (state, userInfo) {
-      state.userInfo = userInfo
-      session.setUserInfo(userInfo)
+    setAuthentication (state, obj) {
+      state.auth = obj.token
+      state.user = obj.login
+      session.setAuthentication(obj)
     },
     removeAuthentication (state) {
       state.auth = null
-      state.userInfo = null
+      state.user = null
       session.clear()
     }
   },
   getters: {
-    getAuth (state) {
-      return state.auth
-    },
     isAuthenticated (state) {
       return state.auth !== null && typeof state.auth !== 'undefined'
     },
-    userInfo (state) {
-      return state.userInfo
+    auth (state) {
+      return state.auth
+    },
+    user (state) {
+      return state.user
     }
   }
 }

@@ -1,5 +1,8 @@
 <template lang='pug'>
-  h2 Not Found!
+  div
+    h2 Candidate poka
+    p
+      <pre>{{userInfo}}</pre>
 </template>
 
 <script>

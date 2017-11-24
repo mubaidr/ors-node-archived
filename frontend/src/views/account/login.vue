@@ -1,4 +1,4 @@
-<template lang="pug">
+<template lang='pug'>
   .row
     .col-md-6.offset-md-3
       .card.bg-light
@@ -18,7 +18,7 @@
         form: {
           model: {
             username: '1111111111111',
-            password: 'minion1234'
+            password: 'minion12345'
           },
           schema: {
             fields: [
@@ -60,26 +60,24 @@
             validateAfterLoad: false,
             validateAfterChanged: true
           }
-        },
-        isValid: true
+        }
       }
     },
     methods: {
       onSubmit() {
-        this.axios
-          .post(this.endpoint, this.form.model)
+        this.$axios
+          .post()
           .then(res => {
-            this.$store.commit('setAuthentication', res.data.token)
-            this.$store.commit('setUserInfo', res.data.login)
-            swal('ok', 'lol', 'success')
+            this.$store.commit('setAuthentication', res.data)
+            swal('Successfuly logged in!', '', 'success')
           })
           .catch(err => {
-            swal('lol', 'sdsd', 'error')
+            swal('Invalid credentials, please try again!', '', 'error')
           })
       }
     }
   }
 </script>
 
-<style lang="stylus">
+<style lang='stylus'>
 </style>
