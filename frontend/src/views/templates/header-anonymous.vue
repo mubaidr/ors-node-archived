@@ -5,14 +5,14 @@
       li.nav-item
         router-link.nav-link(to='/home') Home
       li.nav-item
-        router-link.nav-link(to='/auth/logout') Logout
+        router-link.nav-link(to='/auth/login') Login
       li.nav-item
-        router-link.nav-link(to='/profile') Profile
+        router-link.nav-link(to='/auth/register') Register
 </template>
 
 <script>
   export default {
-    name: 'header-template'
+    name: 'header-template-anonymous'
   }
 </script>
 

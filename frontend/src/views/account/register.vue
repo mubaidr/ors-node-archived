@@ -16,8 +16,11 @@
       return {
         form: {
           model: {
-            username: '1111111111111',
-            password: 'minion12345'
+            username: '11111-1111111-1',
+            password: 'minion12345',
+            confirmPassword: 'minion12345',
+            email: 'tim@minion.com',
+            name: 'Minion'
           },
           schema: {
             fields: [
@@ -33,7 +36,9 @@
                 },
                 placeholder: '11111-1111111-1',
                 min: 15,
-                required: true
+                max: 15,
+                required: true,
+                validator: ['string']
               },
               {
                 type: 'input',
@@ -43,7 +48,36 @@
                 model: 'password',
                 placeholder: 'Password',
                 min: 8,
-                required: true
+                max: 16,
+                required: true,
+                validator: ['string']
+              },
+              {
+                type: 'input',
+                inputType: 'password',
+                autocomplete: true,
+                label: 'Confirm Password',
+                model: 'confirmPassword',
+                placeholder: 'Password',
+                min: 8,
+                max: 16,
+                required: true,
+                validator: [
+                  'string',
+                  function(value, field, model) {
+                    //TODO: compare with password
+                    return ['Invalid']
+                  }
+                ]
+              },
+              {
+                type: 'input',
+                inputType: 'email',
+                label: 'Email',
+                model: 'email',
+                placeholder: 'abc@xyz.com',
+                required: true,
+                validator: ['string', 'email']
               },
               {
                 type: 'submit',
@@ -68,12 +102,19 @@
           .post()
           .then(res => {
             this.$router.push('/auth/login')
-            swal('Account created successfuly!', '', 'success')
+            swal('Account created successfuly!', 'Please login', 'success')
           })
           .catch(err => {
-            //TODO: parse error information
-            console.dir(err)
-            swal('Invalid credentials!', err.message, 'error')
+            if (err.response.status === 409) {
+              this.$router.push('/auth/login')
+              swal(
+                'Username already registered',
+                'Please login or recover password',
+                'error'
+              )
+            } else {
+              swal('Invalid submission!', err.message, 'error')
+            }
           })
       }
     }

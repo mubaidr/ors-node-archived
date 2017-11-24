@@ -1,6 +1,7 @@
 <template lang='pug'>
   div
-    header-template
+    header-template(v-if='isAuthenticated')
+    header-template-anonymous(v-else)
     .container.body
       transition(appear='' :name='transitionName' mode='out-in')
         router-view
@@ -8,6 +9,7 @@
 </template>
 
 <script>
+  import headerAnonymous from './views/templates/header-anonymous'
   import header from './views/templates/header'
   import footer from './views/templates/footer'
 
@@ -20,6 +22,7 @@
     },
     components: {
       'header-template': header,
+      'header-template-anonymous': headerAnonymous,
       'footer-template': footer
     },
     watch: {
@@ -41,8 +44,8 @@
       }
     },
     computed: {
-      auth() {
-        return this.$store.getters.auth
+      isAuthenticated() {
+        return this.$store.getters.isAuthenticated
       }
     }
   }

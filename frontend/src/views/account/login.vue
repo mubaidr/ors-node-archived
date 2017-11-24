@@ -4,7 +4,7 @@
       .card.bg-light
         .card-header.custom
           h2 Login
-          p Please provide username and password to continue.
+          span Please provide username and password to continue.
         .card-body
           vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
           router-link.btn-link(to='/auth/recover') Forgot password?
@@ -16,8 +16,8 @@
       return {
         form: {
           model: {
-            username: '1111111111111',
-            password: 'minion12345'
+            username: '',
+            password: ''
           },
           schema: {
             fields: [
@@ -33,7 +33,9 @@
                 },
                 placeholder: '11111-1111111-1',
                 min: 15,
-                required: true
+                max: 15,
+                required: true,
+                validator: ['string']
               },
               {
                 type: 'input',
@@ -43,7 +45,9 @@
                 model: 'password',
                 placeholder: 'Password',
                 min: 8,
-                required: true
+                max: 16,
+                required: true,
+                validator: ['string']
               },
               {
                 type: 'submit',

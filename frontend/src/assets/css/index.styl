@@ -1,14 +1,16 @@
+/* Set minimum height for body content */
 .container.body {
-  margin-bottom: 25px;
-  margin-top: 25px;
+  display: table;
+  min-height: calc(100vh - 115px);
+  padding-bottom: 57px;
+  padding-top: 57px;
+  table-layout: fixed;
 }
 
-.container.body {
-  min-height: calc(100vh - 165px);
-}
-
-.btn {
-  cursor: pointer;
+/* Verticaly center row */
+.container.body > .row {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 /*
@@ -19,15 +21,42 @@
 }
 
 .hint, .help-block {
-  font-size: 0.8em;
-  opacity: 0.8;
+  font-size: 0.9em;
 }
 
 .errors {
   color: #d9534f;
 }
 
+/* Show only first error */
+.errors.help-block > span {
+  display: none;
+}
+
+.errors.help-block > span:first-child {
+  display: block;
+}
+
 .card-header.custom {
   background-color: transparent;
   border-bottom: none;
+}
+
+/* header */
+@media (max-width: 48em) {
+  .navbar {
+    .navbar-brand {
+      text-align: center;
+      width: 100%;
+    }
+
+    .navbar-nav {
+      text-align: right;
+      width: 100%;
+
+      .nav-link {
+        display: inline-block;
+      }
+    }
+  }
 }
