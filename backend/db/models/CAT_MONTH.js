@@ -1,7 +1,7 @@
 /* jshint indent: 1 */
 
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('catEduFinDeg', {
+  return sequelize.define('catMonth', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -14,17 +14,13 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       field: 'DESCRIPTION'
     },
-    eduCertGrpId: {
-      type: DataTypes.INTEGER,
+    abbriv: {
+      type: DataTypes.STRING,
       allowNull: false,
-      references: {
-        model: 'CAT_EDU_CERT_GRP',
-        key: 'ID'
-      },
-      field: 'EDU_CERT_GRP_ID'
+      field: 'ABBRIV'
     },
   }, {
-    tableName: 'CAT_EDU_FIN_DEG',
+    tableName: 'CAT_MONTH',
     timestamps: true,
     underscored: true,
     createdAt: 'CREATED_AT',

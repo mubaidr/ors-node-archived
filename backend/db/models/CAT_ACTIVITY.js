@@ -1,7 +1,7 @@
 /* jshint indent: 1 */
 
-module.exports = function(sequelize, DataTypes) {
-	return sequelize.define('catAdminRole', {
+module.exports = function (sequelize, DataTypes) {
+	return sequelize.define('catActivity', {
 		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
@@ -9,13 +9,13 @@ module.exports = function(sequelize, DataTypes) {
 			autoIncrement: true,
 			field: 'ID'
 		},
-		description: {
+		title: {
 			type: DataTypes.STRING,
 			allowNull: false,
-			field: 'DESCRIPTION'
+			field: 'TITLE'
 		},
 	}, {
-		tableName: 'CAT_ADMIN_ROLE',
+		tableName: 'CAT_ACTIVITY',
 		timestamps: true,
 		underscored: true,
 		createdAt: 'CREATED_AT',

@@ -55,14 +55,14 @@ module.exports = function (sequelize, DataTypes) {
       defaultValue: '((0))',
       field: 'STATUS'
     },
-    fieldId: {
+    specializationFieldId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'CAT_SPEC_FIELDS',
+        model: 'CAT_SPECIALIZATION_FIELD',
         key: 'ID'
       },
-      field: 'FIELD_ID'
+      field: 'SPECIALIZATION_FIELD_ID'
     },
     duration: {
       type: DataTypes.INTEGER,

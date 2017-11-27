@@ -1,7 +1,7 @@
 /* jshint indent: 1 */
 
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('tblCourses', {
+  return sequelize.define('tblCourse', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -47,14 +47,14 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
       field: 'INSTITUTE'
     },
-    fieldId: {
+    specializationFieldId: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'CAT_SPEC_FIELDS',
+        model: 'CAT_SPECIALIZATION_FIELD',
         key: 'ID'
       },
-      field: 'FIELD_ID'
+      field: 'SPECIALIZATION_FIELD_ID'
     },
     duration: {
       type: DataTypes.INTEGER,
@@ -68,7 +68,7 @@ module.exports = function (sequelize, DataTypes) {
       field: 'IS_VALID'
     },
   }, {
-    tableName: 'TBL_COURSES',
+    tableName: 'TBL_COURSE',
     timestamps: true,
     underscored: true,
     createdAt: 'CREATED_AT',

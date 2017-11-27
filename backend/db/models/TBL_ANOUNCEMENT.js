@@ -1,7 +1,7 @@
 /* jshint indent: 1 */
 
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('catEduFinDeg', {
+  return sequelize.define('tblAnouncement', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -9,22 +9,24 @@ module.exports = function (sequelize, DataTypes) {
       autoIncrement: true,
       field: 'ID'
     },
-    description: {
+    title: {
       type: DataTypes.STRING,
+      allowNull: false,
+      field: 'TITLE'
+    },
+    description: {
+      type: DataTypes.TEXT,
       allowNull: false,
       field: 'DESCRIPTION'
     },
-    eduCertGrpId: {
+    status: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: 'CAT_EDU_CERT_GRP',
-        key: 'ID'
-      },
-      field: 'EDU_CERT_GRP_ID'
+      defaultValue: '((0))',
+      field: 'STATUS'
     },
   }, {
-    tableName: 'CAT_EDU_FIN_DEG',
+    tableName: 'TBL_ANOUNCEMENT',
     timestamps: true,
     underscored: true,
     createdAt: 'CREATED_AT',

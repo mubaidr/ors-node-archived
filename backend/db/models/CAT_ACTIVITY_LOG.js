@@ -1,7 +1,7 @@
 /* jshint indent: 1 */
 
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('tblFcTest', {
+  return sequelize.define('catActivityLog', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -9,32 +9,36 @@ module.exports = function (sequelize, DataTypes) {
       autoIncrement: true,
       field: 'ID'
     },
-    finalCandidateId: {
+    activityId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'TBL_FINAL_CANDIDATE',
+        model: 'CAT_ACTIVITY',
         key: 'ID'
       },
-      field: 'FINAL_CANDIDATE_ID'
+      field: 'ACTIVITY_ID'
     },
-    marks: {
-      type: DataTypes.FLOAT,
+    loginId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'TBL_LOGIN',
+        key: 'ID'
+      },
+      field: 'LOGIN_ID'
+    },
+    time: {
+      type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: '((0))',
-      field: 'MARKS'
+      field: 'time'
     },
-    testLocationTimeId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'CAT_TEST_LOCATION_TIME',
-        key: 'ID'
-      },
-      field: 'TEST_LOCATION_TIME_ID'
+    remarks: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      field: 'REMARKS'
     },
   }, {
-    tableName: 'TBL_FC_TEST',
+    tableName: 'CAT_ACTIVITY_LOG',
     timestamps: true,
     underscored: true,
     createdAt: 'CREATED_AT',
