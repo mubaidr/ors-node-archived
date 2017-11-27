@@ -13,15 +13,17 @@ var models = {}
 const sequelize = new Sequelize(
   config.get('options.db.name'),
   config.get('options.db.username'),
-  config.get('options.db.password'),
-  {
+  config.get('options.db.password'), {
     host: config.get('options.db.host'),
     dialect: 'mssql',
     freezeTableName: true,
     operatorsAliases: false,
     timestamps: true,
     underscored: true,
-    pool: { maxConnections: 5, maxIdleTime: 30 },
+    pool: {
+      maxConnections: 5,
+      maxIdleTime: 30
+    },
     define: {
       timestamps: true,
       createdAt: 'CREATED_AT',
@@ -53,6 +55,8 @@ sequelize
     sequelize
       .sync({
         logging: false
+      }).then(() => {
+        console.log('\n DB sync success. \n'.success)
       })
       .catch(err => {
         console.log('\n' + err.message.error + '\n' + err.stack.warn + '\n')

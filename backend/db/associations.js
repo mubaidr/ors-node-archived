@@ -124,10 +124,6 @@ module.exports = {
     models.candidate.hasMany(models.courses, {
       foreignKey: 'candidateId'
     })
-    // specialization -> courses : majorId
-    models.courses.belongsTo(models.specialization, {
-      foreignKey: 'majorId'
-    })
     // specFields -> courses : fieldId
     models.specFields.hasMany(models.courses, {
       foreignKey: 'fieldId'
@@ -135,10 +131,6 @@ module.exports = {
     // candidate -> experience : candidateId
     models.candidate.hasMany(models.experience, {
       foreignKey: 'candidateId'
-    })
-    // specialization -> experience : majorId
-    models.experience.belongsTo(models.specialization, {
-      foreignKey: 'majorId'
     })
     // specFields -> experience : fieldId
     models.specFields.hasMany(models.experience, {
