@@ -54,14 +54,14 @@ module.exports = function (sequelize, DataTypes) {
       defaultValue: '((0))',
       field: 'OBTAINED_MARKS'
     },
-    criteriaId: {
+    criteriaAcademicId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'CAT_CRITERIA_ACADEMICS',
+        model: 'CAT_CRITERIA_ACADEMIC',
         key: 'ID'
       },
-      field: 'CRITERIA_ID'
+      field: 'CRITERIA_ACADEMIC_ID'
     },
     percentage: {
       type: DataTypes.DECIMAL,

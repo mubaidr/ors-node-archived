@@ -9,15 +9,6 @@ module.exports = function (sequelize, DataTypes) {
       autoIncrement: true,
       field: 'ID'
     },
-    eduCertGrpId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'CAT_EDU_CERT_GRP',
-        key: 'ID'
-      },
-      field: 'EDU_CERT_GRP_ID'
-    },
     vacancyId: {
       type: DataTypes.INTEGER,
       allowNull: false,

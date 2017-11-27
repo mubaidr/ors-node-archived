@@ -2,7 +2,7 @@ const util = require('./util')
 
 module.exports = {
   associate: models => {
-    //getRelations(models)
+    // getRelations(models)
 
     // activity -> activityLog : activityId
     models.activity.hasMany(models.activityLog, {
@@ -20,15 +20,15 @@ module.exports = {
     models.payscale.hasMany(models.desig, {
       foreignKey: 'payscaleId'
     })
-    // eduCertGrp -> eduFinDeg : certificateId
+    // eduCertGrp -> eduFinDeg : eduCertGrpId
     models.eduCertGrp.hasMany(models.eduFinDeg, {
       foreignKey: 'eduCertGrpId'
     })
-    // eduFinDeg -> eduFinDegSubject : degreeId
+    // eduFinDeg -> eduFinDegSubject : eduFinDegId
     models.eduFinDeg.hasMany(models.eduFinDegSubject, {
       foreignKey: 'eduFinDegId'
     })
-    // interviewCentre -> interviewLocation : centreId
+    // interviewCentre -> interviewLocation : interviewCentreId
     models.interviewCentre.hasMany(models.interviewLocation, {
       foreignKey: 'interviewCentreId'
     })
@@ -36,15 +36,15 @@ module.exports = {
     models.interviewLocation.hasMany(models.interviewLocationTime, {
       foreignKey: 'interviewLocationId'
     })
-    // specialization -> specializationField : spId
+    // specialization -> specializationField : specializationId
     models.specialization.hasMany(models.specializationField, {
-      foreignKey: 'specializationFieldId'
+      foreignKey: 'specializationId'
     })
-    // testCentre -> testLocation : centreId
+    // testCentre -> testLocation : testCentreId
     models.testCentre.hasMany(models.testLocation, {
       foreignKey: 'testCentreId'
     })
-    // testLocation -> testLocationTime : locationId
+    // testLocation -> testLocationTime : testLocationId
     models.testLocation.hasMany(models.testLocationTime, {
       foreignKey: 'testLocationId'
     })
@@ -52,11 +52,11 @@ module.exports = {
     models.candidate.hasMany(models.academic, {
       foreignKey: 'candidateId'
     })
-    // eduFinDeg -> academic : degreeId
+    // eduFinDeg -> academic : eduFinDegId
     models.academic.belongsTo(models.eduFinDeg, {
       foreignKey: 'eduFinDegId'
     })
-    // criteriaacademic -> academic : criteriaId
+    // criteriaacademic -> academic : criteriaAcademicId
     models.academic.belongsTo(models.criteriaAcademic, {
       foreignKey: 'criteriaAcademicId'
     })
@@ -64,19 +64,19 @@ module.exports = {
     models.academic.belongsTo(models.division, {
       foreignKey: 'divisionId'
     })
-    // eduFinDegSubject -> academic : degreeSubjectId
+    // eduFinDegSubject -> academic : eduFinDegSubjectId
     models.academic.belongsTo(models.eduFinDegSubject, {
       foreignKey: 'eduFinDegSubjectId'
     })
-    // vacancy -> application : vacId
+    // vacancy -> application : vacancyId
     models.vacancy.hasMany(models.application, {
       foreignKey: 'vacancyId'
     })
-    // appStatus -> application : status
+    // appStatus -> application : appStatusId
     models.application.belongsTo(models.appStatus, {
       foreignKey: 'appStatusId'
     })
-    // vacancyTestCentre -> application : testCentre
+    // vacancyTestCentre -> application : vacancyTestCentreId
     models.application.belongsTo(models.vacancyTestCentre, {
       foreignKey: 'vacancyTestCentreId'
     })
@@ -88,11 +88,11 @@ module.exports = {
     models.candidate.hasMany(models.book, {
       foreignKey: 'candidateId'
     })
-    // maritalStatus -> candidate : maritalStatus
+    // maritalStatus -> candidate : maritalStatusId
     models.candidate.belongsTo(models.maritalStatus, {
       foreignKey: 'maritalStatusId'
     })
-    // religion -> candidate : religion
+    // religion -> candidate : religionId
     models.candidate.belongsTo(models.religion, {
       foreignKey: 'religionId'
     })
@@ -116,7 +116,7 @@ module.exports = {
     models.candidate.hasMany(models.course, {
       foreignKey: 'candidateId'
     })
-    // specializationField -> course : fieldId
+    // specializationField -> course : specializationFieldId
     models.specializationField.hasMany(models.course, {
       foreignKey: 'specializationFieldId'
     })
@@ -124,11 +124,11 @@ module.exports = {
     models.candidate.hasMany(models.experience, {
       foreignKey: 'candidateId'
     })
-    // specializationField -> experience : fieldId
+    // specializationField -> experience : specializationFieldId
     models.specializationField.hasMany(models.experience, {
       foreignKey: 'specializationFieldId'
     })
-    // finalCandidate -> fcInterview : fcId
+    // finalCandidate -> fcInterview : finalCandidateId
     models.finalCandidate.hasOne(models.fcInterview, {
       foreignKey: 'finalCandidateId'
     })
@@ -136,7 +136,7 @@ module.exports = {
     models.interviewLocationTime.hasMany(models.fcInterview, {
       foreignKey: 'interviewLocationTimeId'
     })
-    // finalCandidate -> fcTest : fcId
+    // finalCandidate -> fcTest : finalCandidateId
     models.finalCandidate.hasOne(models.fcTest, {
       foreignKey: 'finalCandidateId'
     })
@@ -144,7 +144,7 @@ module.exports = {
     models.testLocationTime.hasMany(models.fcTest, {
       foreignKey: 'testLocationTimeId'
     })
-    // application -> finalCandidate : appId
+    // application -> finalCandidate : applicationId
     models.application.hasOne(models.finalCandidate, {
       foreignKey: 'applicationId'
     })
@@ -164,50 +164,46 @@ module.exports = {
     models.desig.hasMany(models.vacancy, {
       foreignKey: 'desigId'
     })
-    // advertisement -> vacancy : advId
+    // advertisement -> vacancy : advertisementId
     models.advertisement.hasMany(models.vacancy, {
       foreignKey: 'advertisementId'
     })
-    // appStatus -> vacancy : statusId
+    // appStatus -> vacancy : appStatusId
     models.appStatus.hasMany(models.vacancy, {
       foreignKey: 'appStatusId'
     })
-    // eduCertGrp -> vacancyCertificate : certId
-    models.eduCertGrp.hasMany(models.vacancyCertificate, {
-      foreignKey: 'eduCertGrpId'
-    })
-    // vacancy -> vacancyCertificate : vacId
+    // vacancy -> vacancyCertificate : vacancyId
     models.vacancy.hasMany(models.vacancyCertificate, {
       foreignKey: 'vacancyId'
     })
-    // eduFinDegSubject -> vacancyCertificate : degreeSubjectId
+    // eduFinDegSubject -> vacancyCertificate : eduFinDegSubjectId
     models.eduFinDegSubject.hasMany(models.vacancyCertificate, {
       foreignKey: 'eduFinDegSubjectId'
     })
-    // vacancy -> vacancyInterviewCentre : vacId
+    // vacancy -> vacancyInterviewCentre : vacancyId
     models.vacancy.hasMany(models.vacancyInterviewCentre, {
       foreignKey: 'vacancyId'
     })
-    // interviewCentre -> vacancyInterviewCentre : interviewId
+    // interviewCentre -> vacancyInterviewCentre : interviewCentreId
     models.interviewCentre.hasMany(models.vacancyInterviewCentre, {
       foreignKey: 'interviewCentreId'
     })
-    // specialization -> vacancySpecialization : spId
+    // specialization -> vacancySpecialization : specializationId
     models.specialization.hasMany(models.vacancySpecialization, {
       foreignKey: 'specializationId'
     })
-    // vacancy -> vacancySpecialization : vacId
+    // vacancy -> vacancySpecialization : vacancyId
     models.vacancy.hasMany(models.vacancySpecialization, {
       foreignKey: 'vacancyId'
     })
     models.vacancySpecialization.belongsTo(models.vacancy, {
       foreignKey: 'vacancyId'
     })
-    // vacancy -> vacancyTestCentre : vacId
+    // vacancy -> vacancyTestCentre : vacancyId
     models.vacancy.hasMany(models.vacancyTestCentre, {
       foreignKey: 'vacancyId'
     })
-    // testCentre -> vacancyTestCentre : testId
+    // testCentre -> vacancyTestCentre : testCentreId
     models.testCentre.hasMany(models.vacancyTestCentre, {
       foreignKey: 'testCentreId'
     })
