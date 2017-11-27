@@ -57,19 +57,19 @@ module.exports = {
       foreignKey: 'candidateId'
     })
     // eduFinDeg -> academics : degreeId
-    models.eduFinDeg.hasMany(models.academics, {
+    models.academics.belongsTo(models.eduFinDeg, {
       foreignKey: 'degreeId'
     })
     // criteriaAcademics -> academics : criteriaId
-    models.criteriaAcademics.hasMany(models.academics, {
+    models.academics.belongsTo(models.criteriaAcademics, {
       foreignKey: 'criteriaId'
     })
     // division -> academics : divisionId
-    models.division.hasMany(models.academics, {
+    models.academics.belongsTo(models.division, {
       foreignKey: 'divisionId'
     })
     // eduFinDegSubjects -> academics : degreeSubjectId
-    models.eduFinDegSubjects.hasMany(models.academics, {
+    models.academics.belongsTo(models.eduFinDegSubjects, {
       foreignKey: 'degreeSubjectId'
     })
     // adminRole -> admin : role
@@ -81,11 +81,11 @@ module.exports = {
       foreignKey: 'vacId'
     })
     // appStatus -> applications : status
-    models.appStatus.hasMany(models.applications, {
+    models.applications.belongsTo(models.appStatus, {
       foreignKey: 'status'
     })
     // vacancyTestCentre -> applications : testCentre
-    models.vacancyTestCentre.hasMany(models.applications, {
+    models.applications.belongsTo(models.vacancyTestCentre, {
       foreignKey: 'testCentre'
     })
     // candidate -> applications : candidateId
@@ -97,15 +97,15 @@ module.exports = {
       foreignKey: 'candidateId'
     })
     // maritalStatus -> candidate : maritalStatus
-    models.maritalStatus.hasMany(models.candidate, {
+    models.candidate.belongsTo(models.maritalStatus, {
       foreignKey: 'maritalStatus'
     })
     // religion -> candidate : religion
-    models.religion.hasMany(models.candidate, {
+    models.candidate.belongsTo(models.religion, {
       foreignKey: 'religion'
     })
     // gender -> candidate : genderId
-    models.gender.hasMany(models.candidate, {
+    models.candidate.belongsTo(models.gender, {
       foreignKey: 'genderId'
     })
     // login -> candidate : loginId
@@ -125,7 +125,7 @@ module.exports = {
       foreignKey: 'candidateId'
     })
     // specialization -> courses : majorId
-    models.specialization.hasMany(models.courses, {
+    models.courses.belongsTo(models.specialization, {
       foreignKey: 'majorId'
     })
     // specFields -> courses : fieldId
@@ -137,7 +137,7 @@ module.exports = {
       foreignKey: 'candidateId'
     })
     // specialization -> experience : majorId
-    models.specialization.hasMany(models.experience, {
+    models.experience.belongsTo(models.specialization, {
       foreignKey: 'majorId'
     })
     // specFields -> experience : fieldId
