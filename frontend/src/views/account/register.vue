@@ -1,11 +1,11 @@
 <template lang='pug'>
   .row
     .col-md-6.offset-md-3
-      .card.bg-light
-        .card-header.custom
+      .card.text-black.bg-light
+        .card-body
           h2 Register
           p Please provide required information to create an account.
-        .card-body
+          br
           vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
           router-link.btn-link(to='/auth/login') Already have an account?
 </template>
