@@ -103,18 +103,18 @@
           .post()
           .then(res => {
             this.$router.push('/auth/login')
-            swal('Account created successfuly!', 'Please login', 'success')
+            swal('Account created successfuly.', 'Please login', 'success')
           })
           .catch(err => {
             if (err.response.status === 409) {
               this.$router.push('/auth/login')
               swal(
-                'Username already registered',
+                'Username already registered.',
                 'Please login or recover password',
                 'error'
               )
             } else {
-              swal('Invalid submission!', err.message, 'error')
+              swal('Invalid data.', err.message, 'error')
             }
           })
       }
