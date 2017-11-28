@@ -6,7 +6,7 @@ const config = require('config')
 
 router.post('/auth/register', (req, res, next) => {
   const db = req.app.get('db')
-  let newUser = new db.login({ ...req.body })
+  let newUser = db.login.build({ ...req.body })
   newUser.password = bcrypt.hashSync(newUser.password, 8)
 
   if (!newUser.username) {
@@ -51,7 +51,7 @@ router.post('/auth/login', (req, res, next) => {
       where: {
         username: username
       },
-      include: [db.accountType, db.question]
+      include: [db.accountType]
     })
     .then(user => {
       if (!user) {
@@ -69,44 +69,25 @@ router.post('/auth/login', (req, res, next) => {
         // confidential data should not be sent to client
         user = user.get({ plain: true })
         delete user.password
-        delete user.answer
 
-        // Append candidateId to user for model checking
-        db.candidate
-          .findOne({
-            where: {
-              loginId: user.id
-            }
-          })
-          .then(candidate => {
-            if (!candidate) {
-              res.sendStatus(400)
-              return
-            }
+        //signin
+        jwt.sign(
+          {
+            data: user
+          },
+          config.get('options.secret'),
+          {
+            expiresIn: 60 * 60 * 24
+          },
+          function(err, token) {
+            if (err) next(err)
 
-            //apend Candiature info
-            user.candidateId = candidate.id
-
-            //signin
-            jwt.sign(
-              {
-                data: user
-              },
-              config.get('options.secret'),
-              {
-                expiresIn: 60 * 60 * 24
-              },
-              function(err, token) {
-                if (err) next(err)
-
-                res.json({
-                  token,
-                  login: user
-                })
-              }
-            )
-          })
-          .catch(next)
+            res.json({
+              token,
+              login: user
+            })
+          }
+        )
       })
     })
     .catch(next)

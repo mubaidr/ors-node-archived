@@ -4,6 +4,7 @@ const fs = require('fs')
 const path = require('path')
 const util = require('./util')
 
+const seeder = require('./seeder')
 const associations = require('./associations')
 const directory = path.join(__dirname, '/models/')
 
@@ -13,7 +14,8 @@ var models = {}
 const sequelize = new Sequelize(
   config.get('options.db.name'),
   config.get('options.db.username'),
-  config.get('options.db.password'), {
+  config.get('options.db.password'),
+  {
     host: config.get('options.db.host'),
     dialect: 'mssql',
     freezeTableName: true,
@@ -55,8 +57,11 @@ sequelize
     sequelize
       .sync({
         logging: false
-      }).then(() => {
-        console.log('\n DB sync success. \n'.success)
+      })
+      .then(() => {
+        seeder.seed(models, () => {
+          console.log('[sequelize] database synced\n'.success)
+        })
       })
       .catch(err => {
         console.log('\n' + err.message.error + '\n' + err.stack.warn + '\n')

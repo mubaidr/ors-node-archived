@@ -65,8 +65,9 @@
                 validator: [
                   'string',
                   function(value, field, model) {
-                    //TODO: compare with password
-                    return ['Invalid']
+                    return value === model.password
+                      ? []
+                      : ['Password and Confirm Password fields does not match']
                   }
                 ]
               },

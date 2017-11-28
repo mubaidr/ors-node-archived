@@ -5,9 +5,9 @@
       li.nav-item
         router-link.nav-link(to='/home') Home
       li.nav-item
-        router-link.nav-link(to='/auth/logout') Logout
-      li.nav-item
         router-link.nav-link(to='/profile') Profile
+      li.nav-item
+        router-link.nav-link(to='/auth/logout') Logout
 </template>
 
 <script>

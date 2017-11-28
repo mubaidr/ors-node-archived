@@ -148,10 +148,6 @@ module.exports = {
     models.application.hasOne(models.finalCandidate, {
       foreignKey: 'applicationId'
     })
-    // question -> login : questionId
-    models.login.belongsTo(models.question, {
-      foreignKey: 'questionId'
-    })
     // accountType -> login : accountTypeId
     models.login.belongsTo(models.accountType, {
       foreignKey: 'accountTypeId'

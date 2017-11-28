@@ -1,11 +1,11 @@
 <template lang='pug'>
   .row
     .col-md-6.offset-md-3
-      .card.bg-light
-        .card-header.custom
-          h2 Login
-          span Please provide username and password to continue.
+      .card.text-black.bg-light
         .card-body
+          h2 Login
+          p Please provide username and password to continue.
+          br
           vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
           router-link.btn-link(to='/auth/recover') Forgot password?
           | &nbsp;
@@ -19,7 +19,7 @@
         form: {
           model: {
             username: '11111-1111111-1',
-            password: 'minion1234'
+            password: 'minion12345'
           },
           schema: {
             fields: [

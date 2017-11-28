@@ -26,12 +26,12 @@
       'footer-template': footer
     },
     watch: {
-      auth(val) {
-        if (val !== undefined || val !== null) {
-          swal('Successfuly logged in!', 'welcome', 'success')
+      isAuthenticated(val) {
+        if (val) {
+          swal('You have successfuly logged in.', 'welcome!', 'success')
           this.$router.push('/profile')
         } else {
-          swal('You are not logged in!', '', 'error')
+          swal('You have logged out.', 'Good bye!', 'warning')
           this.$router.push('/home')
         }
       },

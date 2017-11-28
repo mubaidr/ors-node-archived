@@ -12,7 +12,6 @@ module.exports = function(sequelize, DataTypes) {
 		description: {
 			type: DataTypes.STRING,
 			allowNull: false,
-			defaultValue: '((1))',
 			field: 'DESCRIPTION'
 		},
 	}, {
