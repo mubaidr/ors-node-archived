@@ -1,7 +1,8 @@
 <template lang='pug'>
   div
-    header-template(v-if='isAuthenticated')
-    header-template-anonymous(v-else)
+    transition(name='slide-up' mode='out-in')
+      header-template(v-if='isAuthenticated')
+      header-template-anonymous(v-else)
     .container.body
       transition(appear='' :name='transitionName' mode='out-in')
         router-view
