@@ -28,8 +28,10 @@
     watch: {
       auth(val) {
         if (val !== undefined || val !== null) {
+          swal('Successfuly logged in!', 'welcome', 'success')
           this.$router.push('/profile')
         } else {
+          swal('You are not logged in!', '', 'error')
           this.$router.push('/home')
         }
       },

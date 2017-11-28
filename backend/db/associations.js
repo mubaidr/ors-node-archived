@@ -149,11 +149,11 @@ module.exports = {
       foreignKey: 'applicationId'
     })
     // question -> login : questionId
-    models.question.hasMany(models.login, {
+    models.login.belongsTo(models.question, {
       foreignKey: 'questionId'
     })
     // accountType -> login : accountTypeId
-    models.accountType.hasMany(models.login, {
+    models.login.belongsTo(models.accountType, {
       foreignKey: 'accountTypeId'
     })
     // candidate -> publication : candidateId
@@ -210,7 +210,7 @@ module.exports = {
   }
 }
 
-function getRelations(models) {
+function getRelations (models) {
   Object.keys(models).forEach(modelName => {
     let model = models[modelName]
 
@@ -227,7 +227,7 @@ function getRelations(models) {
   })
 }
 
-function toCamelCase(str) {
+function toCamelCase (str) {
   str = str
     .toLowerCase()
     .split('_')

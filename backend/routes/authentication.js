@@ -51,7 +51,7 @@ router.post('/auth/login', (req, res, next) => {
       where: {
         username: username
       },
-      include: [db.accountType, db.questions]
+      include: [db.accountType, db.question]
     })
     .then(user => {
       if (!user) {

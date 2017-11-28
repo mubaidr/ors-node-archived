@@ -18,8 +18,8 @@
       return {
         form: {
           model: {
-            username: '',
-            password: ''
+            username: '11111-1111111-1',
+            password: 'minion1234'
           },
           schema: {
             fields: [
@@ -74,9 +74,9 @@
           .post()
           .then(res => {
             this.$store.commit('setAuthentication', res.data)
-            swal('Successfuly logged in!', '', 'success')
           })
           .catch(err => {
+            this.form.model.password = ''
             swal('Invalid credentials!', 'Please try again!', 'error')
           })
       }
