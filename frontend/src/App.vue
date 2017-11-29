@@ -32,7 +32,7 @@
           swal('You have successfuly logged in.', 'welcome!', 'success')
           this.$router.push('/candidate')
         } else {
-          swal('You have been logged out.', 'Good bye!', 'warning')
+          swal('You have been logged out.', 'Good bye!', 'info')
           this.$router.push('/home')
         }
       },

@@ -7,14 +7,40 @@
       li.nav-item
         router-link.nav-link(to='/candidate') Profile
       li.nav-item
-        router-link.nav-link(to='/auth/logout') Logout
+        span.nav-link.custom-link(@click='logout') Logout
 </template>
 
 <script>
   export default {
-    name: 'header-template'
+    name: 'header-template',
+    methods: {
+      logout() {
+        swal({
+          title: 'Are you sure you want to logout?',
+          text: '',
+          icon: 'warning',
+          buttons: {
+            cancel: {
+              text: 'Cancel',
+              visible: true
+            },
+            confirm: {
+              text: 'Yes'
+            }
+          },
+          dangerMode: true
+        }).then(confirm => {
+          if (confirm) {
+            this.$router.push('/auth/logout')
+          }
+        })
+      }
+    }
   }
 </script>
 
 <style lang='stylus'>
+  .custom-link {
+    cursor: pointer;
+  }
 </style>
