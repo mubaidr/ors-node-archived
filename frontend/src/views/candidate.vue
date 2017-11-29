@@ -1,9 +1,10 @@
 <template lang='pug'>
   .row
     .col-md-12
-      h2 Prpfile
+      h2 Profile
       p Please provide required information.
-      span * The use of information collected through our service shall be limited to the purpose of providing the service for which our Clients have engaged us.
+        br
+        span * The use of information collected through our service shall be limited to the purpose of providing the service.
       br
       vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
 </template>
@@ -37,7 +38,50 @@
             undertaking: '',
             undertakingDate: ''
           },
-          schema: {},
+          schema: {
+            groups: [
+              {
+                legend: 'Basic Information',
+                fields: [
+                  {
+                    model: 'cnic',
+                    type: 'input',
+                    inputType: 'text',
+                    label: 'Password',
+                    readonly: true
+                  },
+                  {
+                    model: 'cnic',
+                    type: 'input',
+                    inputType: 'text',
+                    label: 'Password'
+                  }
+                ]
+              },
+              {
+                legend: 'Contact Details',
+                fields: [
+                  {
+                    model: 'mobileNo',
+                    type: 'input',
+                    inputType: 'text',
+                    label: 'Password'
+                  }
+                ]
+              },
+              {
+                legend: 'Other',
+                fields: [
+                  {
+                    model: 'achievements',
+                    type: 'input',
+                    inputType: 'text',
+                    label: 'Password'
+                  }
+                ]
+              }
+            ]
+          },
           options: {
             validateAfterLoad: false,
             validateAfterChanged: true
