@@ -44,17 +44,42 @@
                 legend: 'Basic Information',
                 fields: [
                   {
-                    model: 'cnic',
+                    model: 'name',
                     type: 'input',
                     inputType: 'text',
-                    label: 'Password',
-                    readonly: true
+                    label: 'Name'
+                  },
+                  {
+                    model: 'fatherName',
+                    type: 'input',
+                    inputType: 'text',
+                    label: 'Father Name'
+                  },
+                  {
+                    model: 'dob',
+                    type: 'input',
+                    inputType: 'text',
+                    label: 'Date Of Birth'
+                  },
+                  {
+                    model: 'maritalStatusId',
+                    type: 'select',
+                    label: 'Marital Status',
+                    values: function() {
+                      return [
+                        { id: '1', name: 'Single' },
+                        { id: '2', name: 'Married' }
+                      ]
+                    },
+                    validator: 'required',
+                    hideNoneSelectedText: true
                   },
                   {
                     model: 'cnic',
                     type: 'input',
                     inputType: 'text',
-                    label: 'Password'
+                    label: 'CNIC',
+                    readonly: true
                   }
                 ]
               },
