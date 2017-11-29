@@ -5,7 +5,6 @@ import config from './../config'
 var mixin = {
   data () {
     return {
-      _cache: null,
       _isValid: true
     }
   },
@@ -14,11 +13,10 @@ var mixin = {
     onValidated (validity, errors) {
       this._isValid = validity
     },
-    disableSubmit () {
-      return !this._isValid || this.$store.getters.isLoading
-    },
     // Data fetch
     getCache () {
+      if (!this.isAuthenticated) return
+
       this.$axios
         .get()
         .then(res => {
@@ -37,6 +35,12 @@ var mixin = {
     }
   },
   computed: {
+    disableSubmit () {
+      return !this._isValid || this.$store.getters.isLoading
+    },
+    isAuthenticated () {
+      return this.$store.getters.isAuthenticated
+    },
     // Generic properties
     isLoading () {
       return this.$store.getters.isLoading

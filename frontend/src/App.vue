@@ -30,7 +30,7 @@
       isAuthenticated(val) {
         if (val) {
           swal('You have successfuly logged in.', 'welcome!', 'success')
-          this.$router.push('/profile')
+          this.$router.push('/candidate')
         } else {
           swal('You have been logged out.', 'Good bye!', 'warning')
           this.$router.push('/home')
@@ -42,11 +42,7 @@
         this.getCache()
       }
     },
-    computed: {
-      isAuthenticated() {
-        return this.$store.getters.isAuthenticated
-      }
-    },
+    computed: {},
     methods: {
       setTransition(to, from) {
         const toDepth = to.path.split('/').length

@@ -74,11 +74,6 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: true,
         field: 'PHONE_NO'
       },
-      subject: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        field: 'SUBJECT'
-      },
       achievements: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -128,11 +123,6 @@ module.exports = function (sequelize, DataTypes) {
         },
         field: 'LOGIN_ID'
       },
-      fax: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        field: 'FAX'
-      },
       cnic: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -143,11 +133,6 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: true,
         defaultValue: '((1))',
         field: 'DRIVING_LICENSE_ID'
-      },
-      licenseIssueDate: {
-        type: DataTypes.DATE,
-        allowNull: true,
-        field: 'LICENSE_ISSUE_DATE'
       },
       licenseExpiryDate: {
         type: DataTypes.DATE,

@@ -61,7 +61,7 @@ router.use('/api/:model/:id?', (req, res, next) => {
         if (!isCatalog) {
           where = prepareWhereObject(object, account)
           if (!where) {
-            res.sendStatus(403)
+            res.json([])
             return
           }
         }
