@@ -61,7 +61,7 @@ app.use((err, req, res, next) => {
   if (req.app.get('env') === 'development') {
     res.status(err.status || 500).send(err.stack)
   } else {
-    res.send(err.status || 500)
+    res.sendStatus(err.status || 500)
   }
 })
 
