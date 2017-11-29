@@ -98,7 +98,10 @@ router.use('/api/*', (req, res, next) => {
 
   if (token) {
     jwt.verify(token, config.get('options.secret'), (err, account) => {
-      if (err) next(err)
+      if (err) {
+        res.sendStatus(401)
+        return
+      }
 
       req.account = account.data
       next()

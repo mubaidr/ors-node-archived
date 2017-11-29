@@ -5,16 +5,35 @@ import config from './../config'
 var mixin = {
   data () {
     return {
-      isValid: true
+      _cache: null,
+      _isValid: true
     }
   },
   methods: {
     // Generic form properties
     onValidated (validity, errors) {
-      this.isValid = validity
+      this._isValid = validity
     },
     disableSubmit () {
-      return !this.isValid || this.$store.getters.isLoading
+      return !this._isValid || this.$store.getters.isLoading
+    },
+    // Data fetch
+    getCache () {
+      this.$axios
+        .get()
+        .then(res => {
+          this.$store.commit('setCache', res.data)
+        })
+        .catch(err => {
+          if (err.response.status !== 404) {
+            swal(
+              'Error fetching data, please reload',
+              err.response.request.response,
+              'error'
+            )
+          }
+          this.$store.commit('setCache', null)
+        })
     }
   },
   computed: {
@@ -30,12 +49,17 @@ var mixin = {
         path = '/api/' + path.replace('/', '')
       }
       return config.api + path
+    },
+    // Data fetch
+    cache () {
+      return this.$store.getters.cache
     }
   },
   created () {
     let url = this.endpoint
     let model = this.form ? this.form.model || {} : {}
 
+    //Add dummy axios method
     this.$axios = {
       get (_url, _model) {
         return axios.get(_url || url, _model || model)

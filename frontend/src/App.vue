@@ -32,11 +32,23 @@
           swal('You have successfuly logged in.', 'welcome!', 'success')
           this.$router.push('/profile')
         } else {
-          swal('You have logged out.', 'Good bye!', 'warning')
+          swal('You have been logged out.', 'Good bye!', 'warning')
           this.$router.push('/home')
         }
       },
       $route(to, from) {
+        this.setTransition(to, from)
+        // Trigger data fetch from mixins
+        this.getCache()
+      }
+    },
+    computed: {
+      isAuthenticated() {
+        return this.$store.getters.isAuthenticated
+      }
+    },
+    methods: {
+      setTransition(to, from) {
         const toDepth = to.path.split('/').length
         const fromDepth = from.path.split('/').length
         if (toDepth === fromDepth) {
@@ -44,11 +56,6 @@
         } else {
           this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
         }
-      }
-    },
-    computed: {
-      isAuthenticated() {
-        return this.$store.getters.isAuthenticated
       }
     }
   }

@@ -47,10 +47,6 @@ var router = new vueRouter({
       component: candidate
     },
     {
-      path: '/profile',
-      component: profile
-    },
-    {
       path: '*',
       component: notFound,
       meta: {

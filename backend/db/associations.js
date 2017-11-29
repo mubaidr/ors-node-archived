@@ -101,7 +101,7 @@ module.exports = {
       foreignKey: 'genderId'
     })
     // login -> candidate : loginId
-    models.login.hasOne(models.candidate, {
+    models.candidate.belongsTo(models.login, {
       foreignKey: 'loginId'
     })
     // candidate -> centerChangeRequest : candidateId

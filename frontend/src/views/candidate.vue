@@ -2,7 +2,7 @@
   div
     h2 Candidate poka
     p
-      <pre>{{userInfo}}</pre>
+      <pre>{{cache}}</pre>
 </template>
 
 <script>
