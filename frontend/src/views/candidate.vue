@@ -6,7 +6,7 @@
       pre {{cache}}
       .two-columns
         vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
-      p
+      p Some information regarding the submission
 </template>
 
 <script>
@@ -183,14 +183,14 @@
                   {
                     model: 'achievements',
                     type: 'textArea',
-                    label: 'achievements',
+                    label: 'Achievements',
                     rows: 5,
                     max: 256
                   },
                   {
                     model: 'primeInterestField',
                     type: 'textArea',
-                    label: 'primeInterestField',
+                    label: 'Interests/ Hobbies',
                     rows: 5,
                     max: 256
                   }
