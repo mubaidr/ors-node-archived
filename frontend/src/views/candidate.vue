@@ -2,11 +2,11 @@
   .row
     .col-md-12
       h2 Profile
-      p Please provide required information.
-        br
-        span * The use of information collected through our service shall be limited to the purpose of providing the service.
-      br
-      vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
+      p The information collected through our service shall be kept private and limited to the purpose of providing the service.
+      pre {{cache}}
+      .two-columns
+        vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
+      p
 </template>
 
 <script>
@@ -18,7 +18,7 @@
             cnic: '',
             name: '',
             fatherName: '',
-            genderId: '',
+            genderId: 1,
             maritalStatusId: 1,
             religionId: 1,
             nationality: '',
@@ -34,14 +34,12 @@
             drivingLicenseId: 1,
             licenseExpiryDate: '',
             achievements: '',
-            primeInterestField: '',
-            undertaking: '',
-            undertakingDate: ''
+            primeInterestField: ''
           },
           schema: {
             groups: [
               {
-                legend: 'Basic Information',
+                legend: 'Basic',
                 fields: [
                   {
                     model: 'name',
@@ -56,41 +54,126 @@
                     label: 'Father Name'
                   },
                   {
+                    model: 'genderId',
+                    type: 'select',
+                    label: 'Gender',
+                    value: 1,
+                    values: [
+                      {
+                        id: 1,
+                        name: 'Male'
+                      },
+                      {
+                        id: 2,
+                        name: 'Female'
+                      },
+                      {
+                        id: 3,
+                        name: 'Other'
+                      }
+                    ],
+                    validator: 'required',
+                    hideNoneSelectedText: true
+                  },
+                  {
+                    model: 'maritalStatusId',
+                    type: 'select',
+                    label: 'Marital Status',
+                    value: 1,
+                    values: [
+                      {
+                        id: '1',
+                        name: 'Single'
+                      },
+                      {
+                        id: '2',
+                        name: 'Married'
+                      }
+                    ],
+                    validator: 'required',
+                    hideNoneSelectedText: true
+                  },
+                  {
                     model: 'dob',
                     type: 'input',
                     inputType: 'text',
                     label: 'Date Of Birth'
                   },
                   {
-                    model: 'maritalStatusId',
-                    type: 'select',
-                    label: 'Marital Status',
-                    values: function() {
-                      return [
-                        { id: '1', name: 'Single' },
-                        { id: '2', name: 'Married' }
-                      ]
-                    },
-                    validator: 'required',
-                    hideNoneSelectedText: true
-                  },
-                  {
-                    model: 'cnic',
+                    model: 'birthPlace',
                     type: 'input',
                     inputType: 'text',
+                    label: 'Birth Place'
+                  },
+                  {
+                    model: 'domicileDistrict',
+                    type: 'input',
+                    inputType: 'text',
+                    label: 'Domicile District'
+                  },
+                  {
+                    type: 'cleave',
+                    autocomplete: true,
                     label: 'CNIC',
-                    readonly: true
+                    model: 'cnic',
+                    cleaveOptions: {
+                      numericOnly: true,
+                      blocks: [5, 7, 1],
+                      delimiter: '-'
+                    },
+                    placeholder: '11111-1111111-1',
+                    min: 15,
+                    max: 15,
+                    required: true,
+                    validator: ['required', 'string']
                   }
                 ]
               },
               {
-                legend: 'Contact Details',
+                legend: 'Contact',
                 fields: [
                   {
                     model: 'mobileNo',
                     type: 'input',
                     inputType: 'text',
-                    label: 'Password'
+                    label: 'Mobile Number'
+                  },
+                  {
+                    model: 'phoneNo',
+                    type: 'input',
+                    inputType: 'text',
+                    label: 'Phone Number'
+                  },
+                  {
+                    model: 'postalProvince',
+                    type: 'input',
+                    inputType: 'text',
+                    label: 'Province'
+                  },
+                  {
+                    model: 'postalDistrict',
+                    type: 'input',
+                    inputType: 'text',
+                    label: 'District'
+                  },
+                  {
+                    model: 'postalAddress',
+                    type: 'textArea',
+                    label: 'Postal Address',
+                    rows: 6,
+                    max: 512
+                  },
+                  {
+                    model: 'postalCity',
+                    type: 'input',
+                    inputType: 'text',
+                    label: 'City'
+                  },
+                  {
+                    model: 'postalTehsil',
+                    type: 'input',
+                    inputType: 'text',
+                    label: 'Tehsil'
                   }
                 ]
               },
@@ -99,9 +182,36 @@
                 fields: [
                   {
                     model: 'achievements',
+                    type: 'textArea',
+                    label: 'achievements',
+                    rows: 5,
+                    max: 256
+                  },
+                  {
+                    model: 'primeInterestField',
+                    type: 'textArea',
+                    label: 'primeInterestField',
+                    rows: 5,
+                    max: 256
+                  }
+                ]
+              },
+              {
+                legend: '',
+                fields: [
+                  {
+                    type: 'submit',
+                    buttonText: 'Submit',
+                    validateBeforeSubmit: true,
+                    onSubmit: this.onSubmit,
+                    disabled: this.disableSubmit,
+                    fieldClasses: 'btn btn-primary btn-block btn-submit-custom'
+                  },
+                  {
                     type: 'input',
-                    inputType: 'text',
-                    label: 'Password'
+                    inputType: 'reset',
+                    buttonText: 'Cancel',
+                    fieldClasses: 'btn btn-default btn-block btn-submit-custom'
                   }
                 ]
               }
@@ -112,6 +222,12 @@
             validateAfterChanged: true
           }
         }
+      }
+    },
+    computed: {},
+    methods: {
+      user() {
+        return this.$store.getters.user
       }
     }
   }

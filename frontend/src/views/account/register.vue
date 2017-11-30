@@ -25,20 +25,13 @@
           schema: {
             fields: [
               {
-                type: 'cleave',
-                autocomplete: true,
-                label: 'Username',
-                model: 'username',
-                cleaveOptions: {
-                  numericOnly: true,
-                  blocks: [5, 7, 1],
-                  delimiter: '-'
-                },
-                placeholder: '11111-1111111-1',
-                min: 15,
-                max: 15,
+                type: 'input',
+                inputType: 'email',
+                label: 'Email',
+                model: 'email',
+                placeholder: 'abc@xyz.com',
                 required: true,
-                validator: ['string']
+                validator: ['string', 'email']
               },
               {
                 type: 'input',
@@ -71,15 +64,7 @@
                   }
                 ]
               },
-              {
-                type: 'input',
-                inputType: 'email',
-                label: 'Email',
-                model: 'email',
-                placeholder: 'abc@xyz.com',
-                required: true,
-                validator: ['string', 'email']
-              },
+
               {
                 type: 'submit',
                 buttonText: 'Register',
@@ -109,7 +94,7 @@
             if (err.response.status === 409) {
               this.$router.push('/auth/login')
               swal(
-                'Username already registered.',
+                'Email already registered.',
                 'Please login or recover password',
                 'error'
               )

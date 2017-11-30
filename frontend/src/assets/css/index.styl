@@ -70,8 +70,17 @@
 }
 
 /* Vue form generator */
-.vue-form-generator .form-group {
-  float: left;
-  padding: 1%;
-  width: 48%;
+@media (min-width: 48em) {
+  .two-columns .vue-form-generator .form-group {
+    float: left;
+    width: 48%;
+  }
+
+  .two-columns .vue-form-generator .form-group:nth-child(even) {
+    margin-right: 2%;
+  }
+}
+
+.btn-submit-custom {
+  margin-top: 25px;
 }

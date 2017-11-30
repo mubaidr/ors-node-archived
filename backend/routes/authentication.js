@@ -9,7 +9,7 @@ router.post('/auth/register', (req, res, next) => {
   let newUser = db.login.build({ ...req.body })
   newUser.password = bcrypt.hashSync(newUser.password, 8)
 
-  if (!newUser.username) {
+  if (!newUser.email) {
     res.sendStatus(400)
     return
   }
@@ -17,7 +17,7 @@ router.post('/auth/register', (req, res, next) => {
   db.login
     .findOne({
       where: {
-        username: newUser.username
+        email: newUser.email
       }
     })
     .then(user => {
@@ -38,10 +38,10 @@ router.post('/auth/register', (req, res, next) => {
 router.post('/auth/login', (req, res, next) => {
   const db = req.app.get('db')
 
-  let username = req.body.username
+  let email = req.body.email
   let password = req.body.password
 
-  if (!username || !password) {
+  if (!email || !password) {
     res.sendStatus(400)
     return
   }
@@ -49,7 +49,7 @@ router.post('/auth/login', (req, res, next) => {
   db.login
     .findOne({
       where: {
-        username: username
+        email: email
       },
       include: [db.accountType]
     })

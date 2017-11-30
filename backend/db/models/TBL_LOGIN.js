@@ -11,11 +11,6 @@ module.exports = function (sequelize, DataTypes) {
         autoIncrement: true,
         field: 'ID'
       },
-      username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        field: 'USERNAME'
-      },
       name: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -30,6 +25,11 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false,
         field: 'EMAIL'
+      },
+      isConfirmed: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+        field: 'IS_CONFIRMED'
       },
       profile: {
         type: DataTypes.FLOAT,

@@ -24,20 +24,13 @@
           schema: {
             fields: [
               {
-                type: 'cleave',
-                autocomplete: true,
-                label: 'Username',
-                model: 'username',
-                cleaveOptions: {
-                  numericOnly: true,
-                  blocks: [5, 7, 1],
-                  delimiter: '-'
-                },
-                placeholder: '11111-1111111-1',
-                min: 15,
-                max: 15,
+                type: 'input',
+                inputType: 'email',
+                label: 'Email',
+                model: 'email',
+                placeholder: 'abc@xyz.com',
                 required: true,
-                validator: ['string']
+                validator: ['string', 'email']
               },
               {
                 type: 'input',
