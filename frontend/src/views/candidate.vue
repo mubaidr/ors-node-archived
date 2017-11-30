@@ -45,13 +45,19 @@
                     model: 'name',
                     type: 'input',
                     inputType: 'text',
-                    label: 'Name'
+                    label: 'Name',
+                    max: 255,
+                    required: true,
+                    validator: ['required', 'string']
                   },
                   {
                     model: 'fatherName',
                     type: 'input',
                     inputType: 'text',
-                    label: 'Father Name'
+                    label: 'Father Name',
+                    max: 255,
+                    required: true,
+                    validator: ['required', 'string']
                   },
                   {
                     model: 'genderId',
@@ -72,6 +78,7 @@
                         name: 'Other'
                       }
                     ],
+                    required: true,
                     validator: 'required',
                     hideNoneSelectedText: true
                   },
@@ -90,26 +97,37 @@
                         name: 'Married'
                       }
                     ],
+                    required: true,
                     validator: 'required',
                     hideNoneSelectedText: true
                   },
                   {
                     model: 'dob',
-                    type: 'input',
-                    inputType: 'text',
-                    label: 'Date Of Birth'
+                    type: 'pikaday',
+                    label: 'Date Of Birth',
+                    required: true,
+                    validator: ['required', 'date'],
+                    pikadayOptions: {
+                      position: 'top left'
+                    }
                   },
                   {
                     model: 'birthPlace',
                     type: 'input',
                     inputType: 'text',
-                    label: 'Birth Place'
+                    label: 'Birth Place',
+                    max: 255,
+                    required: true,
+                    validator: ['required', 'string']
                   },
                   {
                     model: 'domicileDistrict',
                     type: 'input',
                     inputType: 'text',
-                    label: 'Domicile District'
+                    label: 'Domicile District',
+                    max: 255,
+                    required: true,
+                    validator: ['required', 'string']
                   },
                   {
                     type: 'cleave',
@@ -136,44 +154,62 @@
                     model: 'mobileNo',
                     type: 'input',
                     inputType: 'text',
-                    label: 'Mobile Number'
+                    label: 'Mobile Number',
+                    required: true,
+                    validator: ['required', 'string']
                   },
                   {
                     model: 'phoneNo',
                     type: 'input',
                     inputType: 'text',
-                    label: 'Phone Number'
+                    label: 'Phone Number',
+                    required: true,
+                    validator: ['required', 'string']
                   },
                   {
                     model: 'postalProvince',
                     type: 'input',
                     inputType: 'text',
-                    label: 'Province'
+                    label: 'Province',
+                    max: 255,
+                    required: true,
+                    validator: ['required', 'string']
                   },
                   {
                     model: 'postalDistrict',
                     type: 'input',
                     inputType: 'text',
-                    label: 'District'
+                    label: 'District',
+                    max: 255,
+                    required: true,
+                    validator: ['required', 'string']
                   },
                   {
                     model: 'postalAddress',
                     type: 'textArea',
                     label: 'Postal Address',
                     rows: 6,
-                    max: 512
+                    max: 255,
+                    required: true,
+                    validator: ['required', 'string']
                   },
                   {
                     model: 'postalCity',
                     type: 'input',
                     inputType: 'text',
-                    label: 'City'
+                    label: 'City',
+                    max: 255,
+                    required: true,
+                    validator: ['required', 'string']
                   },
                   {
                     model: 'postalTehsil',
                     type: 'input',
                     inputType: 'text',
-                    label: 'Tehsil'
+                    label: 'Tehsil',
+                    max: 255,
+                    required: true,
+                    validator: ['required', 'string']
                   }
                 ]
               },
@@ -185,14 +221,16 @@
                     type: 'textArea',
                     label: 'Achievements',
                     rows: 5,
-                    max: 256
+                    max: 256,
+                    required: true
                   },
                   {
                     model: 'primeInterestField',
                     type: 'textArea',
                     label: 'Interests/ Hobbies',
                     rows: 5,
-                    max: 256
+                    max: 256,
+                    required: true
                   }
                 ]
               },

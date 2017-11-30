@@ -20,8 +20,6 @@ module.exports = {
             }
           ])
         }
-
-        callback()
       })
 
     // Marital Status
@@ -44,8 +42,6 @@ module.exports = {
             }
           ])
         }
-
-        callback()
       })
 
     // Marital Status
@@ -72,8 +68,6 @@ module.exports = {
             }
           ])
         }
-
-        callback()
       })
 
     // Religion
@@ -116,8 +110,8 @@ module.exports = {
             }
           ])
         }
-
-        callback()
       })
+
+    callback()
   }
 }
