@@ -1,12 +1,10 @@
 <template lang='pug'>
-  .row
-    .col-md-12
-      h2 Profile
-      p The information collected through our service shall be kept private and limited to the purpose of providing the service.
-      pre {{cache}} {{user}}
-      .two-columns
-        vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
-      p Some information regarding the submission
+  div
+    h2 Profile
+    p The information collected through our service shall be kept private and limited to the purpose of providing the service.
+    .two-columns
+      vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
+    p Some information regarding the submission
 </template>
 
 <script>
@@ -18,9 +16,9 @@
             cnic: '',
             name: '',
             fatherName: '',
-            genderId: 1,
-            maritalStatusId: 1,
-            religionId: 1,
+            genderId: null,
+            maritalStatusId: null,
+            religionId: null,
             nationality: '',
             dob: '',
             birthPlace: '',
@@ -31,7 +29,7 @@
             postalAddress: '',
             mobileNo: '',
             phoneNo: '',
-            drivingLicenseId: 1,
+            drivingLicenseId: null,
             licenseExpiryDate: '',
             achievements: '',
             primeInterestField: ''
@@ -137,7 +135,7 @@
                       blocks: [5, 7, 1],
                       delimiter: '-'
                     },
-                    placeholder: '11111-1111111-1',
+                    placeholder: '',
                     min: 15,
                     max: 15,
                     required: true,

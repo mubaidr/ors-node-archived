@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router({ caseSensitive: true })
 
-// implement custom endpoints
+//TODO: implement custom endpoints
+//TODO: home for news
 
 module.exports = router

@@ -6,8 +6,8 @@ import index from 'views'
 import notFound from 'views/notFound'
 import register from 'views/account/register'
 import login from 'views/account/login'
+import account from 'views/account/index'
 import candidate from 'views/candidate'
-import profile from 'views/profile'
 
 vue.use(vueRouter)
 
@@ -45,6 +45,10 @@ var router = new vueRouter({
     {
       path: '/candidate',
       component: candidate
+    },
+    {
+      path: '/account',
+      component: account
     },
     {
       path: '*',

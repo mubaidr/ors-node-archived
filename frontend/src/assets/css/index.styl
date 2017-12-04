@@ -16,8 +16,10 @@
 /*
    * Bootstrap 3 deprecated styles used by support vue-form-generator
 */
-.form-group.error input {
-  border-color: #d9534f;
+.form-group.error {
+  input, textarea, select {
+    border-color: #d9534f;
+  }
 }
 
 .hint, .help-block {
@@ -71,17 +73,19 @@
 
 /* Vue form generator */
 @media (min-width: 48em) {
-  .two-columns .vue-form-generator .form-group {
-    float: left;
-    width: 48%;
-  }
+  .two-columns .vue-form-generator {
+    .form-group {
+      float: left;
+      width: 48%;
+    }
 
-  .two-columns .vue-form-generator .field-submit {
-    margin-right: 2%;
-  }
+    .field-submit {
+      margin-right: 2%;
+    }
 
-  .two-columns .vue-form-generator .form-group:nth-child(even) {
-    margin-right: 2%;
+    .form-group:nth-child(even) {
+      margin-right: 2%;
+    }
   }
 }
 

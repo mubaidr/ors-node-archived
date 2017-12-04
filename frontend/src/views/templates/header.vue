@@ -5,9 +5,11 @@
         router-link.navbar-brand(to='/home') ORS
       li.nav-item
         router-link.nav-link(to='/home') Home
+      li.nav-item
+        router-link.nav-link(to='/candidate') Profile
     ul.navbar-nav.ml-auto
       li.nav-item
-        router-link.nav-link(to='/candidate') {{user.email}}
+        router-link.nav-link(to='/account') My Account
       li.nav-item
         span.nav-link.custom-link(@click='logout') Logout
 </template>
