@@ -38,13 +38,27 @@
             ]
           },
           options: {
-
+            validateAfterLoad: false,
+            validateAfterChanged: true
           }
         }
       }
     },
     created () {
       this.form.model.email = this.user.email
+    },
+    methods: {
+      onSubmit() {
+        this.$axios
+          .post()
+          .then(() => {
+            swal('Success!', 'Email address has been updated succesfuly.', 'success')
+          })
+          .catch(err => {
+            this.form.model.email = this.user.email
+            swal('Error', 'Please try again!', 'error')
+          })
+      }
     }
   }
 </script>
