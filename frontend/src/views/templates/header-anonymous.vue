@@ -1,9 +1,11 @@
 <template lang='pug'>
   nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
-    router-link.navbar-brand(to='/home') ORS
     ul.navbar-nav
       li.nav-item
+        router-link.navbar-brand(to='/home') ORS
+      li.nav-item
         router-link.nav-link(to='/home') Home
+    ul.navbar-nav.ml-auto
       li.nav-item
         router-link.nav-link(to='/auth/login') Login
       li.nav-item

@@ -11,6 +11,11 @@ module.exports = function (sequelize, DataTypes) {
         autoIncrement: true,
         field: 'ID'
       },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        field: 'NAME'
+      },
       fatherName: {
         type: DataTypes.STRING,
         allowNull: false,

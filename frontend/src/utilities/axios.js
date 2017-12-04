@@ -1,9 +1,8 @@
-import Vue from 'vue'
 import axios from 'axios'
 import store from 'src/store'
 import router from 'src/router'
 
-var numberOfAjaxCAllPending = 0
+var numberOfAjaxCallPending = 0
 
 // Add a request interceptor
 axios.interceptors.request.use(
@@ -46,10 +45,10 @@ axios.interceptors.response.use(
 
 function checkLoadingState (state) {
   if (state) {
-    numberOfAjaxCAllPending++
+    numberOfAjaxCallPending++
     store.commit('isLoading')
   } else {
-    if (--numberOfAjaxCAllPending === 0) {
+    if (--numberOfAjaxCallPending === 0) {
       store.commit('isNotLoading')
     }
   }

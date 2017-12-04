@@ -10,7 +10,7 @@ var mixin = {
   },
   methods: {
     // Generic form properties
-    onValidated (validity, errors) {
+    onValidated (validity) {
       this._isValid = validity
     },
     // Data fetch
@@ -57,6 +57,9 @@ var mixin = {
     // Data fetch
     cache () {
       return this.$store.getters.cache
+    },
+    user () {
+      return this.$store.getters.user
     }
   },
   created () {

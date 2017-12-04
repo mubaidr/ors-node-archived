@@ -3,7 +3,7 @@
     .col-md-12
       h2 Profile
       p The information collected through our service shall be kept private and limited to the purpose of providing the service.
-      pre {{cache}}
+      pre {{cache}} {{user}}
       .two-columns
         vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
       p Some information regarding the submission
@@ -103,13 +103,11 @@
                   },
                   {
                     model: 'dob',
-                    type: 'pikaday',
-                    label: 'Date Of Birth',
+                    type: 'FlatPickrVfg',
+                    label: 'Date of Birth',
                     required: true,
-                    validator: ['required', 'date'],
-                    pikadayOptions: {
-                      position: 'top left'
-                    }
+                    validator: ['required', 'string'],
+                    placeholder: 'Pick a date'
                   },
                   {
                     model: 'birthPlace',
@@ -263,11 +261,7 @@
       }
     },
     computed: {},
-    methods: {
-      user() {
-        return this.$store.getters.user
-      }
-    }
+    methods: {}
   }
 </script>
 

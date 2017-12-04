@@ -1,11 +1,13 @@
 <template lang='pug'>
   nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
-    router-link.navbar-brand(to='/home') ORS
     ul.navbar-nav
       li.nav-item
-        router-link.nav-link(to='/home') Home
+        router-link.navbar-brand(to='/home') ORS
       li.nav-item
-        router-link.nav-link(to='/candidate') Profile
+        router-link.nav-link(to='/home') Home
+    ul.navbar-nav.ml-auto
+      li.nav-item
+        router-link.nav-link(to='/candidate') {{user.email}}
       li.nav-item
         span.nav-link.custom-link(@click='logout') Logout
 </template>

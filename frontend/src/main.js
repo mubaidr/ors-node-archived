@@ -1,7 +1,6 @@
 import 'bootswatch/dist/lux/bootstrap.min.css'
 import 'assets/css/animations.css'
 import 'assets/css/pace.css'
-import 'pikaday/css/pikaday.css'
 import 'assets/css/index.styl'
 
 window.paceOptions = {
@@ -10,8 +9,6 @@ window.paceOptions = {
   eventLag: true
 }
 import 'assets/js/pace.min'
-import pikaday from 'pikaday'
-window.Pikaday = pikaday
 
 import Vue from 'vue'
 import App from 'src/App.vue'

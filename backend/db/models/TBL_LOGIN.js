@@ -11,20 +11,15 @@ module.exports = function (sequelize, DataTypes) {
         autoIncrement: true,
         field: 'ID'
       },
-      name: {
+      email: {
         type: DataTypes.STRING,
-        allowNull: true,
-        field: 'NAME'
+        allowNull: false,
+        field: 'EMAIL'
       },
       password: {
         type: DataTypes.STRING,
         allowNull: false,
         field: 'PASSWORD'
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        field: 'EMAIL'
       },
       isConfirmed: {
         type: DataTypes.BOOLEAN,
