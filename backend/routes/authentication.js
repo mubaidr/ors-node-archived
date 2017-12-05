@@ -3,16 +3,24 @@ const router = express.Router({ caseSensitive: true })
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const config = require('config')
+const validator = require('validator')
 
 router.post('/auth/register', (req, res, next) => {
   const db = req.app.get('db')
-  let newUser = db.login.build({ ...req.body })
-  newUser.password = bcrypt.hashSync(newUser.password, 8)
+  let newUser = db.login.build(req.body)
 
-  if (!newUser.email) {
+  if (
+    !validator.isEmail(newUser.email) ||
+    !validator.isLength(newUser.password, {
+      min: 8,
+      max: 16
+    })
+  ) {
     res.sendStatus(400)
     return
   }
+
+  newUser.password = bcrypt.hashSync(newUser.password, 8)
 
   db.login
     .findOne({
@@ -41,8 +49,13 @@ router.post('/auth/login', (req, res, next) => {
   let email = req.body.email
   let password = req.body.password
 
-  //TODO: verify using validator
-  if (!email || !password) {
+  if (
+    !validator.isEmail(email) ||
+    !validator.isLength(password, {
+      min: 8,
+      max: 16
+    })
+  ) {
     res.sendStatus(400)
     return
   }

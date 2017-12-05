@@ -3,9 +3,6 @@ const router = express.Router({ caseSensitive: true })
 const bcrypt = require('bcryptjs')
 const validator = require('validator')
 
-//TODO: validate email
-//TODO: validate password
-
 router.post('/', (req, res, next) => {
   const token =
     req.body.token || req.query.token || req.headers['x-access-token']
@@ -14,9 +11,17 @@ router.post('/', (req, res, next) => {
   let user = req.account
   let updateOptions
 
-  if (email) {
-    updateOptions = { email, isConfirmed: false }
-  } else if (password) {
+  if (validator.isEmail(email)) {
+    updateOptions = {
+      email: validator.normalizeEmail(email),
+      isConfirmed: false
+    }
+  } else if (
+    validator.isLength(password, {
+      min: 8,
+      max: 16
+    })
+  ) {
     password = bcrypt.hashSync(password, 8)
     updateOptions = { password }
   } else {
