@@ -18,11 +18,17 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ['css-loader', 'style-loader']
+        use: ExtractTextPlugin.extract({
+          use: 'css-loader',
+          fallback: 'style-loader'
+        })
       },
       {
         test: /\.styl$/,
-        use: ['style-loader', 'css-loader', 'stylus-loader']
+        use: ExtractTextPlugin.extract({
+          use: ['css-loader', 'stylus-loader'],
+          fallback: 'style-loader'
+        })
       },
       {
         test: /\.vue$/,
@@ -78,5 +84,28 @@ module.exports = {
     hints: false
   },
   devtool: '#eval-source-map',
-  plugins: [new webpack.NamedModulesPlugin()]
+  plugins: [
+    new webpack.NamedModulesPlugin(),
+    new ExtractTextPlugin('[name].bundle.css')
+  ]
+}
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports.devtool = '#source-map'
+  module.exports.plugins = (module.exports.plugins || []).concat([
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
+    })
+  ])
 }
