@@ -5,7 +5,7 @@
 
 <script>
   export default {
-    data() {
+    data () {
       return {
         form: {
           model: {
@@ -48,14 +48,14 @@
       this.form.model.email = this.user.email
     },
     methods: {
-      onSubmit() {
+      onSubmit () {
         this.$axios
           .post()
           .then(res => {
             this.$store.commit('setAuthentication', res.data)
             swal('Success!', 'Email address has been updated successfuly.', 'success')
           })
-          .catch(err => {
+          .catch(() => {
             this.form.model.email = this.user.email
             swal('Error', 'Please try again!', 'error')
           })

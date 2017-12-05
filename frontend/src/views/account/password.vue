@@ -5,7 +5,7 @@
 
 <script>
   export default {
-    data() {
+    data () {
       return {
         form: {
           model: {
@@ -68,14 +68,14 @@
       }
     },
     methods: {
-      onSubmit() {
+      onSubmit () {
         this.$axios
           .post()
           .then(res => {
             this.$store.commit('setAuthentication', res.data)
             swal('Success!', 'Password has been updated successfuly.', 'success')
           })
-          .catch(err => {
+          .catch(() => {
             swal('Error', 'Please try again!', 'error')
           })
       }

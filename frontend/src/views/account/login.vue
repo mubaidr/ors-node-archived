@@ -14,7 +14,7 @@
 
 <script>
   export default {
-    data() {
+    data () {
       return {
         form: {
           model: {
@@ -62,13 +62,13 @@
       }
     },
     methods: {
-      onSubmit() {
+      onSubmit () {
         this.$axios
           .post()
           .then(res => {
             this.$store.commit('setAuthentication', res.data)
           })
-          .catch(err => {
+          .catch(() => {
             this.form.model.password = ''
             swal('Invalid credentials!', 'Please try again!', 'error')
           })

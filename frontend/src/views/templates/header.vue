@@ -18,7 +18,7 @@
   export default {
     name: 'header-template',
     methods: {
-      logout() {
+      logout () {
         swal({
           title: 'Are you sure you want to logout?',
           text: '',

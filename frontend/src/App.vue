@@ -16,7 +16,7 @@
 
   export default {
     name: 'app',
-    data() {
+    data () {
       return {
         transitionName: 'slide-up'
       }
@@ -27,7 +27,7 @@
       'footer-template': footer
     },
     watch: {
-      isAuthenticated(val) {
+      isAuthenticated (val) {
         if (val) {
           swal('You have successfuly logged in.', 'welcome!', 'success')
           this.$router.push('/candidate')
@@ -36,7 +36,7 @@
           this.$router.push('/home')
         }
       },
-      $route(to, from) {
+      $route (to, from) {
         this.setTransition(to, from)
         // Trigger data fetch from mixins
         this.getCache()
@@ -44,7 +44,7 @@
     },
     computed: {},
     methods: {
-      setTransition(to, from) {
+      setTransition (to, from) {
         const toDepth = to.path.split('/').length
         const fromDepth = from.path.split('/').length
         if (toDepth === fromDepth) {

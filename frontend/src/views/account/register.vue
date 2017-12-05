@@ -12,7 +12,7 @@
 
 <script>
   export default {
-    data() {
+    data () {
       return {
         form: {
           model: {
@@ -84,10 +84,10 @@
       }
     },
     methods: {
-      onSubmit() {
+      onSubmit () {
         this.$axios
           .post()
-          .then(res => {
+          .then(() => {
             this.$router.push('/auth/login')
             swal('Account created successfuly.', 'Please login', 'success')
           })
