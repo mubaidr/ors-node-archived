@@ -9,6 +9,7 @@ router.use('/api/:model/:id?', (req, res, next) => {
   let id = req.params.id
   let model = req.params.model
   let object = db[model]
+  let where
 
   if (!object) {
     next()
@@ -17,7 +18,7 @@ router.use('/api/:model/:id?', (req, res, next) => {
 
   let isCatalog = object.options.tableName.toLowerCase().indexOf('cat') === 0
 
-  if (account.catAccountType.description === 'admin') {
+  if (account.accountTypeId === 2) {
     next()
     return
   }
@@ -57,7 +58,6 @@ router.use('/api/:model/:id?', (req, res, next) => {
     switch (method) {
       case 'GET':
         // Returned filtered data to user
-        let where
         if (!isCatalog) {
           where = prepareWhereObject(object, account)
           if (!where) {
@@ -82,7 +82,6 @@ router.use('/api/:model/:id?', (req, res, next) => {
       case 'DELETE':
         next()
         return
-        break
     }
   }
 })

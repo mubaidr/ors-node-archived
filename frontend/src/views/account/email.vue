@@ -51,8 +51,9 @@
       onSubmit() {
         this.$axios
           .post()
-          .then(() => {
-            swal('Success!', 'Email address has been updated succesfuly.', 'success')
+          .then(res => {
+            this.$store.commit('setAuthentication', res.data)
+            swal('Success!', 'Email address has been updated successfuly.', 'success')
           })
           .catch(err => {
             this.form.model.email = this.user.email

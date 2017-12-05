@@ -27,7 +27,7 @@
                     min: 8,
                     max: 16,
                     required: true,
-                    validator: ['string']
+                    validator: ['required']
                   },
                   {
                     type: 'input',
@@ -40,7 +40,7 @@
                     max: 16,
                     required: true,
                     validator: [
-                      'string',
+                      'required',
                       function(value, field, model) {
                         return value === model.password
                           ? []
@@ -65,6 +65,19 @@
             validateAfterChanged: true
           }
         }
+      }
+    },
+    methods: {
+      onSubmit() {
+        this.$axios
+          .post()
+          .then(res => {
+            this.$store.commit('setAuthentication', res.data)
+            swal('Success!', 'Password has been updated successfuly.', 'success')
+          })
+          .catch(err => {
+            swal('Error', 'Please try again!', 'error')
+          })
       }
     }
   }

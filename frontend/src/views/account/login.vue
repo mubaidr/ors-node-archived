@@ -30,7 +30,7 @@
                 model: 'email',
                 placeholder: 'abc@xyz.com',
                 required: true,
-                validator: ['string', 'email']
+                validator: ['required', 'string', 'email']
               },
               {
                 type: 'input',
@@ -42,7 +42,7 @@
                 min: 8,
                 max: 16,
                 required: true,
-                validator: ['string']
+                validator: ['required', 'string']
               },
               {
                 type: 'submit',

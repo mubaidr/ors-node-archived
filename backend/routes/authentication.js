@@ -41,6 +41,7 @@ router.post('/auth/login', (req, res, next) => {
   let email = req.body.email
   let password = req.body.password
 
+  //TODO: verify using validator
   if (!email || !password) {
     res.sendStatus(400)
     return
@@ -50,8 +51,7 @@ router.post('/auth/login', (req, res, next) => {
     .findOne({
       where: {
         email: email
-      },
-      include: [db.accountType]
+      }
     })
     .then(user => {
       if (!user) {
@@ -73,13 +73,12 @@ router.post('/auth/login', (req, res, next) => {
         //signin
         jwt.sign(
           {
+            iss: config.get('options.iss') || 'iss-not-specified',
+            exp: Math.floor(Date.now() / 1000) + 60 * 60,
             data: user
           },
           config.get('options.secret'),
-          {
-            expiresIn: 60 * 60 * 24
-          },
-          function(err, token) {
+          function (err, token) {
             if (err) next(err)
 
             res.json({
@@ -97,13 +96,13 @@ router.use('/api/*', (req, res, next) => {
   let token = req.body.token || req.query.token || req.headers['x-access-token']
 
   if (token) {
-    jwt.verify(token, config.get('options.secret'), (err, account) => {
+    jwt.verify(token, config.get('options.secret'), (err, payload) => {
       if (err) {
         res.sendStatus(401)
         return
       }
 
-      req.account = account.data
+      req.account = payload.data
       next()
     })
   } else {
