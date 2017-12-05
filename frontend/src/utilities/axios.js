@@ -29,6 +29,7 @@ axios.interceptors.response.use(
   err => {
     checkLoadingState(false)
     switch (err.response.status) {
+      case 401:
       case 403:
         store.commit('removeAuthentication')
         router.push({

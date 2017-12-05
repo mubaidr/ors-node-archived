@@ -74,7 +74,7 @@ router.post('/auth/login', (req, res, next) => {
         jwt.sign(
           {
             iss: config.get('options.iss') || 'iss-not-specified',
-            exp: Math.floor(Date.now() / 1000) + 60 * 60,
+            exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60,
             data: user
           },
           config.get('options.secret'),
