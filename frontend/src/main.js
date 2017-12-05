@@ -2,12 +2,7 @@ import 'bootswatch/dist/lux/bootstrap.min.css'
 import 'assets/css/animations.css'
 import 'assets/css/pace.css'
 import 'assets/css/index.styl'
-
-window.paceOptions = {
-  ajax: true,
-  document: false,
-  eventLag: true
-}
+import 'utilities/pace-config'
 import 'assets/js/pace.min'
 
 import Vue from 'vue'
