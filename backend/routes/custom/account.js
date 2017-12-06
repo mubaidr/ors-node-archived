@@ -11,12 +11,13 @@ router.post('/', (req, res, next) => {
   let user = req.account
   let updateOptions
 
-  if (validator.isEmail(email)) {
+  if (email && validator.isEmail(email)) {
     updateOptions = {
       email: validator.normalizeEmail(email),
       isConfirmed: false
     }
   } else if (
+    password &&
     validator.isLength(password, {
       min: 8,
       max: 16

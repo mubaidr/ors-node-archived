@@ -10,6 +10,8 @@ router.post('/auth/register', (req, res, next) => {
   let newUser = db.login.build(req.body)
 
   if (
+    !newUser.email ||
+    !newUser.password ||
     !validator.isEmail(newUser.email) ||
     !validator.isLength(newUser.password, {
       min: 8,
@@ -50,6 +52,8 @@ router.post('/auth/login', (req, res, next) => {
   let password = req.body.password
 
   if (
+    !email ||
+    !password ||
     !validator.isEmail(email) ||
     !validator.isLength(password, {
       min: 8,
@@ -64,7 +68,8 @@ router.post('/auth/login', (req, res, next) => {
     .findOne({
       where: {
         email: email
-      }
+      },
+      include: [db.accountType]
     })
     .then(user => {
       if (!user) {
