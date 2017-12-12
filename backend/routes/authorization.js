@@ -39,8 +39,7 @@ function prepareIncludeObject (model, db) {
   attrs.forEach(attr => {
     const ref = model.attributes[attr].references
     if (ref) {
-      const { relModel } = ref
-      include.push(db[util.getModelName(relModel)])
+      include.push(db[util.getModelName(ref.model)])
     }
   })
 
