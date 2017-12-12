@@ -46,6 +46,8 @@ const mixin = {
       return this.$store.getters.isLoading
     },
     endpoint () {
+      // TODO: use name of component to create endpoint url
+      console.log(this.$options.name)
       if (!this.$router) return '/'
 
       let path = this.$router.app._route.fullPath

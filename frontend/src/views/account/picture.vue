@@ -5,6 +5,8 @@
 
 <script>
   export default {
+    // TODO: add name to all components
+    // TODO: names should be identifieable
     data () {
       return {
         form: {
