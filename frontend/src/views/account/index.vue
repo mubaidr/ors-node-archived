@@ -3,21 +3,24 @@
     .col-md-6.offset-md-3
       h2 Account
       br
-      p Update your email address.
-      email-view
-      br
+      p Profile picture:
+      picture-view
       hr
-      br
-      p Set a new password for your account.
+      p Update your email address:
+      email-view
+      hr
+      p Set a new password for your account:
       password-view
 </template>
 
 <script>
-  import passwordView from './password'
-  import emailView from './email'
+  import pictureView from './picture.vue'
+  import passwordView from './password.vue'
+  import emailView from './email.vue'
 
   export default {
     components: {
+      'picture-view': pictureView,
       'password-view': passwordView,
       'email-view': emailView
     }

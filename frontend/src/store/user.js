@@ -1,4 +1,5 @@
-import session from 'utilities/session'
+import session from '../utilities/session'
+/* eslint-disable no-param-reassign */
 
 export default {
   state: {

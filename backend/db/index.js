@@ -6,9 +6,10 @@ const util = require('./util')
 
 const seeder = require('./seeder')
 const associations = require('./associations')
+
 const directory = path.join(__dirname, '/models/')
 
-var models = {}
+const models = {}
 
 // Setup sequelize
 const sequelize = new Sequelize(
@@ -42,7 +43,7 @@ const sequelize = new Sequelize(
 
 // Import models
 fs.readdirSync(directory).forEach(file => {
-  let name = util.getModelName(file)
+  const name = util.getModelName(file)
   models[name] = sequelize.import(directory + file)
 })
 
@@ -64,14 +65,14 @@ sequelize
         })
       })
       .catch(err => {
-        console.log('\n' + err.message.error + '\n' + err.stack.warn + '\n')
+        console.log(`\n${err.message.error}\n${err.stack.warn}\n`)
       })
   })
   .catch(err => {
-    console.log('\n' + err.message.error + '\n' + err.stack.warn + '\n')
+    console.log(`\n${err.message.error}\n${err.stack.warn}\n`)
   })
 
 module.exports = {
-  models: models,
-  sequelize: sequelize
+  models,
+  sequelize
 }

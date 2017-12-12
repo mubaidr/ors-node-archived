@@ -2,16 +2,16 @@ import Vue from 'vue'
 import axios from './axios'
 import config from './../config'
 
-var mixin = {
+const mixin = {
   data () {
     return {
-      _isValid: true
+      isValid: true
     }
   },
   methods: {
     // Generic form properties
     onValidated (validity) {
-      this._isValid = validity
+      this.isValid = validity
     },
     // Data fetch
     getCache () {
@@ -36,7 +36,7 @@ var mixin = {
   },
   computed: {
     disableSubmit () {
-      return !this._isValid || this.$store.getters.isLoading
+      return !this.isValid || this.$store.getters.isLoading
     },
     isAuthenticated () {
       return this.$store.getters.isAuthenticated
@@ -50,7 +50,7 @@ var mixin = {
 
       let path = this.$router.app._route.fullPath
       if (path.indexOf('auth') === -1) {
-        path = '/api/' + path.replace('/', '')
+        path = `/api/${path.replace('/', '')}`
       }
       return config.api + path
     },
@@ -63,10 +63,10 @@ var mixin = {
     }
   },
   created () {
-    let url = this.endpoint
-    let model = this.form ? this.form.model || {} : {}
+    const url = this.endpoint
+    const model = this.form ? this.form.model || {} : {}
 
-    //Add dummy axios method
+    // Add dummy axios method
     this.$axios = {
       get (_url, _model) {
         return axios.get(_url || url, _model || model)

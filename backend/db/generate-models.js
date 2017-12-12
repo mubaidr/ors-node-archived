@@ -11,56 +11,6 @@ const directory = path.join(__dirname, 'models')
 // enable support for timestamps
 const enableTimestamps = true
 
-const auto = new SequelizeAuto(
-  config.get('options.db.name'),
-  config.get('options.db.username'),
-  config.get('options.db.password'),
-  {
-    host: config.get('options.db.host'),
-    dialect: 'mssql',
-    directory: directory,
-    additional: {
-      timestamps: enableTimestamps,
-      underscored: true,
-      createdAt: 'CREATED_AT',
-      updatedAt: 'UPDATED_AT',
-      deletedAt: false
-    },
-    logging: false,
-    camelCase: true
-  }
-)
-
-console.log('\nGenerating models in: ' + directory)
-auto.run(err => {
-  if (err) throw err
-
-  console.log(
-    '\nRemoving redundant models (views, sysdiagrams, aspnet, __MigrationHistory)'
-  )
-  fs.readdirSync(directory).forEach(file => {
-    const t_file = file.toLowerCase()
-    if (
-      t_file[0] === 'V'.toLowerCase() ||
-      t_file.includes('AspNet'.toLowerCase()) ||
-      t_file.includes('sysdiagrams'.toLowerCase()) ||
-      t_file.includes('__MigrationHistory'.toLowerCase())
-    ) {
-      fs.unlinkSync(path.join(directory, file))
-    }
-  })
-
-  if (enableTimestamps) {
-    console.log('\nEnabling timestamp support for database')
-
-    setupTimestamps(() => {
-      console.info('\nTask succesfully completed.')
-    })
-  } else {
-    console.info('\nTask succesfully completed.')
-  }
-})
-
 function setupTimestamps (callback) {
   // Setup sequelize
   const sequelize = new Sequelize(
@@ -114,3 +64,53 @@ function setupTimestamps (callback) {
       }
     })
 }
+
+const auto = new SequelizeAuto(
+  config.get('options.db.name'),
+  config.get('options.db.username'),
+  config.get('options.db.password'),
+  {
+    host: config.get('options.db.host'),
+    dialect: 'mssql',
+    directory,
+    additional: {
+      timestamps: enableTimestamps,
+      underscored: true,
+      createdAt: 'CREATED_AT',
+      updatedAt: 'UPDATED_AT',
+      deletedAt: false
+    },
+    logging: false,
+    camelCase: true
+  }
+)
+
+console.log(`\nGenerating models in: ${directory}`)
+auto.run(err => {
+  if (err) throw err
+
+  console.log(
+    '\nRemoving redundant models (views, sysdiagrams, aspnet, __MigrationHistory)'
+  )
+  fs.readdirSync(directory).forEach(file => {
+    const tmpFile = file.toLowerCase()
+    if (
+      tmpFile[0] === 'V'.toLowerCase() ||
+      tmpFile.includes('AspNet'.toLowerCase()) ||
+      tmpFile.includes('sysdiagrams'.toLowerCase()) ||
+      tmpFile.includes('__MigrationHistory'.toLowerCase())
+    ) {
+      fs.unlinkSync(path.join(directory, file))
+    }
+  })
+
+  if (enableTimestamps) {
+    console.log('\nEnabling timestamp support for database')
+
+    setupTimestamps(() => {
+      console.info('\nTask succesfully completed.')
+    })
+  } else {
+    console.info('\nTask succesfully completed.')
+  }
+})

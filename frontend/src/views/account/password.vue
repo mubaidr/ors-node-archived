@@ -41,11 +41,12 @@
                     required: true,
                     validator: [
                       'required',
-                      function(value, field, model) {
-                        return value === model.password
+                      (value, field, model) =>
+                        value === model.password
                           ? []
-                          : ['Password and Confirm Password fields does not match']
-                      }
+                          : [
+                              'Password and Confirm Password fields does not match'
+                            ]
                     ]
                   },
                   {

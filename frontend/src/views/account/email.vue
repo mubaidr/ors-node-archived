@@ -53,7 +53,11 @@
           .post()
           .then(res => {
             this.$store.commit('setAuthentication', res.data)
-            swal('Success!', 'Email address has been updated successfuly.', 'success')
+            swal(
+              'Success!',
+              'Email address has been updated successfuly.',
+              'success'
+            )
           })
           .catch(() => {
             this.form.model.email = this.user.email

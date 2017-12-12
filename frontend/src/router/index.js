@@ -1,17 +1,17 @@
 import vue from 'vue'
-import vueRouter from 'vue-router'
-import store from 'src/store'
+import VueRouter from 'vue-router'
 
-import index from 'views'
-import notFound from 'views/notFound'
-import register from 'views/account/register'
-import login from 'views/account/login'
-import account from 'views/account/index'
-import candidate from 'views/candidate'
+import store from '../store'
+import index from '../views/index.vue'
+import notFound from '../views/notFound.vue'
+import register from '../views/account/register.vue'
+import login from '../views/account/login.vue'
+import account from '../views/account/index.vue'
+import candidate from '../views/candidate.vue'
 
-vue.use(vueRouter)
+vue.use(VueRouter)
 
-var router = new vueRouter({
+const router = new VueRouter({
   mode: 'history',
   root: '/',
   routes: [
@@ -74,17 +74,15 @@ router.beforeEach((to, from, next) => {
     } else {
       next()
     }
+  } else if (to.matched.some(record => record.meta.isOpen)) {
+    next()
   } else {
-    if (to.matched.some(record => record.meta.isOpen)) {
-      next()
-    } else {
-      next({
-        path: '/auth/login',
-        query: {
-          redirect: to.fullPath
-        }
-      })
-    }
+    next({
+      path: '/auth/login',
+      query: {
+        redirect: to.fullPath
+      }
+    })
   }
 })
 

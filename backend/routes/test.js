@@ -1,28 +1,28 @@
 const express = require('express')
+
 const router = express.Router({ caseSensitive: true })
 
-router.get('/routes', (req, res, next) => {
-  let table = []
-  let routes = req.app._router.stack
+router.get('/routes', (req, res) => {
+  const table = []
+  // eslint-disable-next-line
+  const routes = req.app._router.stack
 
-  for (var key in routes) {
-    if (routes.hasOwnProperty(key)) {
-      let val = routes[key]
-      if (val.route) {
-        val = val.route
-        table.push(val.stack[0].method + ' : ' + val.path)
-      }
+  Object.keys(routes).forEach(key => {
+    const route = routes[key]
+    if (route) {
+      table.push(`${route.stack[0].method} : ${route.path}`)
     }
-  }
+  })
+
   res.json(table)
 })
 
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
   res.send('test')
 })
 
-router.post('/', (req, res, next) => {
-  res.send('test: ' + req.body)
+router.post('/', (req, res) => {
+  res.send(`test: ${req.body}`)
 })
 
 module.exports = router

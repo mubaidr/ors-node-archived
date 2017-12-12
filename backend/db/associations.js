@@ -2,7 +2,7 @@ const util = require('./util')
 
 module.exports = {
   associate: models => {
-    // getRelations(models)
+    getRelations(models)
 
     // activity -> activityLog : activityId
     models.activity.hasMany(models.activityLog, {
@@ -206,31 +206,30 @@ module.exports = {
   }
 }
 
+function toCamelCase (str) {
+  const tmp = str
+    .toLowerCase()
+    .split('_')
+    .map(item => item[0].toUpperCase() + item.substring(1))
+    .join('')
+
+  return tmp[0].toLowerCase() + tmp.substring(1)
+}
+
 function getRelations (models) {
   Object.keys(models).forEach(modelName => {
-    let model = models[modelName]
+    const model = models[modelName]
 
     Object.getOwnPropertyNames(model.attributes).forEach(attribute => {
-      let references = model.attributes[attribute].references
+      const { references } = model.attributes[attribute]
+
       if (references) {
-        let refModel = models[util.getModelName(references.model)]
-        let refName = util.getModelName(refModel.tableName)
-        let name = util.getModelName(model.tableName)
-        let prop = toCamelCase(model.attributes[attribute].field)
+        const refModel = models[util.getModelName(references.model)]
+        const refName = util.getModelName(refModel.tableName)
+        const name = util.getModelName(model.tableName)
+        const prop = toCamelCase(model.attributes[attribute].field)
         console.log(`\n// ${refName} -> ${name} : ${prop}`)
       }
     })
   })
-}
-
-function toCamelCase (str) {
-  str = str
-    .toLowerCase()
-    .split('_')
-    .map(item => {
-      return item[0].toUpperCase() + item.substring(1)
-    })
-    .join('')
-
-  return str[0].toLowerCase() + str.substring(1)
 }

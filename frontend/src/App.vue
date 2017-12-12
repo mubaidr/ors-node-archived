@@ -10,9 +10,9 @@
 </template>
 
 <script>
-  import headerAnonymous from './views/templates/header-anonymous'
-  import header from './views/templates/header'
-  import footer from './views/templates/footer'
+  import headerAnonymous from './views/templates/header-anonymous.vue'
+  import header from './views/templates/header.vue'
+  import footer from './views/templates/footer.vue'
 
   export default {
     name: 'app',

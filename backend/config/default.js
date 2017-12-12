@@ -1,7 +1,7 @@
 /**
  * Not so secret options
  */
-var options = require('./options')
+const options = require('./options')
 
 module.exports = {
   options: {

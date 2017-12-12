@@ -13,17 +13,14 @@
     },
     "sourceType": "module"
   },
-  "extends": ["eslint:recommended"],
+  "extends": ["airbnb", "prettier"],
   "rules": {
-    "no-console": "off",
-    "space-before-function-paren": "error",
-    "no-extra-semi": "error",
-    "no-unused-vars": "warn",
-    "no-multiple-empty-lines": [
-      2,
-      {
-        "max": 1
-      }
-    ]
+    "space-before-function-paren": [
+      "error",
+      { "anonymous": "never", "named": "always", "asyncArrow": "never" }
+    ],
+    "linebreak-style": "off",
+    "no-extraneous-dependencies": "off",
+    "no-underscore-dangle": "off"
   }
 }

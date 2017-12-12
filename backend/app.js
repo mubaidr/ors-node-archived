@@ -5,11 +5,13 @@ const finale = require('finale-rest')
 const cors = require('cors')
 
 const routes = require('./routes/index')
+
 const app = express()
 const { models, sequelize } = require('./db/index')
 
 // Console colors
 const colors = require('colors')
+
 colors.setTheme({
   success: 'green',
   debug: 'blue',
@@ -34,11 +36,11 @@ app.use('/', routes)
 
 // Setup rest api
 finale.initialize({
-  app: app,
-  sequelize: sequelize
+  app,
+  sequelize
 })
 
-let skipListModelAPI = ['admin', 'adminRole', 'login']
+const skipListModelAPI = ['admin', 'adminRole', 'login']
 Object.keys(models).forEach(model => {
   if (skipListModelAPI.indexOf(model) === -1) {
     finale.resource({
@@ -50,14 +52,15 @@ Object.keys(models).forEach(model => {
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  let err = new Error('Not Found')
+  const err = new Error('Not Found')
   err.status = 404
   next(err)
 })
 
 // eslint-disable-next-line
 app.use((err, req, res, next) => {
-  console.log('\n' + err.message.error + '\n' + err.stack.warn + '\n')
+  console.log(`\n${err.message.error}\n${err.stack.warn}\n`)
+
   if (req.app.get('env') === 'development') {
     res.status(err.status || 500).send(err.stack)
   } else {

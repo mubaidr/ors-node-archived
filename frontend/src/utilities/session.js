@@ -3,11 +3,11 @@ export default {
     window.localStorage.setItem('auth', JSON.stringify(obj))
   },
   getAuth () {
-    let auth = JSON.parse(window.localStorage.getItem('auth'))
+    const auth = JSON.parse(window.localStorage.getItem('auth'))
     return auth ? auth.token : null
   },
   getUser () {
-    let auth = JSON.parse(window.localStorage.getItem('auth'))
+    const auth = JSON.parse(window.localStorage.getItem('auth'))
     return auth ? auth.login : null
   },
   clear () {

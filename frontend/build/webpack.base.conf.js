@@ -1,5 +1,6 @@
-'use strict'
 const path = require('path')
+// eslint-disable-next-line
+const eslintFriendlyFormatter = require('eslint-friendly-formatter')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
@@ -14,7 +15,7 @@ const createLintingRule = () => ({
   enforce: 'pre',
   include: [resolve('src'), resolve('test')],
   options: {
-    formatter: require('eslint-friendly-formatter'),
+    formatter: eslintFriendlyFormatter,
     emitWarning: !config.dev.showEslintErrorsInOverlay
   }
 })
@@ -33,15 +34,10 @@ module.exports = {
         : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.json'],
     alias: {
       vue: 'vue/dist/vue.js',
-      '@': resolve('src'),
-      src: resolve('src'),
-      assets: resolve('src/assets'),
-      views: resolve('src/views'),
-      services: resolve('src/services'),
-      utilities: resolve('src/utilities')
+      '@': resolve('src')
     }
   },
   module: {

@@ -1,90 +1,7 @@
 const express = require('express')
+
 const router = express.Router({ caseSensitive: true })
 const util = require('./../db/util')
-
-router.use('/api/:model/:id?', (req, res, next) => {
-  let db = req.app.get('db')
-  let account = req.account
-  let method = req.method
-  let id = req.params.id
-  let model = req.params.model
-  let object = db[model]
-  let where
-
-  if (!object) {
-    next()
-    return
-  }
-
-  let isCatalog = object.options.tableName.toLowerCase().indexOf('cat') === 0
-
-  if (account.accountTypeId === 2) {
-    next()
-    return
-  }
-
-  if (id) {
-    if (isCatalog) {
-      if (method === 'GET') {
-        next()
-        return
-      } else {
-        res.sendStatus(403)
-        return
-      }
-    }
-
-    object
-      .findById(id)
-      .then(obj => {
-        switch (method) {
-          case 'POST':
-            res.sendStatus(404)
-            return
-          case 'GET':
-          case 'PUT':
-          case 'DELETE':
-            if (obj.candidateId && obj.candidateId === account.candidateId) {
-              next()
-            } else {
-              res.sendStatus(403)
-              return
-            }
-            break
-        }
-      })
-      .catch(next)
-  } else {
-    switch (method) {
-      case 'GET':
-        // Returned filtered data to user
-        if (!isCatalog) {
-          where = prepareWhereObject(object, account)
-          if (!where) {
-            res.json([])
-            return
-          }
-        }
-
-        object
-          .findAll({
-            where: where,
-            include: prepareIncludeObject(object, db)
-          })
-          .then(list => {
-            res.json(list)
-            return
-          })
-          .catch(next)
-        break
-      case 'POST':
-      case 'PUT':
-      case 'DELETE':
-        next()
-        return
-    }
-  }
-})
 
 /**
  *
@@ -95,7 +12,7 @@ router.use('/api/:model/:id?', (req, res, next) => {
  */
 function prepareWhereObject (object, account) {
   let where = false
-  let attrs = Object.keys(object.attributes)
+  const attrs = Object.keys(object.attributes)
   if (attrs.indexOf('candidateId') > -1) {
     where = {
       candidateId: account.candidateId
@@ -116,18 +33,99 @@ function prepareWhereObject (object, account) {
  * @returns Include array for all references in specified model
  */
 function prepareIncludeObject (model, db) {
-  let include = []
-  let attrs = Object.keys(model.attributes)
+  const include = []
+  const attrs = Object.keys(model.attributes)
 
   attrs.forEach(attr => {
-    let ref = model.attributes[attr].references
+    const ref = model.attributes[attr].references
     if (ref) {
-      let model = ref.model
-      include.push(db[util.getModelName(model)])
+      const { relModel } = ref
+      include.push(db[util.getModelName(relModel)])
     }
   })
 
   return include
 }
+
+router.use('/api/:model/:id?', (req, res, next) => {
+  const db = req.app.get('db')
+  const { account, method } = req
+  const { id, model } = req.params
+  const object = db[model]
+  let where
+
+  if (!object) {
+    next()
+    return
+  }
+
+  const isCatalog = object.options.tableName.toLowerCase().indexOf('cat') === 0
+
+  if (account.accountTypeId === 2) {
+    next()
+    return
+  }
+
+  if (id) {
+    if (isCatalog) {
+      if (method === 'GET') {
+        next()
+        return
+      }
+      res.sendStatus(403)
+      return
+    }
+
+    object
+      .findById(id)
+      .then(obj => {
+        switch (method) {
+          case 'POST':
+            res.sendStatus(404)
+            return
+          case 'GET':
+          case 'PUT':
+          case 'DELETE':
+            if (obj.candidateId && obj.candidateId === account.candidateId) {
+              next()
+            } else {
+              res.sendStatus(403)
+            }
+            break
+          default:
+            next()
+        }
+      })
+      .catch(next)
+  } else {
+    switch (method) {
+      case 'GET':
+        // Returned filtered data to user
+        if (!isCatalog) {
+          where = prepareWhereObject(object, account)
+          if (!where) {
+            res.json([])
+            return
+          }
+        }
+
+        object
+          .findAll({
+            where,
+            include: prepareIncludeObject(object, db)
+          })
+          .then(list => {
+            res.json(list)
+          })
+          .catch(next)
+        break
+      case 'POST':
+      case 'PUT':
+      case 'DELETE':
+      default:
+        next()
+    }
+  }
+})
 
 module.exports = router
