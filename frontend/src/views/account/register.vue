@@ -1,6 +1,6 @@
 <template lang='pug'>
   .row
-    .col-md-6.offset-md-3
+    .col-lg-6.offset-lg-3
       .card.text-black.bg-light
         .card-body
           h2 Register
@@ -83,7 +83,7 @@
     },
     methods: {
       onSubmit () {
-        this.$axios
+        this.axios
           .post()
           .then(() => {
             this.$router.push('/auth/login')

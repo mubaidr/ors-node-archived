@@ -255,6 +255,15 @@
             validateAfterLoad: false,
             validateAfterChanged: true
           }
+        },
+        endpoint: '/api/candidate'
+      }
+    },
+    watch: {
+      cache (val) {
+        const [cand] = val
+        if (cand) {
+          this.form.model = cand
         }
       }
     },

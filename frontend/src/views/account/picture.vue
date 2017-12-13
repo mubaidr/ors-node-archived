@@ -5,8 +5,6 @@
 
 <script>
   export default {
-    // TODO: add name to all components
-    // TODO: names should be identifieable
     data () {
       return {
         form: {
@@ -36,7 +34,24 @@
             validateAfterLoad: false,
             validateAfterChanged: true
           }
-        }
+        },
+        endpoint: '/api/picture'
+      }
+    },
+    methods: {
+      onSubmit () {
+        this.axios
+          .post(this.getEndpoint(), this.form.model)
+          .then(() => {
+            swal(
+              'Success!',
+              'Profile picture has been updated successfuly.',
+              'success'
+            )
+          })
+          .catch(() => {
+            swal('Error', 'Please try again!', 'error')
+          })
       }
     }
   }

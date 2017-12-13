@@ -41,7 +41,8 @@
             validateAfterLoad: false,
             validateAfterChanged: true
           }
-        }
+        },
+        endpoint: '/api/account'
       }
     },
     created () {
@@ -49,8 +50,8 @@
     },
     methods: {
       onSubmit () {
-        this.$axios
-          .post()
+        this.axios
+          .post(this.getEndpoint(), this.form.model)
           .then(res => {
             this.$store.commit('setAuthentication', res.data)
             swal(

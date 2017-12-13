@@ -1,6 +1,10 @@
+import Vue from 'vue'
 import axios from 'axios'
+import VueAxios from 'vue-axios'
+
 import store from '../store'
 import router from '../router'
+
 /* eslint-disable no-param-reassign */
 
 let numberOfAjaxCallPending = 0
@@ -41,6 +45,7 @@ axios.interceptors.response.use(
   },
   err => {
     checkLoadingState(false)
+
     if (err.response.status === 401 || err.response.status === 403) {
       store.commit('removeAuthentication')
       router.push({
@@ -54,4 +59,4 @@ axios.interceptors.response.use(
   }
 )
 
-export default axios
+Vue.use(VueAxios, axios)

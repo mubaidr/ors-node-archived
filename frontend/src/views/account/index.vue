@@ -1,6 +1,6 @@
 <template lang='pug'>
   .row
-    .col-md-6.offset-md-3
+    .col-lg-6.offset-lg-3
       h2 Account
       br
       p Profile picture:

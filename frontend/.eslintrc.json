@@ -21,7 +21,8 @@
     ],
     "linebreak-style": "off",
     "no-extraneous-dependencies": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "no-console": "off"
   },
   "globals": {
     "document": true,

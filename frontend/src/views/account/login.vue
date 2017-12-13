@@ -1,6 +1,6 @@
 <template lang='pug'>
   .row
-    .col-md-6.offset-md-3
+    .col-lg-6.offset-lg-3
       .card.text-black.bg-light
         .card-body
           h2 Login
@@ -63,7 +63,7 @@
     },
     methods: {
       onSubmit () {
-        this.$axios
+        this.axios
           .post()
           .then(res => {
             this.$store.commit('setAuthentication', res.data)
