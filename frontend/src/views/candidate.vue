@@ -181,15 +181,6 @@
                     validator: ['required', 'string']
                   },
                   {
-                    model: 'postalAddress',
-                    type: 'textArea',
-                    label: 'Postal Address',
-                    rows: 6,
-                    max: 255,
-                    required: true,
-                    validator: ['required', 'string']
-                  },
-                  {
                     model: 'postalCity',
                     type: 'input',
                     inputType: 'text',
@@ -203,6 +194,15 @@
                     type: 'input',
                     inputType: 'text',
                     label: 'Tehsil',
+                    max: 255,
+                    required: true,
+                    validator: ['required', 'string']
+                  },
+                  {
+                    model: 'postalAddress',
+                    type: 'textArea',
+                    label: 'Postal Address',
+                    rows: 6,
                     max: 255,
                     required: true,
                     validator: ['required', 'string']
@@ -239,13 +239,15 @@
                     validateBeforeSubmit: true,
                     onSubmit: this.onSubmit,
                     disabled: this.disableSubmit,
-                    fieldClasses: 'btn btn-primary btn-block btn-submit-custom'
+                    fieldClasses:
+                      'btn btn-primary btn-lg btn-block btn-submit-custom'
                   },
                   {
                     type: 'input',
                     inputType: 'reset',
                     buttonText: 'Cancel',
-                    fieldClasses: 'btn btn-default btn-block btn-submit-custom'
+                    fieldClasses:
+                      'btn btn-default btn-lg btn-block btn-submit-custom'
                   }
                 ]
               }

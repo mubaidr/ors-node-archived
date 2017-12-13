@@ -3,13 +3,13 @@
     .col-lg-6.offset-lg-3
       h2 Account
       br
-      p Profile picture:
+      h5 Change your profile picture
       picture-view
       hr
-      p Update your email address:
+      h5 Update your email address
       email-view
       hr
-      p Set a new password for your account:
+      h5 Set a new password for your account
       password-view
 </template>
 

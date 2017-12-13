@@ -27,7 +27,7 @@
                   },
                   {
                     type: 'submit',
-                    buttonText: 'Update Email Address',
+                    buttonText: 'Update Email',
                     validateBeforeSubmit: true,
                     onSubmit: this.onSubmit,
                     disabled: this.disableSubmit,

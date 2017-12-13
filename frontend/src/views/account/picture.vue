@@ -63,6 +63,7 @@
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
+      display: none !important; /* Hide preview */
       height: 240px;
     }
   }
