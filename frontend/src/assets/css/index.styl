@@ -74,16 +74,12 @@
 /* Vue form generator */
 @media (min-width: 48em) {
   .two-columns .vue-form-generator {
-    .form-group {
+    .form-group:not(.field-submit) {
       float: left;
       width: 48%;
     }
 
-    .field-submit {
-      margin-right: 4%;
-    }
-
-    .form-group:nth-child(even) {
+    .form-group:nth-child(even):not(.field-submit) {
       margin-right: 4%;
     }
   }
@@ -93,11 +89,11 @@
   margin-top: 25px;
 }
 
-hr {
-  margin: 50px;
-}
-
 .avatar-picture {
   max-height: 160px;
   width: auto;
+}
+
+hr {
+  margin: 50px;
 }

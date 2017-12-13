@@ -117,6 +117,7 @@
                     validator: ['required', 'string']
                   },
                   {
+                    // TODO: get list of cities for domicile, city, tehsil
                     model: 'domicileDistrict',
                     type: 'input',
                     inputType: 'text',
@@ -235,19 +236,11 @@
                 fields: [
                   {
                     type: 'submit',
-                    buttonText: 'Submit',
+                    buttonText: 'Save',
                     validateBeforeSubmit: true,
                     onSubmit: this.onSubmit,
                     disabled: this.disableSubmit,
-                    fieldClasses:
-                      'btn btn-primary btn-lg btn-block btn-submit-custom'
-                  },
-                  {
-                    type: 'input',
-                    inputType: 'reset',
-                    buttonText: 'Cancel',
-                    fieldClasses:
-                      'btn btn-default btn-lg btn-block btn-submit-custom'
+                    fieldClasses: 'btn btn-primary btn-block btn-submit-custom'
                   }
                 ]
               }

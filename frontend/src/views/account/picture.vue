@@ -20,7 +20,8 @@
                 model: 'picture',
                 required: true,
                 hideInput: true,
-                preview: true
+                preview: true,
+                validator: ['required']
               },
               {
                 type: 'submit',
