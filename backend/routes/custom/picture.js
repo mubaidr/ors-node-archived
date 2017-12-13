@@ -6,6 +6,7 @@ const router = express.Router({ caseSensitive: true })
 
 router.get('/', (req, res) => {
   // TODO: get img address from DB, convert and send base64 image data
+  // TODO: if no image then return default avatar
   res.send('Picture')
 })
 

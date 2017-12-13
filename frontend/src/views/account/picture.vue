@@ -1,5 +1,7 @@
 <template lang='pug'>
   div
+    .text-center
+      img(:src='form.model.picture' alt='picture' v-show='form.model.picture' class='avatar-picture')
     vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
 </template>
 
