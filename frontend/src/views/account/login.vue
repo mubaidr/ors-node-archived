@@ -58,13 +58,14 @@
             validateAfterLoad: false,
             validateAfterChanged: true
           }
-        }
+        },
+        endpoint: '/auth/login'
       }
     },
     methods: {
       onSubmit () {
         this.axios
-          .post()
+          .post(this.getEndpoint(), this.form.model)
           .then(res => {
             this.$store.commit('setAuthentication', res.data)
           })

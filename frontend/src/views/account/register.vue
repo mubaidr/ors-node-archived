@@ -78,18 +78,21 @@
             validateAfterLoad: false,
             validateAfterChanged: true
           }
-        }
+        },
+        endpoint: '/auth/register'
       }
     },
     methods: {
       onSubmit () {
+        console.log(this.getEndpoint(), this.form.model)
         this.axios
-          .post()
+          .post(this.getEndpoint(), this.form.model)
           .then(() => {
             this.$router.push('/auth/login')
             swal('Account created successfuly.', 'Please login', 'success')
           })
           .catch(err => {
+            console.dir(err)
             if (err.response.status === 409) {
               this.$router.push('/auth/login')
               swal(

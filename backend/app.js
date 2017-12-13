@@ -29,8 +29,17 @@ app.set('case sensitive routing', true)
 if (app.get('env') === 'development') {
   app.use(logger('dev'))
 }
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(
+  bodyParser.json({
+    limit: '15mb'
+  })
+)
+app.use(
+  bodyParser.urlencoded({
+    limit: '15mb',
+    extended: false
+  })
+)
 app.use(cors())
 app.use('/', routes)
 

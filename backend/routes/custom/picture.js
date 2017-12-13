@@ -1,4 +1,5 @@
 const express = require('express')
+const fs = require('fs')
 
 const router = express.Router({ caseSensitive: true })
 
@@ -11,8 +12,10 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
+  const { picture } = req.body
+
   // TODO: Save base64 image data to img file and store path in DB
-  res.send('Picture')
+  res.sendStatus(200)
 })
 
 module.exports = router
