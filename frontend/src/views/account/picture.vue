@@ -3,7 +3,7 @@
     .text-center
       transition(appear name='slide-left' mode='out-in')
         img(:src='form.model.picture' alt='new picture' v-if='form.model.picture' class='avatar-picture')
-        img(:src='form.model.currentPicture' alt='current picture' v-else='form.model.picture' class='avatar-picture')
+        img(:src='form.model.currentPicture' alt='current picture' v-else class='avatar-picture')
     vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
 </template>
 
@@ -61,8 +61,9 @@
       }
     },
     watch: {
-      cache () {}
-      // TODO: watch cache and set currentPicture
+      cache (val) {
+        this.form.model.currentPicture = val
+      }
     }
   }
 </script>

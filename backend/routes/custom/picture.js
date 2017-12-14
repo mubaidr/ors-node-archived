@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
   const picPath = path.join(global.app_root, 'pics', fileName)
   const extension = fileName.substring(fileName.lastIndexOf('.') + 1)
 
-  fs.readFile(picPath, (err, picture) => {
+  fs.readFile(picPath, 'base64', (err, picture) => {
     if (err) next(err)
 
     const file = `data:image/${extension};base64,${picture}`
