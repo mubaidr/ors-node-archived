@@ -9,32 +9,13 @@ const debug = require('debug')('backend:server')
 const http = require('http')
 
 /**
- * Get port from environment and store in Express.
- */
-const port = normalizePort(process.env.PORT || '3000')
-app.set('port', port)
-
-/**
- * Create HTTP server.
- */
-
-const server = http.createServer(app)
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port)
-server.on('error', onError)
-server.on('listening', onListening)
-
-/**
  * Normalize a port into a number, string, or false.
  */
 
 function normalizePort (val) {
   const port = parseInt(val, 10)
 
+  // eslint-disable-next-line
   if (isNaN(port)) {
     // named pipe
     return val
@@ -49,6 +30,18 @@ function normalizePort (val) {
 }
 
 /**
+ * Get port from environment and store in Express.
+ */
+const serverPort = normalizePort(process.env.PORT || '3000')
+app.set('port', serverPort)
+
+/**
+ * Create HTTP server.
+ */
+
+const server = http.createServer(app)
+
+/**
  * Event listener for HTTP server "error" event.
  */
 
@@ -57,7 +50,8 @@ function onError (error) {
     throw error
   }
 
-  const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`
+  const bind =
+    typeof serverPort === 'string' ? `Pipe ${serverPort}` : `Port ${serverPort}`
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -83,3 +77,11 @@ function onListening () {
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`
   debug(`Listening on ${bind}`)
 }
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(serverPort)
+server.on('error', onError)
+server.on('listening', onListening)

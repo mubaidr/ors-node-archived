@@ -1,11 +1,11 @@
 const express = require('express')
 const fs = require('fs')
 const path = require('path')
+const Jimp = require('jimp')
 
 const router = express.Router({ caseSensitive: true })
 const defaultPictureName = 'user_default.png'
-
-// TODO: optmize this module
+const imageExtension = 'webp'
 
 router.get('/', (req, res, next) => {
   const db = req.app.get('db')
@@ -16,12 +16,11 @@ router.get('/', (req, res, next) => {
     .then(login => {
       const fileName = login.picturePath || defaultPictureName
       const picPath = path.join(global.app_root, 'pics', fileName)
-      const extension = fileName.split('.')[1]
 
       fs.readFile(picPath, 'base64', (err, picture) => {
         if (err) next(err)
 
-        const file = `data:image/${extension};base64,${picture}`
+        const file = `data:image/${imageExtension};base64,${picture}`
         res.send(file)
       })
     })
@@ -32,44 +31,39 @@ router.post('/', (req, res, next) => {
   const db = req.app.get('db')
   const { account } = req
   let { picture } = req.body
-  const extension = picture.substring(
-    'data:image/'.length,
-    picture.indexOf(';base64,')
-  )
+  const fileName = `${account.id}.${imageExtension}`
+  const picPath = path.join(global.app_root, 'pics', fileName)
+
   picture = picture.substring(picture.indexOf(';base64,') + ';base64,'.length)
 
-  const fileName = `${account.id}-${Date.now()}.${extension}`
-  const picPath = path.join(global.app_root, 'pics', fileName)
-  const oldPicPath = path.join(global.app_root, 'pics', account.picturePath)
+  const imgBuffer = Buffer.from(picture, 'base64')
 
-  fs.writeFile(picPath, picture, 'base64', err => {
-    if (err) next(err)
+  // Optimize & save img
+  Jimp.read(imgBuffer)
+    .then(image => {
+      image
+        .resize(256, Jimp.AUTO)
+        .quality(75)
+        .write(picPath)
 
-    db.login
-      .update(
-        {
-          picturePath: fileName
-        },
-        {
-          where: {
-            id: account.id
+      // Update img path in login
+      db.login
+        .update(
+          {
+            picturePath: fileName
+          },
+          {
+            where: {
+              id: account.id
+            }
           }
-        }
-      )
-      .then(() => {
-        if (oldPicPath.indexOf(defaultPictureName) === -1) {
-          // eslint-disable-next-line
-          fs.unlink(oldPicPath, err => {
-            if (err) next(err)
-
-            res.sendStatus(200)
-          })
-        } else {
+        )
+        .then(() => {
           res.sendStatus(200)
-        }
-      })
-      .catch(next)
-  })
+        })
+        .catch(next)
+    })
+    .catch(next)
 })
 
 module.exports = router
