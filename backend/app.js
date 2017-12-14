@@ -9,6 +9,9 @@ const routes = require('./routes/index')
 const app = express()
 const { models, sequelize } = require('./db/index')
 
+// kepp root path in global
+global.app_root = __dirname
+
 // Console colors
 const colors = require('colors')
 

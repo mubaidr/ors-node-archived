@@ -42,4 +42,8 @@ yarn-error.log
 *.sln
 
 # DB config data
-/backend/config/options.js
+backend/config/options.js
+
+# Ignore pic files but keep folder
+backend/pics/*
+!backend/pics/user_default.png

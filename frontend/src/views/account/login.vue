@@ -18,7 +18,7 @@
       return {
         form: {
           model: {
-            username: '11111-1111111-1',
+            email: '11111-1111111-1',
             password: 'minion12345'
           },
           schema: {

@@ -1,6 +1,6 @@
 /* jshint indent: 1 */
 
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   return sequelize.define(
     'tblLogin',
     {
@@ -35,7 +35,8 @@ module.exports = function (sequelize, DataTypes) {
       picturePath: {
         type: DataTypes.STRING,
         allowNull: true,
-        field: 'PICTURE_PATH'
+        field: 'PICTURE_PATH',
+        defaultValue: 'user_default.png'
       },
       accountTypeId: {
         type: DataTypes.INTEGER,

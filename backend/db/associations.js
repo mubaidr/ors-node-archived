@@ -1,8 +1,8 @@
-const util = require('./util')
+// const util = require('./util')
 
 module.exports = {
   associate: models => {
-    getRelations(models)
+    // getRelations(models)
 
     // activity -> activityLog : activityId
     models.activity.hasMany(models.activityLog, {
@@ -206,6 +206,7 @@ module.exports = {
   }
 }
 
+/*
 function toCamelCase (str) {
   const tmp = str
     .toLowerCase()
@@ -233,3 +234,4 @@ function getRelations (models) {
     })
   })
 }
+*/

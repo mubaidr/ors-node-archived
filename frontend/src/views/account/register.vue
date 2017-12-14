@@ -16,7 +16,6 @@
       return {
         form: {
           model: {
-            username: '11111-1111111-1',
             password: 'minion12345',
             confirmPassword: 'minion12345',
             email: 'tim@minion.com',

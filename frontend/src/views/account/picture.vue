@@ -1,7 +1,9 @@
 <template lang='pug'>
   div
     .text-center
-      img(:src='form.model.picture' alt='picture' v-show='form.model.picture' class='avatar-picture')
+      transition(appear name='slide-left' mode='out-in')
+        img(:src='form.model.picture' alt='new picture' v-if='form.model.picture' class='avatar-picture')
+        img(:src='form.model.currentPicture' alt='current picture' v-else='form.model.picture' class='avatar-picture')
     vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
 </template>
 
@@ -11,6 +13,7 @@
       return {
         form: {
           model: {
+            currentPicture: null,
             picture: null
           },
           schema: {
@@ -20,7 +23,7 @@
                 model: 'picture',
                 required: true,
                 hideInput: true,
-                preview: true,
+                preview: false,
                 validator: ['required']
               },
               {
@@ -56,6 +59,10 @@
             swal('Error', 'Please try again!', 'error')
           })
       }
+    },
+    watch: {
+      cache () {}
+      // TODO: watch cache and set currentPicture
     }
   }
 </script>
@@ -63,11 +70,7 @@
 <style lang='stylus'>
   .field-image {
     .preview {
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: contain;
       display: none !important; /* Hide preview */
-      height: 240px;
     }
   }
 </style>
