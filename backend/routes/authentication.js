@@ -100,7 +100,10 @@ router.post('/auth/login', (req, res, next) => {
           (err, token) => {
             if (err) next(err)
 
-            res.json({ token, login: tmpUser })
+            res.json({
+              token,
+              login: tmpUser
+            })
           }
         )
       })
