@@ -112,6 +112,6 @@ module.exports = {
         }
       })
 
-    callback()
+    if (callback) callback()
   }
 }

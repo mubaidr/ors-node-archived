@@ -7,20 +7,35 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "nodemon",
+      "name": "Debug (nodemon)",
       "runtimeExecutable": "nodemon",
       "program": "${workspaceFolder}/backend/bin/www",
       "restart": true,
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "cwd": "${workspaceFolder}/backend"
+      "cwd": "${workspaceFolder}/backend",
+      "runtimeArgs": [
+        "--harmony",
+        "--no-deprecation"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      }
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "Debug",
       "program": "${workspaceFolder}/backend/bin/www",
-      "cwd": "${workspaceFolder}/backend"
+      "cwd": "${workspaceFolder}/backend",
+      "restart": true,
+      "runtimeArgs": [
+        "--harmony",
+        "--no-deprecation"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      }
     }
   ]
 }
