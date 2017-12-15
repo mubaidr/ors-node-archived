@@ -7,17 +7,20 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug Nodemon",
+      "name": "nodemon",
       "runtimeExecutable": "nodemon",
       "program": "${workspaceFolder}/backend/bin/www",
-      "args": [
-        "--config nodemon.json"
-      ],
       "restart": true,
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "cwd": "${workspaceRoot}\\backend",
-      "port": 3000
+      "cwd": "${workspaceFolder}/backend"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "program": "${workspaceFolder}/backend/bin/www",
+      "cwd": "${workspaceFolder}/backend"
     }
   ]
 }
