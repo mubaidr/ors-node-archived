@@ -5,9 +5,17 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Frontend",
+      "sourceMaps": true,
+      "url": "http://localhost:8080",
+      "webRoot": "${workspaceRoot}/frontend"
+    },
+    {
       "type": "node",
       "request": "launch",
-      "name": "Debug (nodemon)",
+      "name": "Backend (nodemon)",
       "runtimeExecutable": "nodemon",
       "program": "${workspaceFolder}/backend/bin/www",
       "restart": true,
@@ -25,7 +33,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug",
+      "name": "Backend",
       "program": "${workspaceFolder}/backend/bin/www",
       "cwd": "${workspaceFolder}/backend",
       "restart": true,
