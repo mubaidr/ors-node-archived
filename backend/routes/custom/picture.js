@@ -7,15 +7,14 @@ const router = express.Router({ caseSensitive: true })
 const defaultPictureName = 'user_default.png'
 const imageExtension = 'jpg'
 
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
   const { account } = req
   const fileName = `${account.id}.${imageExtension}`
   const picPath = path.join(global.app_root, 'pics', fileName)
   const defaultPicPath = path.join(global.app_root, 'pics', defaultPictureName)
 
   fs.readFile(picPath, 'base64', (err, picture) => {
-    if (err) next(err)
-    if (!picture) {
+    if (err || !picture) {
       // Send default picture if not found
       // eslint-disable-next-line
       fs.readFile(defaultPicPath, 'base64', (err, picture) => {
