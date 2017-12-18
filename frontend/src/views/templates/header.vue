@@ -2,18 +2,18 @@
   nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
     ul.navbar-nav
       li.nav-item
-        router-link.navbar-brand(to='/home') ORS
+        span.navbar-brand ORS-NODE
       li.nav-item
         router-link.nav-link(to='/home') Home
       li.nav-item
-        router-link.nav-link(to='/candidate') Profile
+        router-link.nav-link(to='/about') About
+      li.nav-item
+        router-link.nav-link(to='/careers') Careers
     ul.navbar-nav.ml-auto
       li.nav-item
         router-link.nav-link(to='/account') My Account
       li.nav-item
         span.nav-link.custom-link(@click='logout') Logout
-      li.nav-item
-        router-link.nav-link(to='/about') About
 </template>
 
 <script>

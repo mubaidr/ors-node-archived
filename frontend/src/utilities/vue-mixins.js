@@ -42,6 +42,12 @@ const mixin = {
     },
     user () {
       return this.$store.getters.user
+    },
+    applicationSteps () {
+      return this.$store.getters.applicationSteps
+    },
+    applicationStep () {
+      return this.$store.getters.applicationStep
     }
   },
   created () {

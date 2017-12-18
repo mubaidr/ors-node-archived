@@ -10,6 +10,13 @@ export default {
     const auth = JSON.parse(window.localStorage.getItem('auth'))
     return auth ? auth.login : null
   },
+  getApplicationStep () {
+    const step = JSON.parse(window.localStorage.getItem('applicationStep'))
+    return step || 0
+  },
+  setApplicationStep (obj) {
+    window.localStorage.setItem('applicationStep', obj)
+  },
   clear () {
     window.localStorage.clear()
   },

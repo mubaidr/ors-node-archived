@@ -8,13 +8,13 @@ import feedback from '../views/home/feedback.vue'
 import about from '../views/home/about.vue'
 import contact from '../views/home/contact.vue'
 // Error
-import notFound from '../views/notFound.vue'
+import notFound from '../views/error/notFound.vue'
 // Account
 import register from '../views/account/register.vue'
 import login from '../views/account/login.vue'
 import account from '../views/account/index.vue'
 // Profile
-import candidate from '../views/candidate.vue'
+import careers from '../views/steps/careers.vue'
 
 vue.use(VueRouter)
 
@@ -36,13 +36,6 @@ const router = new VueRouter({
     {
       path: '/about',
       component: about,
-      meta: {
-        isOpen: true
-      }
-    },
-    {
-      path: '/contact',
-      component: contact,
       meta: {
         isOpen: true
       }
@@ -71,12 +64,12 @@ const router = new VueRouter({
       }
     },
     {
-      path: '/candidate',
-      component: candidate
-    },
-    {
       path: '/account',
       component: account
+    },
+    {
+      path: '/careers',
+      component: careers
     },
     {
       path: '*',
