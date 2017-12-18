@@ -2,11 +2,18 @@ import vue from 'vue'
 import VueRouter from 'vue-router'
 
 import store from '../store'
-import index from '../views/index.vue'
+// Home
+import index from '../views/home/index.vue'
+import feedback from '../views/home/feedback.vue'
+import about from '../views/home/about.vue'
+import contact from '../views/home/contact.vue'
+// Error
 import notFound from '../views/notFound.vue'
+// Account
 import register from '../views/account/register.vue'
 import login from '../views/account/login.vue'
 import account from '../views/account/index.vue'
+// Profile
 import candidate from '../views/candidate.vue'
 
 vue.use(VueRouter)
@@ -22,6 +29,27 @@ const router = new VueRouter({
     {
       path: '/home',
       component: index,
+      meta: {
+        isOpen: true
+      }
+    },
+    {
+      path: '/about',
+      component: about,
+      meta: {
+        isOpen: true
+      }
+    },
+    {
+      path: '/contact',
+      component: contact,
+      meta: {
+        isOpen: true
+      }
+    },
+    {
+      path: '/feedback',
+      component: feedback,
       meta: {
         isOpen: true
       }

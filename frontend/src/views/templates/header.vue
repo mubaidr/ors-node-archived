@@ -12,6 +12,8 @@
         router-link.nav-link(to='/account') My Account
       li.nav-item
         span.nav-link.custom-link(@click='logout') Logout
+      li.nav-item
+        router-link.nav-link(to='/about') About
 </template>
 
 <script>

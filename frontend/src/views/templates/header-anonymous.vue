@@ -10,6 +10,8 @@
         router-link.nav-link(to='/auth/login') Login
       li.nav-item
         router-link.nav-link(to='/auth/register') Register
+      li.nav-item
+        router-link.nav-link(to='/about') About
 </template>
 
 <script>
