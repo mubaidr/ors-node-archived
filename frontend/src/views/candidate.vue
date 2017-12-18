@@ -104,7 +104,7 @@
                     type: 'FlatPickrVfg',
                     label: 'Date of Birth',
                     required: true,
-                    validator: ['required', 'string'],
+                    validator: ['required', 'string', 'date'],
                     placeholder: 'Pick a date'
                   },
                   {
@@ -257,6 +257,7 @@
     watch: {
       cache (val) {
         const [cand] = val
+
         if (cand) {
           this.form.model = cand
         }
