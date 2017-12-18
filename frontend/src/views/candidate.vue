@@ -61,19 +61,18 @@
                     model: 'genderId',
                     type: 'select',
                     label: 'Gender',
-                    value: 1,
                     values: [
-                      {
-                        id: 1,
-                        name: 'Male'
-                      },
                       {
                         id: 2,
                         name: 'Female'
                       },
                       {
+                        id: 1,
+                        name: 'Male'
+                      },
+                      {
                         id: 3,
-                        name: 'Other'
+                        name: 'Unspecified'
                       }
                     ],
                     required: true,
@@ -84,7 +83,6 @@
                     model: 'maritalStatusId',
                     type: 'select',
                     label: 'Marital Status',
-                    value: 1,
                     values: [
                       {
                         id: '1',
@@ -148,18 +146,34 @@
                 legend: 'Contact',
                 fields: [
                   {
-                    model: 'mobileNo',
-                    type: 'input',
-                    inputType: 'text',
+                    type: 'cleave',
+                    autocomplete: true,
                     label: 'Mobile Number',
+                    model: 'mobileNo',
+                    cleaveOptions: {
+                      numericOnly: true,
+                      blocks: [4, 7],
+                      delimiter: '-'
+                    },
+                    placeholder: '',
+                    min: 12,
+                    max: 12,
                     required: true,
                     validator: ['required', 'string']
                   },
                   {
-                    model: 'phoneNo',
-                    type: 'input',
-                    inputType: 'text',
+                    type: 'cleave',
+                    autocomplete: true,
                     label: 'Phone Number',
+                    model: 'phoneNo',
+                    cleaveOptions: {
+                      numericOnly: true,
+                      blocks: [3, 7],
+                      delimiter: '-'
+                    },
+                    placeholder: '',
+                    min: 11,
+                    max: 11,
                     required: true,
                     validator: ['required', 'string']
                   },
