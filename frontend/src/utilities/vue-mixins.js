@@ -44,10 +44,10 @@ const mixin = {
       return this.$store.getters.user
     },
     applicationSteps () {
-      return this.$store.getters.applicationSteps
+      return this.$store.getters.getApplicationSteps
     },
     applicationStep () {
-      return this.$store.getters.applicationStep
+      return this.$store.getters.getApplicationStep
     }
   },
   created () {

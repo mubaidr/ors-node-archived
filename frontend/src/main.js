@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 import 'bootswatch/dist/lux/bootstrap.min.css'
 import './assets/css/animations.css'
-import './assets/css/pace.css'
+import './assets/css/pace.styl'
 import './assets/css/index.styl'
 import './utilities/pace-config'
 import './assets/js/pace.min'

@@ -1,17 +1,16 @@
 <template lang='pug'>
   div
-    h2 careers
-    candidate
+    h2 Careers
+    p A leading organization welcomes talented, qualified and competent individuals for appointment against the posts mentioned in the advertisement. The organization offers competitive and bright career opportunities and prospects under conducive working environment with attractive salary and fringe benefits.
+    vacancies
 </template>
 
 <script>
   import vacancies from './vacancies.vue'
-  import candidate from './candidate.vue'
 
   export default {
     components: {
-      vacancies,
-      candidate
+      vacancies
     }
   }
 </script>

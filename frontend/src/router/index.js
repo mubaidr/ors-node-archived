@@ -41,6 +41,13 @@ const router = new VueRouter({
       }
     },
     {
+      path: '/contact',
+      component: contact,
+      meta: {
+        isOpen: true
+      }
+    },
+    {
       path: '/feedback',
       component: feedback,
       meta: {
