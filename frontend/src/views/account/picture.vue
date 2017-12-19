@@ -32,7 +32,7 @@
                 validateBeforeSubmit: true,
                 onSubmit: this.onSubmit,
                 disabled: this.disableSubmit,
-                fieldClasses: 'btn btn-primary btn-block'
+                fieldClasses: 'btn btn-outline-primary btn-block'
               }
             ]
           },
