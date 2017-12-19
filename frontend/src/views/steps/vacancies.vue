@@ -2,10 +2,19 @@
   div
     template(v-if='hasListing')
       p.lead What's your passion? Check out all our open spots below.
+      p Choose a vacancy below to start application.
       br
       .row
-        .col-lg-2.col-md-4(v-for='vacancy in vacancies')
-          span.btn.btn-lg.btn-outline-info {{vacancy}}
+        .col-lg-4.col-md-6(v-for='vacancy in vacancies')
+          .list-group.vacancy-item
+            a.list-group-item.list-group-item-action.flex-column.align-items-start(href='#')
+              small {{vacancy.CAT_ADVERTISEMENT.advNumber}}
+              hr
+              .d-flex.w-100.justify-content-between
+                h5.mb-1 {{vacancy.CAT_DESIG.description}}
+              hr
+              p.mb-1 {{vacancy.description}}
+              small 3 days ago
     template(v-else)
       .alert.alert-warning
         strong
@@ -26,6 +35,93 @@
     watch: {
       cache (list) {
         this.vacancies = list
+        // DEbug code
+        this.vacancies = [
+          {
+            id: 1,
+            CAT_DESIG: {
+              description: 'Frontend Developer',
+              CAT_DESIG_GROUP: {
+                description: 'Web Developer'
+              },
+              CAT_PAYSCALE: {
+                description: 'ABC-01'
+              }
+            },
+            CAT_ADVERTISEMENT: {
+              advNumber: 'ABC-02-99'
+            },
+            description: 'Frontend Web Developer (Vue.js)',
+            question: '3 years of experience',
+            checkAcademicDetails: 0,
+            CAT_APP_STATUS: {
+              id: 1
+            }
+          },
+          {
+            id: 2,
+            CAT_DESIG: {
+              description: 'Backend Developer',
+              CAT_DESIG_GROUP: {
+                description: 'Web Developer'
+              },
+              CAT_PAYSCALE: {
+                description: 'ABC-01'
+              }
+            },
+            CAT_ADVERTISEMENT: {
+              advNumber: 'ABC-01-2099'
+            },
+            description: 'Backend Web Developer (Node.js)',
+            question: '3 years of experience',
+            checkAcademicDetails: 0,
+            CAT_APP_STATUS: {
+              id: 1
+            }
+          },
+          {
+            id: 3,
+            CAT_DESIG: {
+              description: 'Full Stack Web Developer',
+              CAT_DESIG_GROUP: {
+                description: 'Web Developer'
+              },
+              CAT_PAYSCALE: {
+                description: 'ABC-01'
+              }
+            },
+            CAT_ADVERTISEMENT: {
+              advNumber: 'ABC-01-2099'
+            },
+            description: 'Full Stack Web Developer (Node.js, Vue.js)',
+            question: '3 years of experience',
+            checkAcademicDetails: 0,
+            CAT_APP_STATUS: {
+              id: 1
+            }
+          },
+          {
+            id: 4,
+            CAT_DESIG: {
+              description: 'Junior Software Engineer',
+              CAT_DESIG_GROUP: {
+                description: 'Engineers'
+              },
+              CAT_PAYSCALE: {
+                description: 'ABC-01'
+              }
+            },
+            CAT_ADVERTISEMENT: {
+              advNumber: 'ABC-02-99'
+            },
+            description: 'Software Engineer',
+            question: '2 years of experience',
+            checkAcademicDetails: 0,
+            CAT_APP_STATUS: {
+              id: 1
+            }
+          }
+        ]
       }
     },
     computed: {
@@ -37,4 +133,13 @@
 </script>
 
 <style lang='stylus'>
+  .vacancy-item {
+    margin-bottom: 2rem;
+    text-align: center;
+
+    h5 {
+      text-align: center;
+      width: 100%;
+    }
+  }
 </style>

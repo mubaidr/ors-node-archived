@@ -1,16 +1,8 @@
 /* Set minimum height for body content */
 .container.body {
-  display: table;
   min-height: calc(100vh - 177px);
   padding-bottom: 1.5rem;
   padding-top: 1.5rem;
-  table-layout: fixed;
-
-  /* Verticaly center row */
-  .row {
-    display: table-cell;
-    vertical-align: middle;
-  }
 
   .form-group.error {
     input, textarea, select {
@@ -91,7 +83,7 @@
 }
 
 hr {
-  margin: 2rem;
+  margin: 2rem 0;
 }
 
 .nav-link.router-link-active {
