@@ -17,6 +17,13 @@ export default {
   setApplicationStep (obj) {
     window.localStorage.setItem('applicationStep', obj)
   },
+  setVacancy (obj) {
+    window.localStorage.setItem('vacancy', obj)
+  },
+  getVacancy () {
+    const vac = JSON.parse(window.localStorage.getItem('vacancy'))
+    return vac || null
+  },
   clear () {
     window.localStorage.clear()
   },

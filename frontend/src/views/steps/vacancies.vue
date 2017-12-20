@@ -6,7 +6,7 @@
       br
       .row
         .col-lg-4.col-md-6(v-for='vacancy in vacancies')
-          .list-group.vacancy-item
+          .list-group.vacancy-item(@click='selectVacancy(vacancy)')
             a.list-group-item.list-group-item-action.flex-column.align-items-start(href='#')
               small {{vacancy.CAT_ADVERTISEMENT.advNumber}}
               hr
@@ -128,6 +128,11 @@
     computed: {
       hasListing () {
         return !this.isLoading && this.vacancies && this.vacancies.length > 0
+      }
+    },
+    methods: {
+      selectVacancy (vac) {
+        console.log(vac)
       }
     }
   }
