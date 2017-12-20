@@ -12,7 +12,7 @@ export default {
     }
   },
   getters: {
-    setVacancy (state) {
+    getVacancy (state) {
       return state.vacancy
     }
   }
