@@ -35,7 +35,7 @@
     watch: {
       cache (list) {
         this.vacancies = list
-        // DEbug code
+        // Debug code start
         this.vacancies = [
           {
             id: 1,
@@ -122,6 +122,7 @@
             }
           }
         ]
+        // Debug code end
       }
     },
     computed: {
@@ -134,12 +135,23 @@
 
 <style lang='stylus'>
   .vacancy-item {
-    margin-bottom: 2rem;
-    text-align: center;
+    margin-bottom 2rem
+    text-align center
+    transition transform 250ms ease-out
+    will-change transform
 
     h5 {
-      text-align: center;
-      width: 100%;
+      text-align center
+      width 100%
+    }
+
+    &:hover {
+      transform scale(1.05)
+    }
+
+    &:active {
+      transform scale(1)
+      transition-delay 50ms
     }
   }
 </style>
