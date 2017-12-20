@@ -1,5 +1,5 @@
 <template lang='pug'>
-  div
+  div.two-columns.must
     vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
 </template>
 
@@ -20,19 +20,18 @@
                     model: 'email',
                     type: 'input',
                     inputType: 'text',
-                    label: 'Email',
+                    label: '',
                     max: 255,
                     required: true,
-                    validator: ['required', 'email']
+                    validator: ['email']
                   },
                   {
                     type: 'submit',
-                    buttonText: 'Update Email',
+                    buttonText: 'Update',
                     validateBeforeSubmit: true,
                     onSubmit: this.onSubmit,
                     disabled: this.disableSubmit,
-                    fieldClasses:
-                      'btn btn-outline-primary btn-block btn-submit-custom'
+                    fieldClasses: 'btn btn-primary btn-block'
                   }
                 ]
               }

@@ -1,5 +1,5 @@
 <template lang='pug'>
-  div
+  div.two-columns.must
     .text-center
       transition(appear name='slide-left' mode='out-in')
         img(:src='form.model.picture' alt='new picture' v-if='form.model.picture' class='avatar-picture')
@@ -21,6 +21,7 @@
               {
                 type: 'image',
                 model: 'picture',
+                label: '',
                 required: true,
                 hideInput: true,
                 preview: false,
@@ -28,11 +29,11 @@
               },
               {
                 type: 'submit',
-                buttonText: 'Save Picture',
+                buttonText: 'Upload',
                 validateBeforeSubmit: true,
                 onSubmit: this.onSubmit,
                 disabled: this.disableSubmit,
-                fieldClasses: 'btn btn-outline-primary btn-block'
+                fieldClasses: 'btn btn-primary btn-block'
               }
             ]
           },

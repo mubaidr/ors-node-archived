@@ -55,8 +55,7 @@
                     validateBeforeSubmit: true,
                     onSubmit: this.onSubmit,
                     disabled: this.disableSubmit,
-                    fieldClasses:
-                      'btn btn-outline-warning btn-block btn-submit-custom'
+                    fieldClasses: 'btn btn-warning btn-block'
                   }
                 ]
               }

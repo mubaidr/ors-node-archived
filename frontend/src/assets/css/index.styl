@@ -62,6 +62,10 @@
 /* Vue form generator */
 @media (min-width: 540px) {
   .two-columns .vue-form-generator {
+    .form-group label:empty {
+      display: none;
+    }
+
     .form-group:not(.field-submit) {
       float: left;
       width: 48%;
@@ -71,13 +75,35 @@
       margin-right: 4%;
     }
   }
+
+  .two-columns.must .vue-form-generator {
+    .form-group {
+      float: left;
+      width: 66%;
+    }
+
+    .form-group.field-submit {
+      width: 33%;
+    }
+  }
+}
+
+/* margin for form submit button */
+.btn {
+  padding: 0.84rem 2rem;
 }
 
 .btn-submit-custom {
   margin-top: 1rem;
 }
 
+/* file input size is large than text inputs */
+.form-control.file {
+  padding: 0.56rem 2rem;
+}
+
 .avatar-picture {
+  margin: 1rem;
   max-height: 10rem;
   width: auto;
 }
