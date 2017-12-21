@@ -1,6 +1,6 @@
 <template lang='pug'>
   div
-    h2 Profile
+    h1 Basic Information
     p The information collected through our service shall be kept private and limited to the purpose of providing the service.
     .two-columns
       vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")

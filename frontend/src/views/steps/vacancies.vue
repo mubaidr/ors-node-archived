@@ -1,26 +1,30 @@
 <template lang='pug'>
   div
-    template(v-if='hasListing')
-      p.lead What's your passion? Check out all our open spots below.
-      p Choose a vacancy below to start application.
-      br
-      .row
-        .col-lg-4.col-md-6(v-for='vacancy in vacancies')
-          .list-group.vacancy-item(@click='selectVacancy(vacancy)')
-            a.list-group-item.list-group-item-action.flex-column.align-items-start(href='#')
-              small {{vacancy.CAT_ADVERTISEMENT.advNumber}}
-              hr
-              .d-flex.w-100.justify-content-between
-                h5.mb-1 {{vacancy.CAT_DESIG.description}}
-              hr
-              p.mb-1 {{vacancy.description}}
-              small 3 days ago
-    template(v-else)
-      .alert.alert-warning
-        strong
-          strong Thank you for your interest.
-          br
-        |All positions are currently filled. Please visit our site again for future job postings that may relate to your experience and talents.
+    transition-group(name='slide-up' mode='out-in' appear)
+      div(v-if='hasListing' key='0')
+        p.lead What's your passion? Check out all our open spots below.
+        p Choose a vacancy below to start application.
+        br
+        .row
+          .col-lg-4.col-md-6(v-for='vacancy in vacancies')
+            .list-group.vacancy-item(@click='selectVacancy(vacancy)')
+              a.list-group-item.list-group-item-action.flex-column.align-items-start(href='#')
+                small {{vacancy.CAT_ADVERTISEMENT.advNumber}}
+                hr
+                .d-flex.w-100.justify-content-between
+                  h5.mb-1 {{vacancy.CAT_DESIG.description}}
+                hr
+                p.mb-1 {{vacancy.description}}
+                small 3 days ago
+      div(v-else-if='isLoading' key='1')
+        .progress
+          .progress-bar.progress-bar-striped.progress-bar-animated(role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%')
+      div(v-else key='2')
+        .alert.alert-warning
+          strong
+            strong Thank you for your interest.
+            br
+            |All positions are currently filled. Please visit our site again for future job postings that may relate to your experience and talents.
 </template>
 
 <script>

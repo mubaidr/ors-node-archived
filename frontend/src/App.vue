@@ -1,6 +1,6 @@
 <template lang='pug'>
   div
-    transition(name='slide-up' mode='out-in')
+    transition(name='slide-up' mode='out-in' appear)
       header-template(v-if='isAuthenticated')
       header-template-anonymous(v-else)
     div.beta-banner
@@ -11,7 +11,7 @@
           router-link.alert-link(to='/feedback') feedback
         | &nbsp; will help us to improve it.
     .container.body
-      transition(appear='' :name='transitionName' mode='out-in')
+      transition(appear :name='transitionName' mode='out-in')
         router-view
     footer-template
 </template>

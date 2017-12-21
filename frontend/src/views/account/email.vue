@@ -23,7 +23,7 @@
                     label: '',
                     max: 255,
                     required: true,
-                    validator: ['email']
+                    validator: ['required', 'string', 'email']
                   },
                   {
                     type: 'submit',
