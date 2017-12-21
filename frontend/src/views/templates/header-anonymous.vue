@@ -2,7 +2,7 @@
   nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
     ul.navbar-nav
       li.nav-item
-        span.navbar-brand ORS-NODE
+        span.navbar-brand ORS Node.js
       li.nav-item
         router-link.nav-link(to='/home') Home
       li.nav-item

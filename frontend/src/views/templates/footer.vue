@@ -1,6 +1,6 @@
 <template lang='pug'>
   nav.navbar.navbar-expand-lg.navbar-light.bg-light
-    router-link.navbar-brand(to='/home') ORS
+    router-link.navbar-brand(to='/home') ORS Node.js
 </template>
 
 <script>
@@ -11,4 +11,3 @@
 
 <style lang='stylus'>
 </style>
-
