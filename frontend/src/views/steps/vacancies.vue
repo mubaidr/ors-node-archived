@@ -132,7 +132,9 @@
     },
     methods: {
       selectVacancy (vac) {
-        console.log(vac)
+        this.$store.commit('setApplicationStep', 1)
+        this.$store.commit('setVacancy', vac)
+        this.$router.push('/application')
       }
     }
   }

@@ -37,7 +37,14 @@
       isAuthenticated (val) {
         if (val) {
           swal('You have successfuly logged in.', 'welcome!', 'success')
-          this.$router.push('/home')
+          if (this.$route.query.redirect) {
+            this.$router.push({
+              path: this.$route.query.redirect,
+              query: {}
+            })
+          } else {
+            this.$router.push('/home')
+          }
         } else {
           swal('You have been logged out.', 'Good bye!', 'info')
           this.$router.push('/home')

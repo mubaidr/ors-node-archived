@@ -15,10 +15,10 @@ export default {
     return step || 0
   },
   setApplicationStep (obj) {
-    window.localStorage.setItem('applicationStep', obj)
+    window.localStorage.setItem('applicationStep', JSON.stringify(obj))
   },
   setVacancy (obj) {
-    window.localStorage.setItem('vacancy', obj)
+    window.localStorage.setItem('vacancy', JSON.stringify(obj))
   },
   getVacancy () {
     const vac = JSON.parse(window.localStorage.getItem('vacancy'))
