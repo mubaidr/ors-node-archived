@@ -1,6 +1,6 @@
 <template lang='pug'>
   div
-    transition-group(name='slide-up' mode='out-in' appear)
+    transition-group(name='slide-up' mode='out-in')
       div(v-if='hasListing' key='0')
         p.lead What's your passion? Check out all our open spots below.
         p Choose a vacancy below to start application.
@@ -17,6 +17,7 @@
                 p.mb-1 {{vacancy.description}}
                 small 3 days ago
       div(v-else-if='isLoading' key='1')
+        p.lead Loading...
         .progress
           .progress-bar.progress-bar-striped.progress-bar-animated(role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%')
       div(v-else key='2')

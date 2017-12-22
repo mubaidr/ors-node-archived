@@ -251,11 +251,18 @@
                 fields: [
                   {
                     type: 'submit',
-                    buttonText: 'Save',
+                    buttonText: 'Back',
+                    validateBeforeSubmit: true,
+                    disabled: this.disableSubmit,
+                    fieldClasses: 'btn btn-default btn-submit-custom'
+                  },
+                  {
+                    type: 'submit',
+                    buttonText: 'Save & Continue',
                     validateBeforeSubmit: true,
                     onSubmit: this.onSubmit,
                     disabled: this.disableSubmit,
-                    fieldClasses: 'btn btn-primary btn-block btn-submit-custom'
+                    fieldClasses: 'btn btn-primary btn-submit-custom'
                   }
                 ]
               }
