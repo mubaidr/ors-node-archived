@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import config from './../config'
 
 const mixin = {
   data () {
@@ -9,12 +8,35 @@ const mixin = {
     }
   },
   methods: {
+    // submit handlers
+    onStepBack () {
+      if (this.applicationStep === 0) {
+        swal({
+          title: 'Are you sure you want to leave?',
+          text: '',
+          icon: 'warning',
+          buttons: {
+            cancel: {
+              text: 'Cancel',
+              visible: true
+            },
+            confirm: {
+              text: 'Yes'
+            }
+          }
+        }).then(confirm => {
+          if (confirm) {
+            this.$store.dispatch('gotoPreviousStep')
+          }
+        })
+      } else {
+        this.$store.dispatch('gotoPreviousStep')
+      }
+    },
+    onSubmit () {},
     // Generic form properties
     onValidated (validity) {
       this.isValid = validity
-    },
-    getEndpoint () {
-      return config.api + this.endpoint
     },
     // Data fetch
     getCache () {
@@ -49,9 +71,6 @@ const mixin = {
     applicationStep () {
       return this.$store.getters.getApplicationStep
     }
-  },
-  created () {
-    this.getCache()
   }
 }
 
