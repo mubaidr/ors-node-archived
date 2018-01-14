@@ -3,7 +3,7 @@
     transition-group(name='slide-up' mode='out-in')
       div(v-if='hasListing' key='0')
         p.lead What's your passion? Check out all our open spots below.
-        p Choose a vacancy below to start application.
+        // p Choose a vacancy below to start application.
         br
         .row
           .col-lg-4.col-md-6(v-for='vacancy in vacancies')

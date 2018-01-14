@@ -1,10 +1,10 @@
 <template lang='pug'>
   div
     h1 Basic Information
-    p The information collected through our service shall be kept private and limited to the purpose of providing the service.
+    p All information is required unless stated otherwise.
     .two-columns
       vue-form-generator(:schema='form.schema' :model='form.model' :options='form.options' @validated="onValidated")
-    p Some information regarding the submission
+    p The information collected through our service shall be kept private and limited to the purpose of providing the service.
 </template>
 
 <script>
@@ -38,7 +38,7 @@
           schema: {
             groups: [
               {
-                legend: 'Basic',
+                legend: 'Personal',
                 fields: [
                   {
                     model: 'name',
@@ -252,8 +252,8 @@
                   {
                     type: 'submit',
                     buttonText: 'Back',
-                    validateBeforeSubmit: true,
-                    disabled: this.disableSubmit,
+                    validateBeforeSubmit: false,
+                    onSubmit: this.onBack,
                     fieldClasses: 'btn btn-default btn-submit-custom'
                   },
                   {
