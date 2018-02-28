@@ -1,6 +1,4 @@
-import Vue from 'vue'
 import axios from 'axios'
-import VueAxios from 'vue-axios'
 
 import store from '../store'
 import router from '../router'
@@ -46,8 +44,9 @@ axios.interceptors.response.use(
   err => {
     checkLoadingState(false)
 
+    // TODO: Use descriptive codes for authentication relatd issues
     if (err.response.status === 401 || err.response.status === 403) {
-      store.commit('removeAuthentication')
+      store.dispatch('removeAuthentication')
       router.push({
         path: '/auth/login',
         query: {
@@ -59,4 +58,4 @@ axios.interceptors.response.use(
   }
 )
 
-Vue.use(VueAxios, axios)
+export default axios

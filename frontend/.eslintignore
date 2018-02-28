@@ -1,3 +1,5 @@
-build/*.js
-config/*.js
-**/*min.js
+/build/
+/config/
+/dist/
+/*.js
+/test/unit/coverage/

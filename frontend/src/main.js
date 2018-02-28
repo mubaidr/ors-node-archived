@@ -1,24 +1,20 @@
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-
-import 'bootswatch/dist/lux/bootstrap.min.css'
-import './assets/css/animations.css'
-import './assets/css/pace.styl'
-import './assets/css/index.styl'
-import './utilities/pace-config'
-import './assets/js/pace.min'
-import './utilities'
-
-import App from './App.vue'
 import store from './store'
 import router from './router'
+import App from './App'
 
-// eslint-disable-next-line
+// css and js components required
+import './utilities'
+
+Vue.config.productionTip = false
+
+/* eslint-disable no-new */
 new Vue({
   el: '#app',
   store,
   router,
-  template: '<App/>',
-  components: {
-    App
-  }
+  components: { App },
+  template: '<App/>'
 })

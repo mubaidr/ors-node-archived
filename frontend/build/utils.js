@@ -1,10 +1,10 @@
+'use strict'
 const path = require('path')
 const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../package.json')
-const nodeNotifier = require('node-notifier')
 
-exports.assetsPath = _path => {
+exports.assetsPath = function(_path) {
   const assetsSubDirectory =
     process.env.NODE_ENV === 'production'
       ? config.build.assetsSubDirectory
@@ -13,8 +13,8 @@ exports.assetsPath = _path => {
   return path.posix.join(assetsSubDirectory, _path)
 }
 
-exports.cssLoaders = opt => {
-  const options = opt || {}
+exports.cssLoaders = function(options) {
+  options = options || {}
 
   const cssLoader = {
     loader: 'css-loader',
@@ -31,14 +31,14 @@ exports.cssLoaders = opt => {
   }
 
   // generate loader string to be used with extract text plugin
-  function generateLoaders (loader, loaderOptions) {
+  function generateLoaders(loader, loaderOptions) {
     const loaders = options.usePostCSS
       ? [cssLoader, postcssLoader]
       : [cssLoader]
 
     if (loader) {
       loaders.push({
-        loader: `${loader}-loader`,
+        loader: loader + '-loader',
         options: Object.assign({}, loaderOptions, {
           sourceMap: options.sourceMap
         })
@@ -52,8 +52,9 @@ exports.cssLoaders = opt => {
         use: loaders,
         fallback: 'vue-style-loader'
       })
+    } else {
+      return ['vue-style-loader'].concat(loaders)
     }
-    return ['vue-style-loader'].concat(loaders)
   }
 
   // https://vue-loader.vuejs.org/en/configurations/extract-css.html
@@ -69,28 +70,35 @@ exports.cssLoaders = opt => {
 }
 
 // Generate loaders for standalone style files (outside of .vue)
-exports.styleLoaders = options => {
+exports.styleLoaders = function(options) {
   const output = []
   const loaders = exports.cssLoaders(options)
 
-  Object.keys(loaders).forEach(extension => {
+  for (const extension in loaders) {
     const loader = loaders[extension]
-    output.push({ test: new RegExp(`\\.${extension}$`), use: loader })
-  })
+    output.push({
+      test: new RegExp('\\.' + extension + '$'),
+      use: loader
+    })
+  }
 
   return output
 }
 
-exports.createNotifierCallback = () => (severity, errors) => {
-  if (severity !== 'error') return
+exports.createNotifierCallback = () => {
+  const notifier = require('node-notifier')
 
-  const error = errors[0]
-  const filename = error.file && error.file.split('!').pop()
+  return (severity, errors) => {
+    if (severity !== 'error') return
 
-  nodeNotifier.notify({
-    title: packageConfig.name,
-    message: `${severity}: ${error.name}`,
-    subtitle: filename || '',
-    icon: path.join(__dirname, 'logo.png')
-  })
+    const error = errors[0]
+    const filename = error.file && error.file.split('!').pop()
+
+    notifier.notify({
+      title: packageConfig.name,
+      message: severity + ': ' + error.name,
+      subtitle: filename || '',
+      icon: path.join(__dirname, 'logo.png')
+    })
+  }
 }

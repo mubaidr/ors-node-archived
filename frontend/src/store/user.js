@@ -1,4 +1,4 @@
-import session from '../utilities/session'
+import session from './session'
 import axios from '../utilities/axios'
 /* eslint-disable no-param-reassign */
 
@@ -8,18 +8,18 @@ export default {
     user: session.getUser()
   },
   getters: {
-    isAuthenticated (state) {
+    isAuthenticated(state) {
       return state.auth !== null && typeof state.auth !== 'undefined'
     },
-    auth (state) {
+    auth(state) {
       return state.auth
     },
-    user (state) {
+    user(state) {
       return state.user
     }
   },
   mutations: {
-    setAuthentication (state, obj) {
+    setAuthentication(state, obj) {
       if (obj) {
         state.auth = obj.token
         state.user = obj.login
@@ -32,16 +32,18 @@ export default {
     }
   },
   actions: {
-    authenticate (context, obj) {
+    authenticate(context, obj) {
       axios
-        .post(this.getEndpoint(), obj)
+        .post('/login', obj)
         .then(res => {
           context.commit('setAuthentication', res.data)
         })
         .catch(() => {
-          this.form.model.password = ''
           swal('Invalid credentials!', 'Please try again!', 'error')
         })
+    },
+    removeAuthentication(context) {
+      context.commit('setAuthentication')
     }
   }
 }

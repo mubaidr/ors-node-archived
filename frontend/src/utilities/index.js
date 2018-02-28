@@ -1,8 +1,7 @@
-import 'sweetalert'
-import 'cleave.js'
-
 import './pollyfills'
+import './buefy'
 import './axios'
-import './vue-form-generator'
 import './vue-mixins'
-import './flatpickr'
+
+import '../assets/css/animations.css'
+import '../assets/css/index.styl'

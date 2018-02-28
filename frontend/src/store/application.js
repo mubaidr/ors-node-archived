@@ -1,17 +1,17 @@
 /* eslint-disable no-param-reassign */
-import session from './../utilities/session'
+import session from './session'
 
 export default {
   state: {
     vacancy: session.getVacancy()
   },
   getters: {
-    getVacancy (state) {
+    getVacancy(state) {
       return state.vacancy
     }
   },
   mutations: {
-    setVacancy (state, vac) {
+    setVacancy(state, vac) {
       state.vacancy = vac
       session.setVacancy(vac)
     }

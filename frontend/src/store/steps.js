@@ -1,4 +1,4 @@
-import session from '../utilities/session'
+import session from './session'
 /* eslint-disable no-param-reassign */
 
 export default {
@@ -7,25 +7,25 @@ export default {
     applicationStep: session.getApplicationStep()
   },
   getters: {
-    getApplicationStep (state) {
+    getApplicationStep(state) {
       return state.applicationStep
     },
-    getApplicationSteps (state) {
+    getApplicationSteps(state) {
       return state.applicationSteps
     }
   },
   mutations: {
-    setApplicationStep (state, obj) {
+    setApplicationStep(state, obj) {
       state.applicationStep = obj
       session.setApplicationStep(obj)
     },
-    nextApplicationStep (state) {
+    nextApplicationStep(state) {
       if (state.applicationStep < state.applicationSteps) {
         state.applicationStep += 1
         session.setApplicationStep(state.applicationStep)
       }
     },
-    previousApplicationStep (state) {
+    previousApplicationStep(state) {
       if (state.applicationStep > 0) {
         state.applicationStep -= 1
         session.setApplicationStep(state.applicationStep)
@@ -33,7 +33,11 @@ export default {
     }
   },
   actions: {
-    gotoPreviousStep () {},
-    gotoNextStep () {}
+    gotoPreviousStep(context) {
+      context.commit('nextApplicationStep')
+    },
+    gotoNextStep(context) {
+      context.commit('previousApplicationStep')
+    }
   }
 }
