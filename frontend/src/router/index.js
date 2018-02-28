@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 
 import store from '../store'
 
+import home from './../components/Home.vue'
+
 vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -11,7 +13,11 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      redirect: '/home',
+      redirect: '/home'
+    },
+    {
+      path: '/home',
+      component: home,
       meta: {
         isOpen: true
       }

@@ -1,5 +1,6 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+// const HtmlWebpackPlugin = require('html-webpack-plugin')
+// TODO: add html-webpack-plugin
 const path = require('path')
 
 const config = {
@@ -7,10 +8,6 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'app.js'
-  },
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist'
   },
   module: {
     rules: [
@@ -20,18 +17,25 @@ const config = {
         loader: 'babel-loader',
         exclude: /node_modules/
       },
-      { test: /\.css$/, use: 'css-loader' },
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
       { test: /\.styl$/, use: ['style-loader', 'css-loader', 'stylus-loader'] },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]?[hash]'
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 8192
+          }
         }
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: ['file-loader']
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 8192
+          }
+        }
       }
     ]
   },
@@ -41,8 +45,10 @@ const config = {
     },
     extensions: ['.js', '.vue']
   },
-  // optimization: { minimize: true },
-  plugins: [new CleanWebpackPlugin(['dist'])]
+  plugins: [
+    new CleanWebpackPlugin(['dist'])
+    //  , new HtmlWebpackPlugin()
+  ]
 }
 
 module.exports = config
