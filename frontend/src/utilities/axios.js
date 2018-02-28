@@ -7,7 +7,7 @@ import router from '../router'
 
 let numberOfAjaxCallPending = 0
 
-function checkLoadingState (state) {
+function checkLoadingState(state) {
   if (state) {
     numberOfAjaxCallPending += 1
     store.commit('isLoading')

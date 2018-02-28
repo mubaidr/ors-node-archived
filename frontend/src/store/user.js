@@ -33,14 +33,12 @@ export default {
   },
   actions: {
     authenticate(context, obj) {
-      axios
+      return axios
         .post('/login', obj)
         .then(res => {
           context.commit('setAuthentication', res.data)
         })
-        .catch(() => {
-          swal('Invalid credentials!', 'Please try again!', 'error')
-        })
+        .catch(() => {})
     },
     removeAuthentication(context) {
       context.commit('setAuthentication')

@@ -3,5 +3,5 @@ import './buefy'
 import './axios'
 import './vue-mixins'
 
-import '../assets/css/animations.css'
-import '../assets/css/index.styl'
+import '../assets/animations.styl'
+import '../assets/index.styl'
