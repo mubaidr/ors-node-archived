@@ -1,6 +1,5 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-// const HtmlWebpackPlugin = require('html-webpack-plugin')
-// TODO: add html-webpack-plugin
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 
 const config = {
@@ -19,6 +18,10 @@ const config = {
       },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
       { test: /\.styl$/, use: ['style-loader', 'css-loader', 'stylus-loader'] },
+      {
+        test: /\.s(a|c)ss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      },
       {
         test: /\.(png|jpg|gif|svg)$/,
         use: {
@@ -41,13 +44,24 @@ const config = {
   },
   resolve: {
     alias: {
-      vue$: 'vue/dist/vue.esm.js'
+      vue$: 'vue/dist/vu.esm.js'
     },
     extensions: ['.js', '.vue']
   },
+  optimization: {
+    minimize: false,
+    splitChunks: {
+      chunks: 'all',
+      name: true
+    },
+    runtimeChunk: true
+  },
   plugins: [
-    new CleanWebpackPlugin(['dist'])
-    //  , new HtmlWebpackPlugin()
+    new CleanWebpackPlugin(['dist']),
+    new HtmlWebpackPlugin({
+      template: './index.html',
+      inject: true
+    })
   ]
 }
 

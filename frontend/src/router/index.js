@@ -2,14 +2,20 @@ import vue from 'vue'
 import VueRouter from 'vue-router'
 
 import store from '../store'
-
-import home from './../components/Home.vue'
+import home from './../components/Home'
 
 vue.use(VueRouter)
 
 const router = new VueRouter({
   mode: 'history',
   root: '/',
+  linkActiveClass: 'is-active',
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    }
+    return { x: 0, y: 0 }
+  },
   routes: [
     {
       path: '/',
