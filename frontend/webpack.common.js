@@ -1,13 +1,7 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const path = require('path')
 
 const config = {
-  entry: './src/index.js',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'app.js'
-  },
   module: {
     rules: [
       { test: /\.vue$/, use: 'vue-loader' },
@@ -44,17 +38,15 @@ const config = {
   },
   resolve: {
     alias: {
-      vue$: 'vue/dist/vu.esm.js'
+      vue$: 'vue/dist/vue.esm.js'
     },
     extensions: ['.js', '.vue']
   },
   optimization: {
-    minimize: false,
     splitChunks: {
       chunks: 'all',
       name: true
-    },
-    runtimeChunk: true
+    }
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),

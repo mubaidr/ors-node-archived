@@ -1,12 +1,8 @@
-// const webpack = require('webpack')
 // const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const merge = require('webpack-merge')
 const common = require('./webpack.common.js')
 
 const config = merge(common, {
-  optimization: {
-    minimize: true
-  }
   /* ,
   module: {
     rules: [
