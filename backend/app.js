@@ -3,7 +3,6 @@ const logger = require('morgan')
 const bodyParser = require('body-parser')
 const finale = require('finale-rest')
 const cors = require('cors')
-
 const routes = require('./routes/index')
 
 const app = express()
@@ -11,17 +10,6 @@ const { models, sequelize } = require('./db/index')
 
 // kepp root path in global
 global.app_root = __dirname
-
-// Console colors
-const colors = require('colors')
-
-colors.setTheme({
-  success: 'green',
-  debug: 'blue',
-  info: 'cyan',
-  warn: 'yellow',
-  error: 'red'
-})
 
 // Setup DB and store models in app
 app.set('db', models)
@@ -71,7 +59,7 @@ app.use((req, res, next) => {
 
 // eslint-disable-next-line
 app.use((err, req, res, next) => {
-  console.log(`\n${err.message.error}\n${err.stack.warn}\n`)
+  console.log(`\n${err.message}\n${err.stack}\n`)
 
   if (req.app.get('env') === 'development') {
     res.status(err.status || 500).send(err.stack)
